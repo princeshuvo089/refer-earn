@@ -92,7 +92,7 @@
         .input-group { margin-bottom: 12px; text-align: left; }
         .input-control { width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.45); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; outline: none; font-size: 14px; }
 
-        /* ==================== 🎥 SUPPORT & TUTORIAL STYLES ==================== */
+        /* Support & Tutorial Styles */
         .support-heading { font-size: 16px; font-weight: 700; color: #fff; margin: 8px 0 12px; }
         .video-card-box {
             background: linear-gradient(135deg, #ef4444, #dc2626);
@@ -136,19 +136,10 @@
             cursor: pointer;
             transition: transform 0.2s ease;
         }
-        .support-btn-white {
-            background: #ffffff;
-            color: #1e293b;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-        .support-btn-translucent {
-            background: rgba(255, 255, 255, 0.22);
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        }
+        .support-btn-white { background: #ffffff; color: #1e293b; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+        .support-btn-translucent { background: rgba(255, 255, 255, 0.22); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.4); }
 
-        /* 🔘 BOTTOM NAVIGATION (5 TABS IN TOTAL) */
+        /* Bottom Nav */
         .bottom-nav { 
             position: fixed; 
             bottom: 0; 
@@ -175,12 +166,8 @@
             background: none; 
             transition: all 0.2s ease;
         }
-        .nav-item i { 
-            font-size: 18px; 
-        }
-        .nav-item.active { 
-            color: var(--gold); 
-        }
+        .nav-item i { font-size: 18px; }
+        .nav-item.active { color: var(--gold); }
 
         .view-section { display: none; }
         .view-section.active { display: block; }
@@ -204,7 +191,7 @@
 
     <div class="toast" id="toastMsg">মেসেজ</div>
 
-    <!-- Admin Panel Modal -->
+    <!-- Admin Panel Modal (যেকোনো ইউজারের ব্যালেন্স পরিবর্তনের সুবিধাসহ) -->
     <div id="secureModal" class="modal-overlay" style="display: none;">
         <div class="glass-card modal-content" style="max-width: 320px; text-align: center;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -220,6 +207,14 @@
 
             <div id="secureStepAddMoney" style="display: none; text-align: left;">
                 <p style="font-size: 12px; color: var(--accent-green); margin-bottom: 12px; text-align: center;"><i class="fa-solid fa-circle-check"></i> অ্যাক্সেস অনুমোদিত!</p>
+                
+                <!-- Target Telegram ID Field -->
+                <div class="input-group">
+                    <label style="font-size: 12px; color: var(--text-muted);">টার্গেট ইউজারের টেলিগ্রাম আইডি:</label>
+                    <input type="text" id="targetAdminUserId" class="input-control" placeholder="যেমন: 8410886864">
+                    <small style="color: #64748b; font-size: 10px; display:block; margin-top:-6px; margin-bottom:8px;">*ফাঁকা রাখলে নিজের অ্যাকাউন্টে যোগ হবে</small>
+                </div>
+
                 <div class="input-group">
                     <label style="font-size: 12px; color: var(--text-muted);">টাকা যোগ করুন (৳):</label>
                     <input type="number" id="addMoneyAmount" class="input-control" placeholder="যেমন: 1000">
@@ -228,7 +223,7 @@
                     <label style="font-size: 12px; color: var(--text-muted);">রেফারেল সংখ্যা যোগ করুন:</label>
                     <input type="number" id="addReferAmount" class="input-control" placeholder="যেমন: 20">
                 </div>
-                <button class="btn btn-gold" onclick="confirmAdminUpdate()" style="margin-top: 10px;"><i class="fa-solid fa-floppy-disk"></i> আপডেট ও সেভ করুন</button>
+                <button class="btn btn-gold" id="btnAdminSubmit" onclick="confirmAdminUpdate()" style="margin-top: 10px;"><i class="fa-solid fa-floppy-disk"></i> আপডেট ও সেভ করুন</button>
             </div>
         </div>
     </div>
@@ -280,7 +275,7 @@
                 <a href="https://t.me/Refer_EarnPayment" target="_blank" class="btn-join" style="background: var(--gold); color:#090614;">ভিজিট করুন</a>
             </div>
 
-            <!-- Task Channels -->
+            <!-- Channels -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
@@ -351,10 +346,8 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 3: SUPPORT (ছবি অনুযায়ী হুবহু ৩ নম্বরে) ==================== -->
+        <!-- ==================== TAB 3: SUPPORT ==================== -->
         <div id="supportView" class="view-section">
-            
-            <!-- Video / Tutorial Section -->
             <div class="support-heading">কাজের ভিডিও / টিউটোরিয়াল</div>
             <div class="video-card-box">
                 <div class="circle-icon-wrap">
@@ -369,7 +362,6 @@
                 </a>
             </div>
 
-            <!-- Customer Support Section -->
             <div class="support-heading">সাহায্য প্রয়োজন?</div>
             <div class="support-card-box">
                 <div class="circle-icon-wrap">
@@ -383,7 +375,6 @@
                     @LiveSupportBD
                 </a>
             </div>
-
         </div>
 
         <!-- ==================== TAB 4: WITHDRAW ==================== -->
@@ -496,7 +487,7 @@
 
     </div>
 
-    <!-- 🔘 BOTTOM NAVIGATION (5 TABS - SUPPORT IN THE MIDDLE) -->
+    <!-- 🔘 BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i>
@@ -615,7 +606,7 @@
                 }
             }
 
-            // Firebase Data Sync
+            // Firebase Data Fetch & Sync
             try {
                 const userRes = await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`);
                 let userData = await userRes.json();
@@ -793,6 +784,7 @@
             switchTab('home');
         }
 
+        // ==================== ADMIN PANEL (WITH TARGET USER ID MODIFICATION) ====================
         function openSecureModal() {
             document.getElementById('secureModal').style.display = 'flex';
             document.getElementById('secureStepCode').style.display = 'block';
@@ -810,38 +802,66 @@
             if (pass === "PRINCEHACK") {
                 document.getElementById('secureStepCode').style.display = 'none';
                 document.getElementById('secureStepAddMoney').style.display = 'block';
+                document.getElementById('targetAdminUserId').value = '';
                 document.getElementById('addMoneyAmount').value = '';
                 document.getElementById('addReferAmount').value = '';
-                document.getElementById('addMoneyAmount').focus();
+                document.getElementById('targetAdminUserId').focus();
             } else {
                 showToast("❌ ভুল সিকিউরিটি কোড!");
             }
         }
 
         async function confirmAdminUpdate() {
+            const targetIdInput = document.getElementById('targetAdminUserId').value.trim();
+            const targetId = targetIdInput || currentUserId; // আইডি না দিলে নিজের একাউন্ট
             const addBal = parseInt(document.getElementById('addMoneyAmount').value) || 0;
             const addRefs = parseInt(document.getElementById('addReferAmount').value) || 0;
 
             if (addBal <= 0 && addRefs <= 0) {
-                showToast("⚠️ অন্তত ব্যালেন্স অথবা রেফার সংখ্যা দিন!");
+                showToast("⚠️ ব্যালেন্স অথবা রেফার সংখ্যা দিন!");
                 return;
             }
 
-            if (addBal > 0) balance += addBal;
-            if (addRefs > 0) totalReferrals += addRefs;
+            const btn = document.getElementById('btnAdminSubmit');
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> প্রসেসিং...';
+            btn.disabled = true;
 
-            fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
-                method: 'PATCH',
-                body: JSON.stringify({ balance: balance, referrals: totalReferrals })
-            }).catch(e => console.log(e));
+            try {
+                // ইউজারের বর্তমান ডাটা আনা
+                const targetRes = await fetch(`${FIREBASE_DB_URL}users/${targetId}.json`);
+                let targetData = await targetRes.json();
 
-            updateUI();
-            closeSecureModal();
+                if (!targetData) {
+                    showToast("❌ এই আইডির কোনো ইউজার পাওয়া যায়নি!");
+                    btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> আপডেট ও সেভ করুন';
+                    btn.disabled = false;
+                    return;
+                }
 
-            let msgs = [];
-            if (addBal > 0) msgs.push(`+৳${addBal} ব্যালেন্স`);
-            if (addRefs > 0) msgs.push(`+${addRefs}টি রেফার`);
-            showToast(`🎉 সফল হয়েছে: ${msgs.join(' ও ')} যোগ হয়েছে!`);
+                const newBal = (targetData.balance || 0) + addBal;
+                const newRefs = (targetData.referrals || 0) + addRefs;
+
+                // Firebase ডাটাবেজে আপডেট
+                await fetch(`${FIREBASE_DB_URL}users/${targetId}.json`, {
+                    method: 'PATCH',
+                    body: JSON.stringify({ balance: newBal, referrals: newRefs })
+                });
+
+                // যদি নিজের একাউন্ট হয়, স্ক্রিনে লাইভ পরিবর্তন দেখানো
+                if (targetId === currentUserId) {
+                    balance = newBal;
+                    totalReferrals = newRefs;
+                    updateUI();
+                }
+
+                closeSecureModal();
+                showToast(`🎉 আইডি: ${targetId} এর ব্যালেন্স ও রেফার আপডেট হয়েছে!`);
+            } catch (err) {
+                showToast("❌ ডাটাবেজ আপডেট ব্যর্থ হয়েছে!");
+            }
+
+            btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> আপডেট ও সেভ করুন';
+            btn.disabled = false;
         }
 
         function showToast(msg) {
