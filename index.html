@@ -48,7 +48,6 @@
             padding: 14px;
         }
 
-        /* Top Header */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -85,7 +84,6 @@
             font-weight: 600;
         }
 
-        /* User Header Chip */
         .user-chip {
             display: flex;
             align-items: center;
@@ -129,7 +127,6 @@
             text-overflow: ellipsis;
         }
 
-        /* User Welcome Banner Card */
         .user-welcome-card {
             background: rgba(147, 51, 234, 0.12);
             border: 1px solid rgba(147, 51, 234, 0.3);
@@ -169,7 +166,6 @@
             font-weight: 700;
         }
 
-        /* Glass Cards */
         .glass-card {
             background: var(--card-bg);
             backdrop-filter: blur(14px);
@@ -180,7 +176,6 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
         }
 
-        /* Balance Hero Card */
         .balance-card {
             background: linear-gradient(135deg, rgba(46, 20, 92, 0.9), rgba(18, 11, 36, 0.95));
             border: 1px solid rgba(245, 158, 11, 0.4);
@@ -232,7 +227,6 @@
             gap: 6px;
         }
 
-        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -274,7 +268,6 @@
             font-weight: 700;
         }
 
-        /* Payment Channel Notice Bar */
         .payment-notice {
             background: linear-gradient(90deg, rgba(245, 158, 11, 0.12), rgba(147, 51, 234, 0.18));
             border: 1px solid var(--gold);
@@ -286,7 +279,6 @@
             margin-bottom: 14px;
         }
 
-        /* Channel Task Item */
         .channel-item {
             display: flex;
             align-items: center;
@@ -307,6 +299,11 @@
         .channel-info i {
             font-size: 22px;
             color: #229ed9;
+        }
+
+        .channel-btn-group {
+            display: flex;
+            gap: 6px;
         }
 
         .btn-join {
@@ -343,7 +340,6 @@
             cursor: default;
         }
 
-        /* General Buttons */
         .btn {
             width: 100%;
             padding: 13px;
@@ -369,7 +365,6 @@
             transform: scale(0.98);
         }
 
-        /* Referral Link Box */
         .ref-box {
             display: flex;
             gap: 8px;
@@ -409,7 +404,6 @@
             margin: 8px 0;
         }
 
-        /* Requirement Tracker */
         .req-card {
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -440,7 +434,6 @@
             transition: width 0.3s ease;
         }
 
-        /* Payment Selector */
         .gateway-selector {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -478,17 +471,6 @@
             border-radius: 6px;
         }
 
-        .gateway-card span {
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .gateway-card small {
-            font-size: 10px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
         .input-group {
             margin-bottom: 12px;
             text-align: left;
@@ -512,7 +494,6 @@
             font-size: 14px;
         }
 
-        /* Leaderboard Items */
         .leaderboard-item {
             display: flex;
             align-items: center;
@@ -539,7 +520,6 @@
         .rank-2 { background: #c0c0c0; color: #000; }
         .rank-3 { background: #cd7f32; color: #fff; }
 
-        /* Bottom Nav */
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -593,7 +573,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* Bottom Left Bold Admin Trigger */
         .admin-trigger {
             text-align: left;
             font-size: 11px;
@@ -606,13 +585,8 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            transition: all 0.2s ease;
-        }
-        .admin-trigger:hover {
-            color: var(--gold);
         }
 
-        /* Secret Admin Modal */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -624,6 +598,7 @@
             z-index: 10001;
             padding: 16px;
         }
+
         .modal-content {
             width: 100%;
             border: 1px solid var(--gold);
@@ -635,7 +610,7 @@
 
     <div class="toast" id="toastMsg">মেসেজ</div>
 
-    <!-- Secret Admin Modal -->
+    <!-- Admin Panel Modal -->
     <div id="secureModal" class="modal-overlay" style="display: none;">
         <div class="glass-card modal-content" style="max-width: 320px; text-align: center;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
@@ -643,26 +618,22 @@
                 <span onclick="closeSecureModal()" style="cursor: pointer; font-size: 20px; color: var(--text-muted);">&times;</span>
             </div>
             
-            <!-- Step 1: Security Code Verification -->
             <div id="secureStepCode">
                 <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">অ্যাডমিন সিকিউরিটি কোড দিন:</p>
                 <input type="password" id="secretPassInput" class="input-control" placeholder="Secret Code..." style="margin-bottom: 12px; text-align: center;">
                 <button class="btn btn-gold" onclick="verifySecretCode()">লগইন করুন</button>
             </div>
 
-            <!-- Step 2: Edit Balance & Referrals -->
             <div id="secureStepAddMoney" style="display: none; text-align: left;">
                 <p style="font-size: 12px; color: var(--accent-green); margin-bottom: 12px; text-align: center;">
                     <i class="fa-solid fa-circle-check"></i> অ্যাক্সেস অনুমোদিত!
                 </p>
 
-                <!-- Balance Modifier -->
                 <div class="input-group">
                     <label>টাকা যোগ করুন (৳):</label>
                     <input type="number" id="addMoneyAmount" class="input-control" placeholder="যেমন: 1000">
                 </div>
 
-                <!-- Referral Modifier -->
                 <div class="input-group">
                     <label>রেফারেল সংখ্যা যোগ করুন:</label>
                     <input type="number" id="addReferAmount" class="input-control" placeholder="যেমন: 20">
@@ -705,11 +676,11 @@
                 </div>
             </div>
             <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green);">
-                সক্রিয় একাউন্ট
+                অনলাইন ক্লাউড ডাটাবেজ
             </div>
         </div>
 
-        <!-- ==================== TAB 1: HOME ==================== -->
+        <!-- TAB 1: HOME -->
         <div id="homeView" class="view-section active">
             <div class="glass-card balance-card">
                 <div class="balance-label">মোট উপার্জিত ব্যালেন্স</div>
@@ -738,7 +709,6 @@
                 </div>
             </div>
 
-            <!-- Payment Proof Channel Notice -->
             <div class="payment-notice">
                 <div style="display:flex; align-items:center; gap: 10px;">
                     <i class="fa-solid fa-shield-halved" style="color: var(--gold); font-size: 20px;"></i>
@@ -823,7 +793,7 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 2: REFER ==================== -->
+        <!-- TAB 2: REFER -->
         <div id="referView" class="view-section">
             <div class="glass-card" style="text-align: center;">
                 <i class="fa-solid fa-hand-holding-dollar" style="font-size: 38px; color: var(--gold); margin-bottom: 6px;"></i>
@@ -846,7 +816,6 @@
                 </button>
             </div>
 
-            <!-- Calculation Guide -->
             <div class="glass-card">
                 <h4 style="font-size: 13px; margin-bottom: 12px;"><i class="fa-solid fa-chart-line"></i> ইনকাম ও উইথড্রল চার্ট</h4>
                 
@@ -867,10 +836,8 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 3: WITHDRAW ==================== -->
+        <!-- TAB 3: WITHDRAW -->
         <div id="withdrawView" class="view-section">
-            
-            <!-- LOCKED STATE (< 1250 or < 20 refs) -->
             <div id="withdrawLocked" class="glass-card" style="text-align: center; padding: 22px 14px;">
                 <div style="width: 56px; height: 56px; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; border: 1px solid rgba(239, 68, 68, 0.3);">
                     <i class="fa-solid fa-lock"></i>
@@ -880,7 +847,6 @@
                     Minimum withdrawal amount is <strong>৳1,250</strong> & <strong>20 Referrals</strong> required.
                 </p>
 
-                <!-- Requirements Tracker -->
                 <div class="req-card">
                     <div class="req-row">
                         <span>ব্যালেন্স টার্গেট (৳1,250)</span>
@@ -906,7 +872,6 @@
                 </button>
             </div>
 
-            <!-- UNLOCKED STATE (>= 1250 and >= 20 refs) -->
             <div id="withdrawUnlocked" class="glass-card" style="display: none;">
                 <div style="text-align: center; margin-bottom: 14px;">
                     <i class="fa-solid fa-circle-check" style="font-size: 34px; color: var(--accent-green);"></i>
@@ -943,10 +908,9 @@
                     <i class="fa-solid fa-paper-plane"></i> Submit Withdrawal
                 </button>
             </div>
-
         </div>
 
-        <!-- ==================== TAB 4: PROFILE & BOT INFO ==================== -->
+        <!-- TAB 4: PROFILE -->
         <div id="profileView" class="view-section">
             <div class="glass-card" style="text-align: center;">
                 <div style="width: 70px; height: 70px; margin: 0 auto 10px; position: relative;">
@@ -958,7 +922,6 @@
                 <p id="profTgId" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Telegram ID: ...</p>
             </div>
 
-            <!-- Bot Official Identity Card -->
             <div class="glass-card" style="display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.35);">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-light); object-fit: cover;">
                 <div>
@@ -967,7 +930,7 @@
                 </div>
             </div>
 
-            <!-- Top Leaderboard -->
+            <!-- Leaderboard -->
             <div class="glass-card">
                 <h4 style="font-size: 14px; margin-bottom: 12px;">🏆 শীর্ষ রেফারকারী (Leaderboard)</h4>
                 
@@ -1012,7 +975,6 @@
                 </p>
             </div>
 
-            <!-- Bottom Left Bold Admin Panel Trigger -->
             <div style="text-align: left; padding: 2px 4px;">
                 <div class="admin-trigger" onclick="openSecureModal()">
                     <i class="fa-solid fa-lock" style="font-size: 10px;"></i> Admin Panel
@@ -1043,96 +1005,145 @@
     </nav>
 
     <script>
+        // 🎯 আপনার লাইভ Firebase ডাটাবেজ লিংক সরাসরি সেট করা হয়েছে:
+        const FIREBASE_DB_URL = "https://refer-earning-default-rtdb.firebaseio.com/";
+
         const MIN_WITHDRAW_BALANCE = 1250;
         const MIN_REQUIRED_REFS = 20;
         const BOT_USERNAME = "ReferEarnn_Bot";
 
         let currentUserId = "guest_123456";
-        let balance = 50; // Welcome Bonus
+        let balance = 50;
         let totalReferrals = 0;
         let currentGateway = 'bKash';
 
-        // Initialize completely offline-ready
-        window.addEventListener('DOMContentLoaded', () => {
-            try {
-                const tg = window.Telegram?.WebApp;
-                let tgUser = null;
+        window.addEventListener('DOMContentLoaded', async () => {
+            const tg = window.Telegram?.WebApp;
+            let tgUser = null;
+            let startParam = null;
 
-                if (tg) {
-                    tg.ready();
-                    tg.expand();
-                    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                        tgUser = tg.initDataUnsafe.user;
-                    }
+            if (tg) {
+                tg.ready();
+                tg.expand();
+                if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+                    tgUser = tg.initDataUnsafe.user;
                 }
+                if (tg.initDataUnsafe && tg.initDataUnsafe.start_param) {
+                    startParam = tg.initDataUnsafe.start_param;
+                }
+            }
 
-                if (tgUser) {
-                    currentUserId = tgUser.id.toString();
-                    const firstName = tgUser.first_name || 'User';
-                    const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ').trim() || 'Telegram User';
-                    const userTag = tgUser.username ? '@' + tgUser.username : 'ID: ' + tgUser.id;
+            if (tgUser) {
+                currentUserId = tgUser.id.toString();
+                const firstName = tgUser.first_name || 'User';
+                const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ').trim() || 'Telegram User';
+                const userTag = tgUser.username ? '@' + tgUser.username : 'ID: ' + tgUser.id;
 
-                    document.getElementById('welcomeUserName').innerText = firstName;
-                    document.getElementById('userHeaderName').innerText = firstName;
-                    document.getElementById('profUserTitle').innerText = fullName;
-                    document.getElementById('welcomeUserId').innerText = 'ID: ' + tgUser.id;
-                    document.getElementById('profTgHandle').innerText = userTag;
-                    document.getElementById('profTgId').innerText = 'Telegram ID: ' + tgUser.id;
+                document.getElementById('welcomeUserName').innerText = firstName;
+                document.getElementById('userHeaderName').innerText = firstName;
+                document.getElementById('profUserTitle').innerText = fullName;
+                document.getElementById('welcomeUserId').innerText = 'ID: ' + tgUser.id;
+                document.getElementById('profTgHandle').innerText = userTag;
+                document.getElementById('profTgId').innerText = 'Telegram ID: ' + tgUser.id;
 
-                    if (tgUser.photo_url) {
-                        const p1 = document.getElementById('userHeaderPic');
-                        const p2 = document.getElementById('userWelcomePic');
-                        const p3 = document.getElementById('profUserPic');
+                if (tgUser.photo_url) {
+                    const p1 = document.getElementById('userHeaderPic');
+                    const p2 = document.getElementById('userWelcomePic');
+                    const p3 = document.getElementById('profUserPic');
 
-                        p1.src = tgUser.photo_url; p1.style.display = 'block';
-                        p2.src = tgUser.photo_url; p2.style.display = 'block';
-                        p3.src = tgUser.photo_url; p3.style.display = 'block';
+                    p1.src = tgUser.photo_url; p1.style.display = 'block';
+                    p2.src = tgUser.photo_url; p2.style.display = 'block';
+                    p3.src = tgUser.photo_url; p3.style.display = 'block';
 
-                        document.getElementById('userHeaderInitial').style.display = 'none';
-                        document.getElementById('userWelcomeInitial').style.display = 'none';
-                        document.getElementById('profUserInitial').style.display = 'none';
-                    } else {
-                        applyInitials(firstName);
-                    }
+                    document.getElementById('userHeaderInitial').style.display = 'none';
+                    document.getElementById('userWelcomeInitial').style.display = 'none';
+                    document.getElementById('profUserInitial').style.display = 'none';
                 } else {
-                    currentUserId = localStorage.getItem('demo_current_uid') || 'USR_' + Math.floor(100000 + Math.random() * 900000);
-                    localStorage.setItem('demo_current_uid', currentUserId);
-                    
-                    document.getElementById('welcomeUserName').innerText = "Demo User";
-                    document.getElementById('userHeaderName').innerText = "Demo";
-                    document.getElementById('profUserTitle').innerText = "Demo User";
-                    document.getElementById('welcomeUserId').innerText = 'ID: ' + currentUserId;
-                    document.getElementById('profTgHandle').innerText = "@demouser";
-                    document.getElementById('profTgId').innerText = 'Telegram ID: ' + currentUserId;
-                    applyInitials("Demo User");
+                    applyInitials(firstName);
+                }
+            } else {
+                currentUserId = localStorage.getItem('demo_current_uid') || 'USR_' + Math.floor(100000 + Math.random() * 900000);
+                localStorage.setItem('demo_current_uid', currentUserId);
+                
+                document.getElementById('welcomeUserName').innerText = "Demo User";
+                document.getElementById('userHeaderName').innerText = "Demo";
+                document.getElementById('profUserTitle').innerText = "Demo User";
+                document.getElementById('welcomeUserId').innerText = 'ID: ' + currentUserId;
+                document.getElementById('profTgHandle').innerText = "@demouser";
+                document.getElementById('profTgId').innerText = 'Telegram ID: ' + currentUserId;
+                applyInitials("Demo User");
+            }
+
+            // Set Referral Link
+            document.getElementById('refLinkInput').value = `https://t.me/${BOT_USERNAME}?startapp=${currentUserId}`;
+            document.getElementById('myReferralCodeBadge').innerText = currentUserId;
+
+            // 🚀 FIREBASE REAL-TIME SYNC & AUTOMATIC REFERRAL ENGINE
+            try {
+                const userRes = await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`);
+                let userData = await userRes.json();
+
+                // নতুন ইউজার হলে ডাটাবেজে তৈরি করা ও রেফারারকে ক্রেডিট দেওয়া
+                if (!userData) {
+                    userData = {
+                        id: currentUserId,
+                        name: tgUser?.first_name || 'User',
+                        balance: 50, // Welcome Bonus
+                        referrals: 0,
+                        claimedTasks: {},
+                        createdAt: new Date().toISOString()
+                    };
+
+                    // 🎯 রিয়েল রেফারেল ট্র্যাকিং (যিনি রেফার করেছেন তার একাউন্টে +৳৫০ এবং +১ রেফার)
+                    if (startParam && startParam !== currentUserId) {
+                        try {
+                            const refRes = await fetch(`${FIREBASE_DB_URL}users/${startParam}.json`);
+                            const refData = await refRes.json();
+
+                            if (refData) {
+                                const newRefBal = (refData.balance || 0) + 50;
+                                const newRefs = (refData.referrals || 0) + 1;
+
+                                await fetch(`${FIREBASE_DB_URL}users/${startParam}.json`, {
+                                    method: 'PATCH',
+                                    body: JSON.stringify({ balance: newRefBal, referrals: newRefs })
+                                });
+                            }
+                        } catch (refErr) {
+                            console.log("Referrer sync error:", refErr);
+                        }
+                    }
+
+                    // নতুন ইউজারের অ্যাকাউন্ট সেভ করা
+                    await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
+                        method: 'PUT',
+                        body: JSON.stringify(userData)
+                    });
                 }
 
-                // Set Referral Link
-                document.getElementById('refLinkInput').value = `https://t.me/${BOT_USERNAME}?startapp=${currentUserId}`;
-                document.getElementById('myReferralCodeBadge').innerText = currentUserId;
+                balance = userData.balance !== undefined ? userData.balance : 50;
+                totalReferrals = userData.referrals !== undefined ? userData.referrals : 0;
 
-                // Load Balance & Referrals
-                const savedBal = localStorage.getItem(`reb_${currentUserId}_bal`);
-                balance = savedBal !== null ? parseInt(savedBal) : 50;
-                totalReferrals = parseInt(localStorage.getItem(`reb_${currentUserId}_refs`)) || 0;
-
-                // Restore Task States
-                for (let i = 1; i <= 4; i++) {
-                    if (localStorage.getItem(`task_claimed_${currentUserId}_${i}`)) {
-                        const btn = document.getElementById(`claimBtn${i}`);
-                        if (btn) {
-                            btn.classList.add('btn-claimed');
-                            btn.innerText = "Claimed ✓";
-                            btn.disabled = true;
+                // ক্লেইম করা টাস্কগুলো চেক করা
+                if (userData.claimedTasks) {
+                    for (let i = 1; i <= 4; i++) {
+                        if (userData.claimedTasks[i]) {
+                            const btn = document.getElementById(`claimBtn${i}`);
+                            if (btn) {
+                                btn.classList.add('btn-claimed');
+                                btn.innerText = "Claimed ✓";
+                                btn.disabled = true;
+                            }
                         }
                     }
                 }
-
-                updateUI();
             } catch (err) {
-                console.error("Initialization error:", err);
-                updateUI();
+                console.log("Firebase sync warning:", err);
+                balance = parseInt(localStorage.getItem(`reb_${currentUserId}_bal`)) || 50;
+                totalReferrals = parseInt(localStorage.getItem(`reb_${currentUserId}_refs`)) || 0;
             }
+
+            updateUI();
         });
 
         function applyInitials(name) {
@@ -1169,12 +1180,14 @@
             }
         }
 
-        function claimTask(id) {
-            if (localStorage.getItem(`task_claimed_${currentUserId}_${id}`)) return;
-
+        async function claimTask(id) {
             balance += 50;
             localStorage.setItem(`reb_${currentUserId}_bal`, balance);
-            localStorage.setItem(`task_claimed_${currentUserId}_${id}`, 'true');
+
+            fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
+                method: 'PATCH',
+                body: JSON.stringify({ balance: balance, [`claimedTasks/${id}`]: true })
+            }).catch(e => console.log(e));
 
             const btn = document.getElementById(`claimBtn${id}`);
             if (btn) {
@@ -1188,8 +1201,6 @@
 
         function copyReferralLink() {
             const input = document.getElementById('refLinkInput');
-            input.select();
-            input.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(input.value);
             showToast("🔗 আপনার নিজস্ব রেফার লিংক কপি হয়েছে!");
         }
@@ -1242,7 +1253,7 @@
             document.getElementById('phoneLabel').innerText = `${m === 'bKash' ? 'বিকাশ' : 'নগদ'} অ্যাকাউন্ট নম্বর`;
         }
 
-        function handleWithdrawRequest() {
+        async function handleWithdrawRequest() {
             const num = document.getElementById('targetNumber').value.trim();
             const amt = parseInt(document.getElementById('targetAmount').value);
 
@@ -1262,15 +1273,29 @@
             }
 
             balance -= amt;
-            localStorage.setItem(`reb_${currentUserId}_bal`, balance);
             updateUI();
+
+            fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
+                method: 'PATCH',
+                body: JSON.stringify({ balance: balance })
+            }).catch(e => console.log(e));
+
+            fetch(`${FIREBASE_DB_URL}withdrawals.json`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    userId: currentUserId,
+                    method: currentGateway,
+                    number: num,
+                    amount: amt,
+                    time: new Date().toLocaleString()
+                })
+            }).catch(e => console.log(e));
 
             alert(`✅ উত্তোলন আবেদন সফল হয়েছে!\n\nপেমেন্ট মেথড: ${currentGateway}\nঅ্যাকাউন্ট: ${num}\nপরিমাণ: ৳${amt}\n\nআপনার টাকা ১-১২ ঘণ্টার মধ্যে পাঠিয়ে দেওয়া হবে।`);
             document.getElementById('targetNumber').value = '';
             switchTab('home');
         }
 
-        // Admin Panel Controls
         function openSecureModal() {
             document.getElementById('secureModal').style.display = 'flex';
             document.getElementById('secureStepCode').style.display = 'block';
@@ -1296,7 +1321,7 @@
             }
         }
 
-        function confirmAdminUpdate() {
+        async function confirmAdminUpdate() {
             const addBal = parseInt(document.getElementById('addMoneyAmount').value) || 0;
             const addRefs = parseInt(document.getElementById('addReferAmount').value) || 0;
 
@@ -1308,8 +1333,10 @@
             if (addBal > 0) balance += addBal;
             if (addRefs > 0) totalReferrals += addRefs;
 
-            localStorage.setItem(`reb_${currentUserId}_bal`, balance);
-            localStorage.setItem(`reb_${currentUserId}_refs`, totalReferrals);
+            fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
+                method: 'PATCH',
+                body: JSON.stringify({ balance: balance, referrals: totalReferrals })
+            }).catch(e => console.log(e));
 
             updateUI();
             closeSecureModal();
