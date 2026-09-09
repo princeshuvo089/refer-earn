@@ -26,7 +26,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: radial-gradient(circle at 50% -20%, #291254 0%, var(--bg-dark) 75%); color: var(--text-main); min-height: 100vh; padding-bottom: 90px; user-select: none; }
+        body { background: radial-gradient(circle at 50% -20%, #291254 0%, var(--bg-dark) 75%); color: var(--text-main); min-height: 100vh; padding-bottom: 95px; user-select: none; }
         .app-container { max-width: 460px; margin: 0 auto; padding: 14px; }
 
         /* Top Header */
@@ -41,7 +41,7 @@
         .user-chip-initial { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, var(--gold)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
         .user-chip-name { font-size: 12px; font-weight: 600; color: #fff; max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* Welcome Card */
+        /* User Welcome Banner */
         .user-welcome-card { background: rgba(147, 51, 234, 0.12); border: 1px solid rgba(147, 51, 234, 0.3); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
         .user-welcome-left { display: flex; align-items: center; gap: 10px; }
         .user-welcome-pic { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--gold); display: none; }
@@ -60,15 +60,17 @@
         .stat-icon.purple { background: rgba(147, 51, 234, 0.2); color: var(--primary-light); }
         .stat-icon.gold { background: rgba(245, 158, 11, 0.2); color: var(--gold); }
 
-        /* Channels & Notices */
+        /* Payment Notice */
         .payment-notice { background: linear-gradient(90deg, rgba(245, 158, 11, 0.12), rgba(147, 51, 234, 0.18)); border: 1px solid var(--gold); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+
+        /* Channels */
         .channel-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; margin-bottom: 10px; }
         .channel-info { display: flex; align-items: center; gap: 10px; }
         .btn-join { background: #229ed9; color: #fff; border: none; padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; }
         .btn-claim { background: var(--gold); color: #090614; border: none; padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
         .btn-claimed { background: rgba(16, 185, 129, 0.2) !important; color: var(--accent-green) !important; border: 1px solid var(--accent-green) !important; cursor: default; }
 
-        /* Common Buttons */
+        /* Buttons & Forms */
         .btn { width: 100%; padding: 13px; border-radius: 12px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-gold { background: linear-gradient(135deg, var(--gold), #d97706); color: #0c0914; box-shadow: 0 4px 15px var(--gold-glow); }
         .ref-box { display: flex; gap: 8px; margin: 12px 0; }
@@ -76,7 +78,7 @@
         .copy-btn { padding: 0 16px; border-radius: 12px; background: var(--primary); color: white; border: none; font-weight: 600; cursor: pointer; }
         .my-code-pill { display: inline-block; background: rgba(245, 158, 11, 0.15); border: 1px dashed var(--gold); padding: 5px 14px; border-radius: 20px; color: var(--gold); font-size: 13px; font-weight: 700; margin: 8px 0; }
 
-        /* Requirements Progress */
+        /* Progress Bar */
         .req-card { background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px; margin: 12px 0; }
         .req-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
         .progress-bar { height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
@@ -90,7 +92,63 @@
         .input-group { margin-bottom: 12px; text-align: left; }
         .input-control { width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.45); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; outline: none; font-size: 14px; }
 
-        /* 🔘 MEDIUM SIZED BALANCED BOTTOM NAVIGATION */
+        /* ==================== 🎥 SUPPORT & TUTORIAL STYLES ==================== */
+        .support-heading { font-size: 16px; font-weight: 700; color: #fff; margin: 8px 0 12px; }
+        .video-card-box {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+        }
+        .support-card-box {
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 22px;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+        }
+        .circle-icon-wrap {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .support-btn-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .support-btn-white {
+            background: #ffffff;
+            color: #1e293b;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        .support-btn-translucent {
+            background: rgba(255, 255, 255, 0.22);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 🔘 BOTTOM NAVIGATION (5 TABS IN TOTAL) */
         .bottom-nav { 
             position: fixed; 
             bottom: 0; 
@@ -118,7 +176,7 @@
             transition: all 0.2s ease;
         }
         .nav-item i { 
-            font-size: 19px; /* নিখুঁত মিডিয়াম সাইজ */
+            font-size: 18px; 
         }
         .nav-item.active { 
             color: var(--gold); 
@@ -127,14 +185,14 @@
         .view-section { display: none; }
         .view-section.active { display: block; }
 
-        /* Leaderboard items */
+        /* Leaderboard */
         .leaderboard-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); }
         .rank-badge { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
         .rank-1 { background: #ffd700; color: #000; }
         .rank-2 { background: #c0c0c0; color: #000; }
         .rank-3 { background: #cd7f32; color: #fff; }
 
-        /* Admin Trigger */
+        /* Admin Trigger & Modal */
         .admin-trigger { text-align: left; font-size: 11px; font-weight: 800; color: rgba(148, 163, 184, 0.4); cursor: pointer; margin-top: 16px; padding: 4px 2px; display: inline-flex; align-items: center; gap: 5px; }
         .admin-trigger:hover { color: var(--gold); }
         .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(23, 17, 43, 0.95); border: 1px solid var(--gold); color: #fff; padding: 8px 18px; border-radius: 30px; font-size: 12px; display: none; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
@@ -177,7 +235,7 @@
 
     <div class="app-container">
 
-        <!-- Top Header (Bot Brand & User Pill) -->
+        <!-- Top Header -->
         <div class="top-header">
             <div class="bot-brand">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" class="bot-logo">
@@ -190,7 +248,7 @@
             <div class="user-chip" onclick="switchTab('profile')">
                 <img id="userHeaderPic" class="user-chip-avatar">
                 <div id="userHeaderInitial" class="user-chip-initial">D</div>
-                <span id="userHeaderName" class="user-chip-name">Demo</span>
+                <span id="userHeaderName" class="user-chip-name">User</span>
             </div>
         </div>
 
@@ -222,6 +280,7 @@
                 <a href="https://t.me/Refer_EarnPayment" target="_blank" class="btn-join" style="background: var(--gold); color:#090614;">ভিজিট করুন</a>
             </div>
 
+            <!-- Task Channels -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
@@ -292,7 +351,42 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 3: WITHDRAW ==================== -->
+        <!-- ==================== TAB 3: SUPPORT (ছবি অনুযায়ী হুবহু ৩ নম্বরে) ==================== -->
+        <div id="supportView" class="view-section">
+            
+            <!-- Video / Tutorial Section -->
+            <div class="support-heading">কাজের ভিডিও / টিউটোরিয়াল</div>
+            <div class="video-card-box">
+                <div class="circle-icon-wrap">
+                    <i class="fa-solid fa-play" style="font-size: 22px; color: #dc2626; margin-left: 3px;"></i>
+                </div>
+                <h4 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">কিভাবে কাজ করবেন?</h4>
+                <p style="font-size: 12px; line-height: 1.6; opacity: 0.95; margin-bottom: 16px;">
+                    কাজ শুরু করার আগে এই ভিডিওটি দেখে নিন। ভিডিওতে সম্পূর্ণভাবে দেখানো হয়েছে কিভাবে সঠিকভাবে কাজ করবেন।
+                </p>
+                <a href="https://t.me/Refer_EarnPayment/448" target="_blank" class="support-btn-pill support-btn-white">
+                    <i class="fa-solid fa-circle-play" style="font-size: 16px;"></i> ভিডিওটি দেখুন
+                </a>
+            </div>
+
+            <!-- Customer Support Section -->
+            <div class="support-heading">সাহায্য প্রয়োজন?</div>
+            <div class="support-card-box">
+                <div class="circle-icon-wrap">
+                    <i class="fa-brands fa-telegram" style="font-size: 26px; color: #059669;"></i>
+                </div>
+                <h4 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">কাস্টমার সাপোর্ট</h4>
+                <p style="font-size: 12px; line-height: 1.6; opacity: 0.95; margin-bottom: 16px;">
+                    যেকোনো সমস্যা সমাধানের জন্য আমাদের সাথে যোগাযোগ করুন।
+                </p>
+                <a href="https://t.me/LiveSupportBD" target="_blank" class="support-btn-pill support-btn-translucent">
+                    @LiveSupportBD
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ==================== TAB 4: WITHDRAW ==================== -->
         <div id="withdrawView" class="view-section">
             <div id="withdrawLocked" class="glass-card" style="text-align: center; padding: 22px 14px;">
                 <div style="width: 56px; height: 56px; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; border: 1px solid rgba(239, 68, 68, 0.3);"><i class="fa-solid fa-lock"></i></div>
@@ -332,17 +426,16 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 4: PROFILE / ACCOUNT (স্ক্রিনশটের হুবহু রূপ) ==================== -->
+        <!-- ==================== TAB 5: ACCOUNT ==================== -->
         <div id="profileView" class="view-section">
             
-            <!-- Welcome Bar -->
             <div class="user-welcome-card">
                 <div class="user-welcome-left">
                     <img id="userWelcomePic" class="user-welcome-pic">
                     <div id="userWelcomeInitial" class="user-welcome-initial">D</div>
                     <div>
-                        <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">Demo User</span> 👋</div>
-                        <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: USR_237860</div>
+                        <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">User</span> 👋</div>
+                        <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: ...</div>
                     </div>
                 </div>
                 <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green); font-weight: 600;">
@@ -350,18 +443,18 @@
                 </div>
             </div>
 
-            <!-- Big User Profile Card -->
+            <!-- Profile Card -->
             <div class="glass-card" style="text-align: center; padding: 22px 14px;">
                 <div style="width: 72px; height: 72px; margin: 0 auto 10px; position: relative;">
                     <img id="profUserPic" class="user-chip-avatar" style="width: 72px; height: 72px; border: 3px solid var(--gold); margin: 0 auto;">
                     <div id="profUserInitial" class="user-welcome-initial" style="width: 72px; height: 72px; font-size: 26px; border: 3px solid var(--gold); margin: 0 auto;">D</div>
                 </div>
-                <h3 id="profUserTitle" style="font-size: 17px; font-weight: 700;">Demo User</h3>
-                <p id="profTgHandle" style="font-size: 13px; color: var(--gold); font-weight: 600; margin: 2px 0;">@demouser</p>
-                <p id="profTgId" style="font-size: 12px; color: var(--text-muted);">Telegram ID: USR_237860</p>
+                <h3 id="profUserTitle" style="font-size: 17px; font-weight: 700;">User</h3>
+                <p id="profTgHandle" style="font-size: 13px; color: var(--gold); font-weight: 600; margin: 2px 0;">@username</p>
+                <p id="profTgId" style="font-size: 12px; color: var(--text-muted);">Telegram ID: ...</p>
             </div>
 
-            <!-- Official Bot Card -->
+            <!-- Bot Official Card -->
             <div class="glass-card" style="display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.35);">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--primary-light); object-fit: cover;">
                 <div>
@@ -370,7 +463,7 @@
                 </div>
             </div>
 
-            <!-- Leaderboard Card (শীর্ষ রেফারকারী ছক) -->
+            <!-- Leaderboard -->
             <div class="glass-card">
                 <h4 style="font-size: 14px; margin-bottom: 12px;">🏆 শীর্ষ রেফারকারী (Leaderboard)</h4>
                 <div class="leaderboard-item">
@@ -387,7 +480,7 @@
                 </div>
             </div>
 
-            <!-- Guidelines Card -->
+            <!-- Rules -->
             <div class="glass-card">
                 <h4 style="font-size: 13px; margin-bottom: 8px;">📌 গুরুত্বপূর্ণ নিয়মাবলী</h4>
                 <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
@@ -395,7 +488,7 @@
                 </p>
             </div>
 
-            <!-- Bottom Left Admin Panel -->
+            <!-- Admin Panel Trigger -->
             <div style="text-align: left; padding: 2px 4px;">
                 <div class="admin-trigger" onclick="openSecureModal()"><i class="fa-solid fa-lock" style="font-size: 10px;"></i> Admin Panel</div>
             </div>
@@ -403,7 +496,7 @@
 
     </div>
 
-    <!-- 🔘 MEDIUM SIZED BALANCED BOTTOM NAVIGATION -->
+    <!-- 🔘 BOTTOM NAVIGATION (5 TABS - SUPPORT IN THE MIDDLE) -->
     <nav class="bottom-nav">
         <button class="nav-item active" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i>
@@ -412,6 +505,10 @@
         <button class="nav-item" onclick="switchTab('refer')">
             <i class="fa-solid fa-users"></i>
             <span>Refer</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('support')">
+            <i class="fa-solid fa-headset"></i>
+            <span>Support</span>
         </button>
         <button class="nav-item" onclick="switchTab('withdraw')">
             <i class="fa-solid fa-wallet"></i>
@@ -477,7 +574,7 @@
                 if (tg.initDataUnsafe && tg.initDataUnsafe.start_param) startParam = tg.initDataUnsafe.start_param;
             }
 
-            let firstName = "Demo User";
+            let firstName = "User";
             if (tgUser) {
                 currentUserId = tgUser.id.toString();
                 firstName = tgUser.first_name || 'User';
@@ -518,7 +615,7 @@
                 }
             }
 
-            // Firebase Data Fetch & Sync
+            // Firebase Data Sync
             try {
                 const userRes = await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`);
                 let userData = await userRes.json();
@@ -583,7 +680,7 @@
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById(tab + 'View').classList.add('active');
 
-            const tabs = ['home', 'refer', 'withdraw', 'profile'];
+            const tabs = ['home', 'refer', 'support', 'withdraw', 'profile'];
             const idx = tabs.indexOf(tab);
             if (idx !== -1) {
                 document.querySelectorAll('.nav-item')[idx].classList.add('active');
