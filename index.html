@@ -121,7 +121,7 @@
             font-size: 12px;
             font-weight: 600;
             color: #fff;
-            max-width: 90px;
+            max-width: 100px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -145,8 +145,8 @@
         }
 
         .user-welcome-pic {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
             border: 1.5px solid var(--gold);
@@ -154,15 +154,15 @@
         }
 
         .user-welcome-initial {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--gold));
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 700;
         }
 
@@ -301,11 +301,6 @@
             color: #229ed9;
         }
 
-        .channel-btn-group {
-            display: flex;
-            gap: 6px;
-        }
-
         .btn-join {
             background: #229ed9;
             color: #fff;
@@ -316,9 +311,6 @@
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
         }
 
         .btn-claim {
@@ -459,13 +451,10 @@
             border-color: var(--gold);
             background: rgba(245, 158, 11, 0.15);
             box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
-            transform: translateY(-2px);
         }
 
         .gateway-logo-img {
             height: 32px;
-            width: auto;
-            max-width: 100px;
             object-fit: contain;
             margin-bottom: 6px;
             border-radius: 6px;
@@ -550,12 +539,7 @@
         .nav-item.active { color: var(--gold); }
 
         .view-section { display: none; }
-        .view-section.active { display: block; animation: fadeIn 0.2s ease-in; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .view-section.active { display: block; }
 
         .toast {
             position: fixed;
@@ -581,7 +565,6 @@
             cursor: pointer;
             margin-top: 18px;
             padding: 4px 2px;
-            letter-spacing: 0.5px;
             display: inline-flex;
             align-items: center;
             gap: 5px;
@@ -602,7 +585,6 @@
         .modal-content {
             width: 100%;
             border: 1px solid var(--gold);
-            animation: fadeIn 0.2s ease;
         }
     </style>
 </head>
@@ -628,17 +610,14 @@
                 <p style="font-size: 12px; color: var(--accent-green); margin-bottom: 12px; text-align: center;">
                     <i class="fa-solid fa-circle-check"></i> অ্যাক্সেস অনুমোদিত!
                 </p>
-
                 <div class="input-group">
                     <label>টাকা যোগ করুন (৳):</label>
                     <input type="number" id="addMoneyAmount" class="input-control" placeholder="যেমন: 1000">
                 </div>
-
                 <div class="input-group">
                     <label>রেফারেল সংখ্যা যোগ করুন:</label>
                     <input type="number" id="addReferAmount" class="input-control" placeholder="যেমন: 20">
                 </div>
-
                 <button class="btn btn-gold" onclick="confirmAdminUpdate()" style="margin-top: 10px;">
                     <i class="fa-solid fa-floppy-disk"></i> আপডেট ও সেভ করুন
                 </button>
@@ -659,7 +638,7 @@
             </div>
             
             <div class="user-chip" onclick="switchTab('profile')">
-                <img id="userHeaderPic" src="" alt="User" class="user-chip-avatar">
+                <img id="userHeaderPic" class="user-chip-avatar">
                 <div id="userHeaderInitial" class="user-chip-initial">U</div>
                 <span id="userHeaderName" class="user-chip-name">User</span>
             </div>
@@ -668,15 +647,16 @@
         <!-- User Welcome Banner -->
         <div class="user-welcome-card">
             <div class="user-welcome-left">
-                <img id="userWelcomePic" src="" alt="User Photo" class="user-welcome-pic">
+                <img id="userWelcomePic" class="user-welcome-pic">
                 <div id="userWelcomeInitial" class="user-welcome-initial">U</div>
                 <div>
                     <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">ইউজার</span> 👋</div>
                     <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: 00000000</div>
                 </div>
             </div>
-            <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green);">
-                অনলাইন ক্লাউড ডাটাবেজ
+            <!-- সংশোধিত সুন্দর ব্যাজ -->
+            <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green); font-weight: 600;">
+                ✅ সক্রিয় একাউন্ট
             </div>
         </div>
 
@@ -722,7 +702,7 @@
                 </a>
             </div>
 
-            <!-- Telegram Channel Tasks -->
+            <!-- Tasks -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
@@ -730,59 +710,23 @@
                 </div>
 
                 <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Prince Earning Zone</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/PrinceEarningZone" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn1" onclick="claimTask(1)">Claim</button>
-                    </div>
+                    <div class="channel-info"><i class="fa-solid fa-bullhorn"></i><div>Prince Earning Zone<br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
+                    <div style="display:flex; gap:6px;"><a href="https://t.me/PrinceEarningZone" target="_blank" class="btn-join">Join</a><button class="btn-claim" id="claimBtn1" onclick="claimTask(1)">Claim</button></div>
                 </div>
 
                 <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Prince Free Income</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/PrinceFreeIncome" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn2" onclick="claimTask(2)">Claim</button>
-                    </div>
+                    <div class="channel-info"><i class="fa-solid fa-bullhorn"></i><div>Prince Free Income<br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
+                    <div style="display:flex; gap:6px;"><a href="https://t.me/PrinceFreeIncome" target="_blank" class="btn-join">Join</a><button class="btn-claim" id="claimBtn2" onclick="claimTask(2)">Claim</button></div>
                 </div>
 
                 <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Velora Earning</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/VeloraEarning" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn3" onclick="claimTask(3)">Claim</button>
-                    </div>
+                    <div class="channel-info"><i class="fa-solid fa-bullhorn"></i><div>Velora Earning<br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
+                    <div style="display:flex; gap:6px;"><a href="https://t.me/VeloraEarning" target="_blank" class="btn-join">Join</a><button class="btn-claim" id="claimBtn3" onclick="claimTask(3)">Claim</button></div>
                 </div>
 
                 <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Shuvo Earning Hub</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/ShuvoEarningHub" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn4" onclick="claimTask(4)">Claim</button>
-                    </div>
+                    <div class="channel-info"><i class="fa-solid fa-bullhorn"></i><div>Shuvo Earning Hub<br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
+                    <div style="display:flex; gap:6px;"><a href="https://t.me/ShuvoEarningHub" target="_blank" class="btn-join">Join</a><button class="btn-claim" id="claimBtn4" onclick="claimTask(4)">Claim</button></div>
                 </div>
             </div>
 
@@ -798,13 +742,8 @@
             <div class="glass-card" style="text-align: center;">
                 <i class="fa-solid fa-hand-holding-dollar" style="font-size: 38px; color: var(--gold); margin-bottom: 6px;"></i>
                 <h3 style="font-size: 18px; margin-bottom: 2px;">আপনার নিজস্ব রেফারেল লিংক</h3>
-                <div>
-                    <span class="my-code-pill">ID: <span id="myReferralCodeBadge">...</span></span>
-                </div>
-                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
-                    প্রতি সফল রেফারে পাবেন <strong style="color: var(--gold);">৳৫০</strong>।<br>
-                    উইথড্র করতে মোট <strong>২০টি সফল রেফার</strong> ও <strong>৳১,২৫০ ব্যালেন্স</strong> প্রয়োজন।
-                </p>
+                <div><span class="my-code-pill">ID: <span id="myReferralCodeBadge">...</span></span></div>
+                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">প্রতি সফল রেফারে পাবেন <strong style="color: var(--gold);">৳৫০</strong>।<br>উইথড্র করতে মোট <strong>২০টি সফল রেফার</strong> ও <strong>৳১,২৫০ ব্যালেন্স</strong> প্রয়োজন।</p>
 
                 <div class="ref-box">
                     <input type="text" class="ref-input" id="refLinkInput" readonly value="লোড হচ্ছে...">
@@ -818,7 +757,6 @@
 
             <div class="glass-card">
                 <h4 style="font-size: 13px; margin-bottom: 12px;"><i class="fa-solid fa-chart-line"></i> ইনকাম ও উইথড্রল চার্ট</h4>
-                
                 <div style="font-size: 12px; line-height: 2;">
                     <div style="display:flex; justify-content:space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 4px 0;">
                         <span>🎁 Welcome Bonus:</span> <strong style="color:var(--gold);">৳50</strong>
@@ -848,47 +786,27 @@
                 </p>
 
                 <div class="req-card">
-                    <div class="req-row">
-                        <span>ব্যালেন্স টার্গেট (৳1,250)</span>
-                        <span id="txtBalanceTarget">৳50 / ৳1,250</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="fillBalanceProgress" style="width: 4%;"></div>
-                    </div>
-
-                    <div class="req-row">
-                        <span>রেফারেল টার্গেট (২০টি)</span>
-                        <span id="txtRefTarget">0 / 20</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="fillRefProgress" style="width: 0%;"></div>
-                    </div>
+                    <div class="req-row"><span>ব্যালেন্স টার্গেট (৳১,২৫০)</span><span id="txtBalanceTarget">৳50 / ৳1,250</span></div>
+                    <div class="progress-bar"><div class="progress-fill" id="fillBalanceProgress" style="width: 4%;"></div></div>
+                    <div class="req-row"><span>রেফারেল টার্গেট (২০টি)</span><span id="txtRefTarget">0 / 20</span></div>
+                    <div class="progress-bar"><div class="progress-fill" id="fillRefProgress" style="width: 0%;"></div></div>
                 </div>
-
                 <div id="lockedReason" style="font-size: 12px; color: var(--gold); margin: 10px 0;"></div>
-
-                <button class="btn btn-gold" onclick="switchTab('refer')">
-                    <i class="fa-solid fa-user-plus"></i> বাকি রেফারগুলো সম্পন্ন করুন
-                </button>
+                <button class="btn btn-gold" onclick="switchTab('refer')"><i class="fa-solid fa-user-plus"></i> বাকি রেফারগুলো সম্পন্ন করুন</button>
             </div>
 
             <div id="withdrawUnlocked" class="glass-card" style="display: none;">
-                <div style="text-align: center; margin-bottom: 14px;">
-                    <i class="fa-solid fa-circle-check" style="font-size: 34px; color: var(--accent-green);"></i>
-                    <h3 style="font-size: 18px; margin-top: 4px;">টাকা উত্তোলন করুন</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">আপনার উইথড্রয়াল সীমা পূর্ণ হয়েছে</p>
-                </div>
-
+                <h3 style="font-size: 18px; text-align: center; margin-bottom: 14px; color: var(--accent-green);">টাকা উত্তোলন করুন</h3>
                 <label style="font-size: 12px; color: var(--text-muted);">Payment Method নির্বাচন করুন</label>
                 
                 <div class="gateway-selector">
                     <div class="gateway-card selected" id="gateBkash" onclick="selectPayment('bKash')">
-                        <img src="https://cdn.imgchest.com/files/382d9ca11ca1.jpg" alt="bKash Logo" class="gateway-logo-img">
+                        <img src="https://cdn.imgchest.com/files/382d9ca11ca1.jpg" alt="bKash" class="gateway-logo-img">
                         <span style="color: var(--bkash);">bKash</span>
                         <small>Personal</small>
                     </div>
                     <div class="gateway-card" id="gateNagad" onclick="selectPayment('Nagad')">
-                        <img src="https://cdn.imgchest.com/files/be9ec6e23bfe.jpg" alt="Nagad Logo" class="gateway-logo-img">
+                        <img src="https://cdn.imgchest.com/files/be9ec6e23bfe.jpg" alt="Nagad" class="gateway-logo-img">
                         <span style="color: var(--nagad);">Nagad</span>
                         <small>Personal</small>
                     </div>
@@ -898,15 +816,11 @@
                     <label id="phoneLabel">বিকাশ অ্যাকাউন্ট নম্বর</label>
                     <input type="tel" class="input-control" id="targetNumber" placeholder="01XXXXXXXXX">
                 </div>
-
                 <div class="input-group">
                     <label>উত্তোলনের পরিমাণ (মিনিমাম ৳১,২৫০)</label>
                     <input type="number" class="input-control" id="targetAmount" placeholder="1250">
                 </div>
-
-                <button class="btn btn-gold" onclick="handleWithdrawRequest()">
-                    <i class="fa-solid fa-paper-plane"></i> Submit Withdrawal
-                </button>
+                <button class="btn btn-gold" onclick="handleWithdrawRequest()"><i class="fa-solid fa-paper-plane"></i> Submit Withdrawal</button>
             </div>
         </div>
 
@@ -914,8 +828,8 @@
         <div id="profileView" class="view-section">
             <div class="glass-card" style="text-align: center;">
                 <div style="width: 70px; height: 70px; margin: 0 auto 10px; position: relative;">
-                    <img id="profUserPic" src="" alt="User" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: none;">
-                    <div id="profUserInitial" class="user-chip-initial" style="width: 70px; height: 70px; font-size: 26px; border: 3px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary), var(--gold)); color:#fff; margin: 0 auto;">U</div>
+                    <img id="profUserPic" class="user-chip-avatar" style="width: 70px; height: 70px; border: 3px solid var(--gold); margin: 0 auto;">
+                    <div id="profUserInitial" class="user-chip-initial" style="width: 70px; height: 70px; font-size: 26px; border: 3px solid var(--gold); margin: 0 auto;">U</div>
                 </div>
                 <h3 id="profUserTitle" style="font-size: 17px;">Telegram User</h3>
                 <p id="profTgHandle" style="font-size: 13px; color: var(--gold); font-weight: 600;">@username</p>
@@ -930,49 +844,20 @@
                 </div>
             </div>
 
-            <!-- Leaderboard -->
             <div class="glass-card">
                 <h4 style="font-size: 14px; margin-bottom: 12px;">🏆 শীর্ষ রেফারকারী (Leaderboard)</h4>
-                
                 <div class="leaderboard-item">
-                    <div style="display:flex; align-items:center; gap: 10px;">
-                        <span class="rank-badge rank-1">1</span>
-                        <div>
-                            <div style="font-size: 13px; font-weight: 600;">তানভীর আহমেদ</div>
-                            <div style="font-size: 11px; color: var(--text-muted);">৭৪টি রেফার</div>
-                        </div>
-                    </div>
-                    <span style="font-weight: 700; color: var(--gold); font-size: 13px;">৳৩,৯৫০</span>
+                    <div style="display:flex; align-items:center; gap: 10px;"><span class="rank-badge rank-1">1</span><div><b>তানভীর আহমেদ</b><br><small style="color:var(--text-muted);">৭৪টি রেফার</small></div></div>
+                    <span style="font-weight: 700; color: var(--gold);">৳৩,৯৫০</span>
                 </div>
-
                 <div class="leaderboard-item">
-                    <div style="display:flex; align-items:center; gap: 10px;">
-                        <span class="rank-badge rank-2">2</span>
-                        <div>
-                            <div style="font-size: 13px; font-weight: 600;">রাকিবুল হাসান</div>
-                            <div style="font-size: 11px; color: var(--text-muted);">৫২টি রেফার</div>
-                        </div>
-                    </div>
-                    <span style="font-weight: 700; color: var(--gold); font-size: 13px;">৳২,৮৫০</span>
+                    <div style="display:flex; align-items:center; gap: 10px;"><span class="rank-badge rank-2">2</span><div><b>রাকিবুল হাসান</b><br><small style="color:var(--text-muted);">৫২টি রেফার</small></div></div>
+                    <span style="font-weight: 700; color: var(--gold);">৳২,৮৫০</span>
                 </div>
-
                 <div class="leaderboard-item">
-                    <div style="display:flex; align-items:center; gap: 10px;">
-                        <span class="rank-badge rank-3">3</span>
-                        <div>
-                            <div style="font-size: 13px; font-weight: 600;">মেহেদী হাসান</div>
-                            <div style="font-size: 11px; color: var(--text-muted);">৩৮টি রেফার</div>
-                        </div>
-                    </div>
-                    <span style="font-weight: 700; color: var(--gold); font-size: 13px;">৳২,১৫০</span>
+                    <div style="display:flex; align-items:center; gap: 10px;"><span class="rank-badge rank-3">3</span><div><b>মেহেদী হাসান</b><br><small style="color:var(--text-muted);">৩৮টি রেফার</small></div></div>
+                    <span style="font-weight: 700; color: var(--gold);">৳২,১৫০</span>
                 </div>
-            </div>
-
-            <div class="glass-card">
-                <h4 style="font-size: 13px; margin-bottom: 8px;">📌 গুরুত্বপূর্ণ নিয়মাবলী</h4>
-                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
-                    ৪টি চ্যানেলে সক্রিয় জয়েন থাকতে হবে। ফেক অ্যাকাউন্ট দিয়ে রেফার করলে একাউন্ট ব্যান হবে। টাকা পাঠানোর আপডেট পেতে <a href="https://t.me/Refer_EarnPayment" target="_blank" style="color:var(--gold); text-decoration:none;">@Refer_EarnPayment</a> চ্যানেলে যুক্ত থাকুন।
-                </p>
             </div>
 
             <div style="text-align: left; padding: 2px 4px;">
@@ -984,30 +869,16 @@
 
     </div>
 
-    <!-- Bottom Navigation -->
+    <!-- Bottom Nav -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home')">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('refer')">
-            <i class="fa-solid fa-users"></i>
-            <span>Refer</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('withdraw')">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Withdraw</span>
-        </button>
-        <button class="nav-item" onclick="switchTab('profile')">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </button>
+        <button class="nav-item active" onclick="switchTab('home')"><i class="fa-solid fa-house"></i><span>Home</span></button>
+        <button class="nav-item" onclick="switchTab('refer')"><i class="fa-solid fa-users"></i><span>Refer</span></button>
+        <button class="nav-item" onclick="switchTab('withdraw')"><i class="fa-solid fa-wallet"></i><span>Withdraw</span></button>
+        <button class="nav-item" onclick="switchTab('profile')"><i class="fa-solid fa-user"></i><span>Profile</span></button>
     </nav>
 
     <script>
-        // 🎯 আপনার লাইভ Firebase ডাটাবেজ লিংক সরাসরি সেট করা হয়েছে:
         const FIREBASE_DB_URL = "https://refer-earning-default-rtdb.firebaseio.com/";
-
         const MIN_WITHDRAW_BALANCE = 1250;
         const MIN_REQUIRED_REFS = 20;
         const BOT_USERNAME = "ReferEarnn_Bot";
@@ -1017,6 +888,31 @@
         let totalReferrals = 0;
         let currentGateway = 'bKash';
 
+        // স্মার্ট ইমেজ ও ইনিশিয়াল লোডার (কখনোই ভাঙা ছবি দেখাবে না)
+        function setupAvatar(imgId, initialId, photoUrl, displayName) {
+            const img = document.getElementById(imgId);
+            const init = document.getElementById(initialId);
+            const cleanName = displayName.replace(/[^\w\s\u0980-\u09FF]/gi, '').trim();
+            const initialLetter = (cleanName.charAt(0) || displayName.charAt(0) || 'U').toUpperCase();
+            
+            init.innerText = initialLetter;
+
+            if (photoUrl && photoUrl.startsWith('http')) {
+                img.onload = function() {
+                    img.style.display = 'block';
+                    init.style.display = 'none';
+                };
+                img.onerror = function() {
+                    img.style.display = 'none';
+                    init.style.display = 'flex';
+                };
+                img.src = photoUrl;
+            } else {
+                img.style.display = 'none';
+                init.style.display = 'flex';
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', async () => {
             const tg = window.Telegram?.WebApp;
             let tgUser = null;
@@ -1025,17 +921,14 @@
             if (tg) {
                 tg.ready();
                 tg.expand();
-                if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
-                    tgUser = tg.initDataUnsafe.user;
-                }
-                if (tg.initDataUnsafe && tg.initDataUnsafe.start_param) {
-                    startParam = tg.initDataUnsafe.start_param;
-                }
+                if (tg.initDataUnsafe && tg.initDataUnsafe.user) tgUser = tg.initDataUnsafe.user;
+                if (tg.initDataUnsafe && tg.initDataUnsafe.start_param) startParam = tg.initDataUnsafe.start_param;
             }
 
+            let firstName = "User";
             if (tgUser) {
                 currentUserId = tgUser.id.toString();
-                const firstName = tgUser.first_name || 'User';
+                firstName = tgUser.first_name || 'User';
                 const fullName = [tgUser.first_name, tgUser.last_name].filter(Boolean).join(' ').trim() || 'Telegram User';
                 const userTag = tgUser.username ? '@' + tgUser.username : 'ID: ' + tgUser.id;
 
@@ -1046,21 +939,9 @@
                 document.getElementById('profTgHandle').innerText = userTag;
                 document.getElementById('profTgId').innerText = 'Telegram ID: ' + tgUser.id;
 
-                if (tgUser.photo_url) {
-                    const p1 = document.getElementById('userHeaderPic');
-                    const p2 = document.getElementById('userWelcomePic');
-                    const p3 = document.getElementById('profUserPic');
-
-                    p1.src = tgUser.photo_url; p1.style.display = 'block';
-                    p2.src = tgUser.photo_url; p2.style.display = 'block';
-                    p3.src = tgUser.photo_url; p3.style.display = 'block';
-
-                    document.getElementById('userHeaderInitial').style.display = 'none';
-                    document.getElementById('userWelcomeInitial').style.display = 'none';
-                    document.getElementById('profUserInitial').style.display = 'none';
-                } else {
-                    applyInitials(firstName);
-                }
+                setupAvatar('userHeaderPic', 'userHeaderInitial', tgUser.photo_url, firstName);
+                setupAvatar('userWelcomePic', 'userWelcomeInitial', tgUser.photo_url, firstName);
+                setupAvatar('profUserPic', 'profUserInitial', tgUser.photo_url, firstName);
             } else {
                 currentUserId = localStorage.getItem('demo_current_uid') || 'USR_' + Math.floor(100000 + Math.random() * 900000);
                 localStorage.setItem('demo_current_uid', currentUserId);
@@ -1071,30 +952,29 @@
                 document.getElementById('welcomeUserId').innerText = 'ID: ' + currentUserId;
                 document.getElementById('profTgHandle').innerText = "@demouser";
                 document.getElementById('profTgId').innerText = 'Telegram ID: ' + currentUserId;
-                applyInitials("Demo User");
+                setupAvatar('userHeaderPic', 'userHeaderInitial', null, 'Demo');
+                setupAvatar('userWelcomePic', 'userWelcomeInitial', null, 'Demo');
+                setupAvatar('profUserPic', 'profUserInitial', null, 'Demo');
             }
 
-            // Set Referral Link
             document.getElementById('refLinkInput').value = `https://t.me/${BOT_USERNAME}?startapp=${currentUserId}`;
             document.getElementById('myReferralCodeBadge').innerText = currentUserId;
 
-            // 🚀 FIREBASE REAL-TIME SYNC & AUTOMATIC REFERRAL ENGINE
+            // 🚀 Firebase Data Sync
             try {
                 const userRes = await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`);
                 let userData = await userRes.json();
 
-                // নতুন ইউজার হলে ডাটাবেজে তৈরি করা ও রেফারারকে ক্রেডিট দেওয়া
                 if (!userData) {
                     userData = {
                         id: currentUserId,
                         name: tgUser?.first_name || 'User',
-                        balance: 50, // Welcome Bonus
+                        balance: 50,
                         referrals: 0,
                         claimedTasks: {},
                         createdAt: new Date().toISOString()
                     };
 
-                    // 🎯 রিয়েল রেফারেল ট্র্যাকিং (যিনি রেফার করেছেন তার একাউন্টে +৳৫০ এবং +১ রেফার)
                     if (startParam && startParam !== currentUserId) {
                         try {
                             const refRes = await fetch(`${FIREBASE_DB_URL}users/${startParam}.json`);
@@ -1114,7 +994,6 @@
                         }
                     }
 
-                    // নতুন ইউজারের অ্যাকাউন্ট সেভ করা
                     await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
                         method: 'PUT',
                         body: JSON.stringify(userData)
@@ -1124,7 +1003,6 @@
                 balance = userData.balance !== undefined ? userData.balance : 50;
                 totalReferrals = userData.referrals !== undefined ? userData.referrals : 0;
 
-                // ক্লেইম করা টাস্কগুলো চেক করা
                 if (userData.claimedTasks) {
                     for (let i = 1; i <= 4; i++) {
                         if (userData.claimedTasks[i]) {
@@ -1139,27 +1017,10 @@
                 }
             } catch (err) {
                 console.log("Firebase sync warning:", err);
-                balance = parseInt(localStorage.getItem(`reb_${currentUserId}_bal`)) || 50;
-                totalReferrals = parseInt(localStorage.getItem(`reb_${currentUserId}_refs`)) || 0;
             }
 
             updateUI();
         });
-
-        function applyInitials(name) {
-            const firstLetter = name.trim().charAt(0).toUpperCase() || 'U';
-            document.getElementById('userHeaderInitial').innerText = firstLetter;
-            document.getElementById('userWelcomeInitial').innerText = firstLetter;
-            document.getElementById('profUserInitial').innerText = firstLetter;
-
-            document.getElementById('userHeaderInitial').style.display = 'flex';
-            document.getElementById('userWelcomeInitial').style.display = 'flex';
-            document.getElementById('profUserInitial').style.display = 'flex';
-
-            document.getElementById('userHeaderPic').style.display = 'none';
-            document.getElementById('userWelcomePic').style.display = 'none';
-            document.getElementById('profUserPic').style.display = 'none';
-        }
 
         function switchTab(tab) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
@@ -1182,7 +1043,6 @@
 
         async function claimTask(id) {
             balance += 50;
-            localStorage.setItem(`reb_${currentUserId}_bal`, balance);
 
             fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`, {
                 method: 'PATCH',
