@@ -26,7 +26,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: radial-gradient(circle at 50% -20%, #291254 0%, var(--bg-dark) 75%); color: var(--text-main); min-height: 100vh; padding-bottom: 95px; user-select: none; }
+        body { background: radial-gradient(circle at 50% -20%, #291254 0%, var(--bg-dark) 75%); color: var(--text-main); min-height: 100vh; padding-bottom: 90px; user-select: none; }
         .app-container { max-width: 460px; margin: 0 auto; padding: 14px; }
 
         /* Top Header */
@@ -36,16 +36,16 @@
         .bot-brand-info h4 { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.2; }
         .bot-brand-info span { font-size: 11px; color: var(--gold); font-weight: 600; }
 
-        .user-chip { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--card-border); padding: 4px 10px 4px 5px; border-radius: 25px; cursor: pointer; }
-        .user-chip-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary-light); display: none; }
-        .user-chip-initial { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--gold)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
-        .user-chip-name { font-size: 12px; font-weight: 600; color: #fff; max-width: 100px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .user-chip { display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.08); border: 1px solid var(--card-border); padding: 4px 12px 4px 6px; border-radius: 25px; cursor: pointer; }
+        .user-chip-avatar { width: 26px; height: 26px; border-radius: 50%; object-fit: cover; border: 1px solid var(--primary-light); display: none; }
+        .user-chip-initial { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, var(--gold)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; }
+        .user-chip-name { font-size: 12px; font-weight: 600; color: #fff; max-width: 90px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* Welcome Card */
         .user-welcome-card { background: rgba(147, 51, 234, 0.12); border: 1px solid rgba(147, 51, 234, 0.3); border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
         .user-welcome-left { display: flex; align-items: center; gap: 10px; }
-        .user-welcome-pic { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--gold); display: none; }
-        .user-welcome-initial { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--gold)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; }
+        .user-welcome-pic { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--gold); display: none; }
+        .user-welcome-initial { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #ec4899, var(--gold)); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
 
         /* Glass Cards */
         .glass-card { background: var(--card-bg); backdrop-filter: blur(14px); border: 1px solid var(--card-border); border-radius: 18px; padding: 16px; margin-bottom: 14px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); }
@@ -60,17 +60,15 @@
         .stat-icon.purple { background: rgba(147, 51, 234, 0.2); color: var(--primary-light); }
         .stat-icon.gold { background: rgba(245, 158, 11, 0.2); color: var(--gold); }
 
-        /* Payment Notice */
+        /* Channels & Notices */
         .payment-notice { background: linear-gradient(90deg, rgba(245, 158, 11, 0.12), rgba(147, 51, 234, 0.18)); border: 1px solid var(--gold); border-radius: 14px; padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-
-        /* Channels */
         .channel-item { display: flex; align-items: center; justify-content: space-between; padding: 12px; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; margin-bottom: 10px; }
         .channel-info { display: flex; align-items: center; gap: 10px; }
         .btn-join { background: #229ed9; color: #fff; border: none; padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; text-decoration: none; }
         .btn-claim { background: var(--gold); color: #090614; border: none; padding: 7px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
         .btn-claimed { background: rgba(16, 185, 129, 0.2) !important; color: var(--accent-green) !important; border: 1px solid var(--accent-green) !important; cursor: default; }
 
-        /* Buttons & Forms */
+        /* Common Buttons */
         .btn { width: 100%; padding: 13px; border-radius: 12px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .btn-gold { background: linear-gradient(135deg, var(--gold), #d97706); color: #0c0914; box-shadow: 0 4px 15px var(--gold-glow); }
         .ref-box { display: flex; gap: 8px; margin: 12px 0; }
@@ -78,7 +76,7 @@
         .copy-btn { padding: 0 16px; border-radius: 12px; background: var(--primary); color: white; border: none; font-weight: 600; cursor: pointer; }
         .my-code-pill { display: inline-block; background: rgba(245, 158, 11, 0.15); border: 1px dashed var(--gold); padding: 5px 14px; border-radius: 20px; color: var(--gold); font-size: 13px; font-weight: 700; margin: 8px 0; }
 
-        /* Requirements Tracker */
+        /* Requirements Progress */
         .req-card { background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px; margin: 12px 0; }
         .req-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
         .progress-bar { height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 10px; overflow: hidden; margin-bottom: 12px; }
@@ -92,16 +90,54 @@
         .input-group { margin-bottom: 12px; text-align: left; }
         .input-control { width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.45); border: 1px solid var(--card-border); border-radius: 12px; color: #fff; outline: none; font-size: 14px; }
 
-        /* Navigation */
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(9, 6, 20, 0.96); backdrop-filter: blur(20px); border-top: 1px solid rgba(147, 51, 234, 0.25); display: flex; justify-content: space-around; padding: 10px 0 12px; z-index: 999; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-muted); font-size: 11px; cursor: pointer; gap: 4px; border: none; background: none; }
-        .nav-item.active { color: var(--gold); }
+        /* 🔘 MEDIUM SIZED BALANCED BOTTOM NAVIGATION */
+        .bottom-nav { 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(9, 6, 20, 0.98); 
+            backdrop-filter: blur(20px); 
+            border-top: 1px solid rgba(147, 51, 234, 0.25); 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 8px 0 10px; 
+            z-index: 999; 
+        }
+        .nav-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            color: var(--text-muted); 
+            font-size: 11px; 
+            font-weight: 600;
+            cursor: pointer; 
+            gap: 4px; 
+            border: none; 
+            background: none; 
+            transition: all 0.2s ease;
+        }
+        .nav-item i { 
+            font-size: 19px; /* নিখুঁত মিডিয়াম সাইজ */
+        }
+        .nav-item.active { 
+            color: var(--gold); 
+        }
+
         .view-section { display: none; }
         .view-section.active { display: block; }
 
-        /* Admin & Toast */
+        /* Leaderboard items */
+        .leaderboard-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 12px; margin-bottom: 8px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .rank-badge { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 12px; }
+        .rank-1 { background: #ffd700; color: #000; }
+        .rank-2 { background: #c0c0c0; color: #000; }
+        .rank-3 { background: #cd7f32; color: #fff; }
+
+        /* Admin Trigger */
+        .admin-trigger { text-align: left; font-size: 11px; font-weight: 800; color: rgba(148, 163, 184, 0.4); cursor: pointer; margin-top: 16px; padding: 4px 2px; display: inline-flex; align-items: center; gap: 5px; }
+        .admin-trigger:hover { color: var(--gold); }
         .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(23, 17, 43, 0.95); border: 1px solid var(--gold); color: #fff; padding: 8px 18px; border-radius: 30px; font-size: 12px; display: none; z-index: 10000; box-shadow: 0 4px 20px rgba(0,0,0,0.5); }
-        .admin-trigger { text-align: left; font-size: 11px; font-weight: 800; color: rgba(148, 163, 184, 0.4); cursor: pointer; margin-top: 18px; padding: 4px 2px; display: inline-flex; align-items: center; gap: 5px; }
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 10001; padding: 16px; }
         .modal-content { width: 100%; border: 1px solid var(--gold); }
     </style>
@@ -141,7 +177,7 @@
 
     <div class="app-container">
 
-        <!-- Top Header -->
+        <!-- Top Header (Bot Brand & User Pill) -->
         <div class="top-header">
             <div class="bot-brand">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" class="bot-logo">
@@ -153,28 +189,14 @@
             
             <div class="user-chip" onclick="switchTab('profile')">
                 <img id="userHeaderPic" class="user-chip-avatar">
-                <div id="userHeaderInitial" class="user-chip-initial">U</div>
-                <span id="userHeaderName" class="user-chip-name">User</span>
+                <div id="userHeaderInitial" class="user-chip-initial">D</div>
+                <span id="userHeaderName" class="user-chip-name">Demo</span>
             </div>
         </div>
 
-        <!-- User Welcome Banner -->
-        <div class="user-welcome-card">
-            <div class="user-welcome-left">
-                <img id="userWelcomePic" class="user-welcome-pic">
-                <div id="userWelcomeInitial" class="user-welcome-initial">U</div>
-                <div>
-                    <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">ইউজার</span> 👋</div>
-                    <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: 00000000</div>
-                </div>
-            </div>
-            <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green); font-weight: 600;">
-                ✅ সক্রিয় একাউন্ট
-            </div>
-        </div>
-
-        <!-- TAB 1: HOME -->
+        <!-- ==================== TAB 1: HOME ==================== -->
         <div id="homeView" class="view-section active">
+            
             <div class="glass-card balance-card">
                 <div style="font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">মোট উপার্জিত ব্যালেন্স</div>
                 <div class="balance-amount"><span class="currency">৳</span><span id="mainBalance">50</span></div>
@@ -200,14 +222,12 @@
                 <a href="https://t.me/Refer_EarnPayment" target="_blank" class="btn-join" style="background: var(--gold); color:#090614;">ভিজিট করুন</a>
             </div>
 
-            <!-- Task Channels (Join Verification Added) -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
                     <span style="font-size: 11px; color: var(--gold); font-weight:600;">প্রতিটি ৳৫০ (মোট ৳২০০)</span>
                 </div>
 
-                <!-- Channel 1 -->
                 <div class="channel-item">
                     <div class="channel-info"><i class="fa-solid fa-bullhorn" style="font-size:20px; color:#229ed9;"></i><div><b>Prince Earning Zone</b><br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
                     <div style="display:flex; gap:6px;">
@@ -216,7 +236,6 @@
                     </div>
                 </div>
 
-                <!-- Channel 2 -->
                 <div class="channel-item">
                     <div class="channel-info"><i class="fa-solid fa-bullhorn" style="font-size:20px; color:#229ed9;"></i><div><b>Prince Free Income</b><br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
                     <div style="display:flex; gap:6px;">
@@ -225,7 +244,6 @@
                     </div>
                 </div>
 
-                <!-- Channel 3 -->
                 <div class="channel-item">
                     <div class="channel-info"><i class="fa-solid fa-bullhorn" style="font-size:20px; color:#229ed9;"></i><div><b>Velora Earning</b><br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
                     <div style="display:flex; gap:6px;">
@@ -234,7 +252,6 @@
                     </div>
                 </div>
 
-                <!-- Channel 4 -->
                 <div class="channel-item">
                     <div class="channel-info"><i class="fa-solid fa-bullhorn" style="font-size:20px; color:#229ed9;"></i><div><b>Shuvo Earning Hub</b><br><small style="color: var(--gold);">+৳৫০ বোনাস</small></div></div>
                     <div style="display:flex; gap:6px;">
@@ -249,7 +266,7 @@
             </div>
         </div>
 
-        <!-- TAB 2: REFER -->
+        <!-- ==================== TAB 2: REFER ==================== -->
         <div id="referView" class="view-section">
             <div class="glass-card" style="text-align: center;">
                 <i class="fa-solid fa-hand-holding-dollar" style="font-size: 38px; color: var(--gold); margin-bottom: 6px;"></i>
@@ -275,7 +292,7 @@
             </div>
         </div>
 
-        <!-- TAB 3: WITHDRAW -->
+        <!-- ==================== TAB 3: WITHDRAW ==================== -->
         <div id="withdrawView" class="view-section">
             <div id="withdrawLocked" class="glass-card" style="text-align: center; padding: 22px 14px;">
                 <div style="width: 56px; height: 56px; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; border: 1px solid rgba(239, 68, 68, 0.3);"><i class="fa-solid fa-lock"></i></div>
@@ -315,26 +332,45 @@
             </div>
         </div>
 
-        <!-- TAB 4: PROFILE -->
+        <!-- ==================== TAB 4: PROFILE / ACCOUNT (স্ক্রিনশটের হুবহু রূপ) ==================== -->
         <div id="profileView" class="view-section">
-            <div class="glass-card" style="text-align: center;">
-                <div style="width: 70px; height: 70px; margin: 0 auto 10px; position: relative;">
-                    <img id="profUserPic" class="user-chip-avatar" style="width: 70px; height: 70px; border: 3px solid var(--gold); margin: 0 auto;">
-                    <div id="profUserInitial" class="user-chip-initial" style="width: 70px; height: 70px; font-size: 26px; border: 3px solid var(--gold); margin: 0 auto;">U</div>
+            
+            <!-- Welcome Bar -->
+            <div class="user-welcome-card">
+                <div class="user-welcome-left">
+                    <img id="userWelcomePic" class="user-welcome-pic">
+                    <div id="userWelcomeInitial" class="user-welcome-initial">D</div>
+                    <div>
+                        <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">Demo User</span> 👋</div>
+                        <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: USR_237860</div>
+                    </div>
                 </div>
-                <h3 id="profUserTitle" style="font-size: 17px;">User</h3>
-                <p id="profTgHandle" style="font-size: 13px; color: var(--gold); font-weight: 600;">@username</p>
-                <p id="profTgId" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Telegram ID: ...</p>
+                <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green); font-weight: 600;">
+                    সক্রিয় একাউন্ট
+                </div>
             </div>
 
+            <!-- Big User Profile Card -->
+            <div class="glass-card" style="text-align: center; padding: 22px 14px;">
+                <div style="width: 72px; height: 72px; margin: 0 auto 10px; position: relative;">
+                    <img id="profUserPic" class="user-chip-avatar" style="width: 72px; height: 72px; border: 3px solid var(--gold); margin: 0 auto;">
+                    <div id="profUserInitial" class="user-welcome-initial" style="width: 72px; height: 72px; font-size: 26px; border: 3px solid var(--gold); margin: 0 auto;">D</div>
+                </div>
+                <h3 id="profUserTitle" style="font-size: 17px; font-weight: 700;">Demo User</h3>
+                <p id="profTgHandle" style="font-size: 13px; color: var(--gold); font-weight: 600; margin: 2px 0;">@demouser</p>
+                <p id="profTgId" style="font-size: 12px; color: var(--text-muted);">Telegram ID: USR_237860</p>
+            </div>
+
+            <!-- Official Bot Card -->
             <div class="glass-card" style="display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.35);">
-                <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-light); object-fit: cover;">
+                <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" style="width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--primary-light); object-fit: cover;">
                 <div>
                     <h4 style="font-size: 14px; font-weight: 700;">Official Bot: @ReferEarnn_Bot</h4>
                     <p style="font-size: 11px; color: var(--text-muted); margin-top: 2px;">ইনস্ট্যান্ট অটোমেটেড রেফারেল ও রিওয়ার্ড মিনি অ্যাপ</p>
                 </div>
             </div>
 
+            <!-- Leaderboard Card (শীর্ষ রেফারকারী ছক) -->
             <div class="glass-card">
                 <h4 style="font-size: 14px; margin-bottom: 12px;">🏆 শীর্ষ রেফারকারী (Leaderboard)</h4>
                 <div class="leaderboard-item">
@@ -351,6 +387,15 @@
                 </div>
             </div>
 
+            <!-- Guidelines Card -->
+            <div class="glass-card">
+                <h4 style="font-size: 13px; margin-bottom: 8px;">📌 গুরুত্বপূর্ণ নিয়মাবলী</h4>
+                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                    ৪টি চ্যানেলে সক্রিয় জয়েন থাকতে হবে। ফেক অ্যাকাউন্ট দিয়ে রেফার করলে একাউন্ট ব্যান হবে। টাকা পাঠানোর আপডেট পেতে <a href="https://t.me/Refer_EarnPayment" target="_blank" style="color:var(--gold); text-decoration:none;">@Refer_EarnPayment</a> চ্যানেলে যুক্ত থাকুন।
+                </p>
+            </div>
+
+            <!-- Bottom Left Admin Panel -->
             <div style="text-align: left; padding: 2px 4px;">
                 <div class="admin-trigger" onclick="openSecureModal()"><i class="fa-solid fa-lock" style="font-size: 10px;"></i> Admin Panel</div>
             </div>
@@ -358,12 +403,24 @@
 
     </div>
 
-    <!-- Bottom Nav -->
+    <!-- 🔘 MEDIUM SIZED BALANCED BOTTOM NAVIGATION -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home')"><i class="fa-solid fa-house"></i><span>Home</span></button>
-        <button class="nav-item" onclick="switchTab('refer')"><i class="fa-solid fa-users"></i><span>Refer</span></button>
-        <button class="nav-item" onclick="switchTab('withdraw')"><i class="fa-solid fa-wallet"></i><span>Withdraw</span></button>
-        <button class="nav-item" onclick="switchTab('profile')"><i class="fa-solid fa-user"></i><span>Profile</span></button>
+        <button class="nav-item active" onclick="switchTab('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('refer')">
+            <i class="fa-solid fa-users"></i>
+            <span>Refer</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('withdraw')">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Withdraw</span>
+        </button>
+        <button class="nav-item" onclick="switchTab('profile')">
+            <i class="fa-solid fa-user"></i>
+            <span>Account</span>
+        </button>
     </nav>
 
     <script>
@@ -377,7 +434,6 @@
         let totalReferrals = 0;
         let currentGateway = 'bKash';
 
-        // Join Trackers: কেউ জয়েন না করলে ক্লেইম করতে পারবে না
         let joinedChannels = {};
 
         function markJoined(id) {
@@ -385,12 +441,11 @@
             localStorage.setItem(`joined_${currentUserId}_${id}`, 'true');
         }
 
-        // ছবি বা ইনিশিয়াল সেট করার ফাংশন
         function setupAvatar(imgId, initialId, photoUrl, displayName) {
             const img = document.getElementById(imgId);
             const init = document.getElementById(initialId);
             const cleanName = displayName.replace(/[^\w\s\u0980-\u09FF]/gi, '').trim();
-            const initialLetter = (cleanName.charAt(0) || displayName.charAt(0) || 'U').toUpperCase();
+            const initialLetter = (cleanName.charAt(0) || displayName.charAt(0) || 'D').toUpperCase();
             
             init.innerText = initialLetter;
 
@@ -422,7 +477,7 @@
                 if (tg.initDataUnsafe && tg.initDataUnsafe.start_param) startParam = tg.initDataUnsafe.start_param;
             }
 
-            let firstName = "User";
+            let firstName = "Demo User";
             if (tgUser) {
                 currentUserId = tgUser.id.toString();
                 firstName = tgUser.first_name || 'User';
@@ -457,14 +512,13 @@
             document.getElementById('refLinkInput').value = `https://t.me/${BOT_USERNAME}?startapp=${currentUserId}`;
             document.getElementById('myReferralCodeBadge').innerText = currentUserId;
 
-            // Load Joined States
             for (let i = 1; i <= 4; i++) {
                 if (localStorage.getItem(`joined_${currentUserId}_${i}`)) {
                     joinedChannels[i] = true;
                 }
             }
 
-            // Firebase Sync
+            // Firebase Data Fetch & Sync
             try {
                 const userRes = await fetch(`${FIREBASE_DB_URL}users/${currentUserId}.json`);
                 let userData = await userRes.json();
@@ -528,11 +582,15 @@
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
             document.getElementById(tab + 'View').classList.add('active');
+
+            const tabs = ['home', 'refer', 'withdraw', 'profile'];
+            const idx = tabs.indexOf(tab);
+            if (idx !== -1) {
+                document.querySelectorAll('.nav-item')[idx].classList.add('active');
+            }
         }
 
-        // টাস্ক ক্লেইম ফাংশন: আগে Join ক্লিক না করলে বোনাস পাবে না
         async function claimTask(id) {
-            // যদি আগে জয়েন না করে থাকে
             if (!joinedChannels[id] && !localStorage.getItem(`joined_${currentUserId}_${id}`)) {
                 showToast("⚠️ অনুগ্রহ করে আগে 'Join' বাটনে ক্লিক করুন!");
                 return;
