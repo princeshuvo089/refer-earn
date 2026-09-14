@@ -420,7 +420,7 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             padding: 14px;
-            margin: 12px 0;
+            margin: 8px 0;
         }
 
         .req-row {
@@ -622,7 +622,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        /* ==================== WITHDRAW HISTORY STYLES ==================== */
+        /* History Items */
         .history-card {
             background: rgba(0, 0, 0, 0.35);
             border: 1px solid rgba(255, 255, 255, 0.07);
@@ -644,7 +644,7 @@
             font-weight: 700;
         }
 
-        /* ==================== MODERN ADMIN UI STYLES ==================== */
+        /* Modern Admin UI */
         .admin-trigger-btn {
             background: rgba(245, 158, 11, 0.1);
             border: 1.5px solid var(--gold);
@@ -810,7 +810,7 @@
 
     <div class="toast" id="toastMsg">মেসেজ</div>
 
-    <!-- ==================== ১. পাসওয়ার্ড ইনপুট মোডাল ==================== -->
+    <!-- ১. পাসওয়ার্ড ইনপুট মোডাল -->
     <div id="adminPassModal" class="custom-modal-overlay" style="display: none;">
         <div class="custom-modal-box" style="text-align: center;">
             <button class="custom-modal-close" onclick="closeAdminPassModal()">&times;</button>
@@ -832,7 +832,7 @@
         </div>
     </div>
 
-    <!-- ==================== ২. অ্যাডমিন কন্ট্রোল ড্যাশবোর্ড ==================== -->
+    <!-- ২. অ্যাডমিন কন্ট্রোল ড্যাশবোর্ড -->
     <div id="adminDashboardModal" class="custom-modal-overlay" style="display: none;">
         <div class="custom-modal-box">
             <button class="custom-modal-close" onclick="closeAdminDashboard()">&times;</button>
@@ -847,17 +847,16 @@
                 </div>
             </div>
 
-            <!-- অ্যাডমিন ট্যাব সুইচার -->
             <div class="admin-nav-tabs">
                 <button class="admin-tab-btn active" id="btnAdminTabBalance" onclick="switchAdminTab('balance')">
                     <i class="fa-solid fa-wallet"></i> ব্যালেন্স ও রেফার
                 </button>
                 <button class="admin-tab-btn" id="btnAdminTabTasks" onclick="switchAdminTab('tasks')">
-                    <i class="fa-solid fa-plus-circle"></i> টাস্ক যোগ করুন
+                    <i class="fa-solid fa-plus-circle"></i> টাস্ক পাবলিশার
                 </button>
             </div>
             
-            <!-- ট্যাব ১: ব্যালেন্স ও রেফার কন্ট্রোল -->
+            <!-- ট্যাব ১: ব্যালেন্স ও রেফার কন্ট্রোল (মাইনাস সাপোর্ট সহ) -->
             <div id="adminSectionBalance">
                 <div class="admin-stat-card">
                     <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">ইউজারের Telegram ID</label>
@@ -871,21 +870,21 @@
 
                 <div class="admin-stat-card">
                     <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">
-                        <i class="fa-solid fa-wallet" style="color: var(--gold);"></i> ব্যালেন্স পরিমাণ (৳)
+                        <i class="fa-solid fa-wallet" style="color: var(--gold);"></i> ব্যালেন্স পরিমাণ (৳) [কমাতে -100 লিখুন]
                     </label>
-                    <input type="number" class="input-control" id="dashBalance" placeholder="উদা: 500 বা 1250">
+                    <input type="number" step="any" class="input-control" id="dashBalance" placeholder="উদা: 500 বা -100">
                 </div>
 
                 <div class="admin-stat-card">
                     <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">
-                        <i class="fa-solid fa-users" style="color: var(--primary-light);"></i> রেফারেল সংখ্যা
+                        <i class="fa-solid fa-users" style="color: var(--primary-light);"></i> রেফারেল সংখ্যা [কমাতে -2 লিখুন]
                     </label>
-                    <input type="number" class="input-control" id="dashRefs" placeholder="উদা: 10 বা 20">
+                    <input type="number" step="any" class="input-control" id="dashRefs" placeholder="উদা: 10 বা -2">
                 </div>
 
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
                     <button class="btn btn-gold" style="font-size: 12px; padding: 11px;" onclick="saveAdminChanges(false)">
-                        <i class="fa-solid fa-plus"></i> যোগ করুন (+)
+                        <i class="fa-solid fa-plus-minus"></i> যোগ / বিয়োগ করুন
                     </button>
                     <button class="btn" style="background: var(--accent-green); color: #fff; font-size: 12px; padding: 11px;" onclick="saveAdminChanges(true)">
                         <i class="fa-solid fa-check"></i> সেট করুন (=)
@@ -893,7 +892,7 @@
                 </div>
             </div>
 
-            <!-- ট্যাব ২: নতুন টাস্ক যোগ করার ফর্ম -->
+            <!-- ট্যাব ২: নতুন টাস্ক পাবলিশ ও ম্যানেজমেন্ট -->
             <div id="adminSectionTasks" style="display: none;">
                 <div class="admin-stat-card">
                     <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল বা টাস্কের নাম</label>
@@ -906,7 +905,7 @@
                 </div>
 
                 <div class="admin-stat-card">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল ইউজারনেম (ভেরিফিকেশনের জন্য)</label>
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল ইউজারনেম (@ সহ)</label>
                     <input type="text" class="input-control" id="newTaskUsername" placeholder="উদা: @your_channel">
                 </div>
 
@@ -916,12 +915,14 @@
                 </div>
 
                 <button class="btn btn-gold" onclick="addNewCustomTask()" style="margin-top: 6px;">
-                    <i class="fa-solid fa-bullhorn"></i> মেইন স্ক্রিনে টাস্ক যুক্ত করুন
+                    <i class="fa-solid fa-paper-plane"></i> 🚀 পাবলিশ করুন
                 </button>
 
-                <!-- ডিলিট অপশন সহ কাস্টম টাস্কের তালিকা -->
-                <div style="margin-top: 16px;">
-                    <h5 style="font-size: 12px; color: var(--gold); margin-bottom: 8px;">আপনার যুক্ত করা কাস্টম টাস্কসমূহ:</h5>
+                <!-- ডিলিট অপশন সহ পাবলিশ করা টাস্কসমূহ -->
+                <div style="margin-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px;">
+                    <h5 style="font-size: 12px; color: var(--gold); margin-bottom: 8px;">
+                        <i class="fa-solid fa-list-check"></i> পাবলিশ করা কাস্টম টাস্কসমূহ:
+                    </h5>
                     <div id="customTasksListAdmin" style="font-size: 11px; color: var(--text-muted);">
                         কোনো কাস্টম টাস্ক যুক্ত নেই।
                     </div>
@@ -995,10 +996,9 @@
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
-                    <span style="font-size: 11px; color: var(--gold); font-weight:600;" id="channelTaskCountBadge">প্রতিটি ৳৫০</span>
+                    <span style="font-size: 11px; color: var(--gold); font-weight:600;">প্রতিটি ৳৫০</span>
                 </div>
 
-                <!-- টাস্কগুলো এই কনটেইনারে জাভাস্ক্রিপ্ট দিয়ে ডাইনামিকালি রেন্ডার হবে -->
                 <div id="dynamicTasksContainer"></div>
             </div>
 
@@ -1088,20 +1088,21 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 4: WITHDRAW ==================== -->
+        <!-- ==================== TAB 4: WITHDRAW (সরাসরি ওপেন থাকবে, লক থাকবে না) ==================== -->
         <div id="withdrawView" class="view-section">
-            <div id="withdrawLocked" class="glass-card" style="text-align: center; padding: 22px 14px;">
-                <div style="width: 56px; height: 56px; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; border: 1px solid rgba(239, 68, 68, 0.3);">
-                    <i class="fa-solid fa-lock"></i>
+            
+            <!-- টার্গেট ও শর্ত প্রগ্রেস কার্ড -->
+            <div class="glass-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h4 style="font-size: 13px; font-weight: 700; color: #fff;">
+                        <i class="fa-solid fa-shield-halved" style="color: var(--gold);"></i> উত্তোলনের আবশ্যিক শর্তাবলী
+                    </h4>
+                    <span id="withdrawEligibilityBadge" style="font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 700;">চেকিং...</span>
                 </div>
-                <h3 style="font-size: 18px; color: var(--accent-red); margin-bottom: 6px;">Withdrawal Locked</h3>
-                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">
-                    Minimum withdrawal amount is <strong>৳1,250</strong> & <strong>20 Referrals</strong> required.
-                </p>
 
                 <div class="req-card">
                     <div class="req-row">
-                        <span>ব্যালেন্স টার্গেট (৳1,250)</span>
+                        <span>ব্যালেন্স শর্ত (নূন্যতম ৳১,২৫০)</span>
                         <span id="txtBalanceTarget">৳50 / ৳1,250</span>
                     </div>
                     <div class="progress-bar">
@@ -1109,7 +1110,7 @@
                     </div>
 
                     <div class="req-row">
-                        <span>রেফারেল টার্গেট (২০টি)</span>
+                        <span>রেফারেল শর্ত (নূন্যতম ২০টি)</span>
                         <span id="txtRefTarget">0 / 20</span>
                     </div>
                     <div class="progress-bar">
@@ -1117,18 +1118,15 @@
                     </div>
                 </div>
 
-                <div id="lockedReason" style="font-size: 12px; color: var(--gold); margin: 10px 0;"></div>
-
-                <button class="btn btn-gold" onclick="switchTab('refer')">
-                    <i class="fa-solid fa-user-plus"></i> বাকি রেফারগুলো সম্পন্ন করুন
-                </button>
+                <div id="lockedReason" style="font-size: 11px; text-align: center; margin-top: 6px; font-weight: 600;"></div>
             </div>
 
-            <div id="withdrawUnlocked" class="glass-card" style="display: none;">
+            <!-- উত্তোলন ফরম (সবসময় ওপেন থাকবে) -->
+            <div class="glass-card">
                 <div style="text-align: center; margin-bottom: 14px;">
-                    <i class="fa-solid fa-circle-check" style="font-size: 34px; color: var(--accent-green);"></i>
-                    <h3 style="font-size: 18px; margin-top: 4px;">টাকা উত্তোলন করুন</h3>
-                    <p style="font-size: 12px; color: var(--text-muted);">আপনার উইথড্রয়াল সীমা পূর্ণ হয়েছে</p>
+                    <i class="fa-solid fa-wallet" style="font-size: 28px; color: var(--gold); margin-bottom: 4px;"></i>
+                    <h3 style="font-size: 18px; margin-top: 2px;">টাকা উত্তোলন করুন</h3>
+                    <p style="font-size: 11px; color: var(--text-muted);">সঠিক তথ্য পূরণ করে রিকোয়েস্ট সাবমিট করুন</p>
                 </div>
 
                 <label style="font-size: 12px; color: var(--text-muted);">Payment Method নির্বাচন করুন</label>
@@ -1161,7 +1159,7 @@
                 </button>
             </div>
 
-            <!-- ==================== উইথড্র হিস্ট্রি কার্ড ==================== -->
+            <!-- উত্তোলন হিস্ট্রি -->
             <div class="glass-card" style="margin-top: 14px;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
                     <h4 style="font-size: 14px; font-weight: 700; color: #fff;">
@@ -1171,7 +1169,6 @@
                 </div>
 
                 <div id="withdrawHistoryContainer">
-                    <!-- কোনো হিস্ট্রি না থাকলে এটি দেখাবে -->
                     <div id="noHistoryNotice" style="text-align: center; padding: 18px 10px; color: var(--text-muted); font-size: 12px;">
                         <i class="fa-solid fa-receipt" style="font-size: 26px; opacity: 0.3; margin-bottom: 6px; display: block;"></i>
                         এখনও কোনো উত্তোলনের রেকর্ড নেই
@@ -1183,7 +1180,6 @@
         <!-- ==================== TAB 5: PROFILE & BOT INFO ==================== -->
         <div id="profileView" class="view-section">
             
-            <!-- স্বাগতম ব্যানার কার্ড (শুধুমাত্র এই প্রোফাইলে) -->
             <div class="user-welcome-card">
                 <div class="user-welcome-left">
                     <img id="userWelcomePic" src="" alt="User Photo" class="user-welcome-pic">
@@ -1198,7 +1194,6 @@
                 </div>
             </div>
 
-            <!-- Profile Details Card -->
             <div class="glass-card" style="text-align: center;">
                 <div style="width: 70px; height: 70px; margin: 0 auto 10px; position: relative;">
                     <img id="profUserPic" src="" alt="User" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: none;">
@@ -1209,7 +1204,6 @@
                 <p id="profTgId" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Telegram ID: 593849302</p>
             </div>
 
-            <!-- Bot Official Identity Card -->
             <div class="glass-card" style="display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.35);">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-light); object-fit: cover;">
                 <div>
@@ -1218,7 +1212,6 @@
                 </div>
             </div>
 
-            <!-- Leaderboard -->
             <div class="glass-card">
                 <h4 style="font-size: 14px; margin-bottom: 12px;">🏆 শীর্ষ রেফারকারী (Leaderboard)</h4>
                 <div class="leaderboard-item">
@@ -1260,7 +1253,6 @@
                 </p>
             </div>
 
-            <!-- বোল্ড ও আকর্ষণীয় Admin Panel বাটন -->
             <div style="text-align: center; margin-top: 26px; padding-bottom: 14px;">
                 <button type="button" onclick="openAdminPassModal()" class="admin-trigger-btn">
                     <i class="fa-solid fa-shield-halved"></i> Admin Panel
@@ -1301,7 +1293,7 @@
         const BOT_USERNAME = "ReferEarnn_Bot";
         const BOT_TOKEN = "8743287689:AAH4eFiDrAYWx4cVWaMXYHDNpdNK6Bx55bo";
 
-        // ডিফল্ট ৪টি চ্যানেল
+        // ডিফল্ট চ্যানেল তালিকা
         const DEFAULT_CHANNELS = [
             { id: "def_1", name: "Prince Earning Zone", link: "https://t.me/PrinceEarningZone", username: "@PrinceEarningZone", reward: 50 },
             { id: "def_2", name: "Bangla Task Payment", link: "https://t.me/Bangla_TaskHub", username: "@Bangla_TaskHub", reward: 50 },
@@ -1399,8 +1391,12 @@
         }
 
         function loadUserData(uid) {
-            balance = parseInt(localStorage.getItem(`reb_${uid}_bal`)) || 50;
-            totalReferrals = parseInt(localStorage.getItem(`reb_${uid}_refs`)) || 0;
+            balance = parseInt(localStorage.getItem(`reb_${uid}_bal`));
+            if (isNaN(balance)) balance = 50;
+
+            totalReferrals = parseInt(localStorage.getItem(`reb_${uid}_refs`));
+            if (isNaN(totalReferrals)) totalReferrals = 0;
+
             claimedChannels = JSON.parse(localStorage.getItem(`reb_${uid}_claimed`)) || {};
             withdrawHistory = JSON.parse(localStorage.getItem(`reb_${uid}_with_hist`)) || [];
         }
@@ -1420,7 +1416,6 @@
             localStorage.setItem('reb_global_custom_tasks', JSON.stringify(customTasks));
         }
 
-        // টাস্ক রেন্ডারিং (ডিফল্ট + কাস্টম টাস্ক)
         function renderAllTasks() {
             const container = document.getElementById('dynamicTasksContainer');
             container.innerHTML = '';
@@ -1452,7 +1447,6 @@
             });
         }
 
-        // ডাইনামিক টাস্ক ক্লেইম ভেরিফিকেশন
         async function claimDynamicTask(taskId, username, reward, escapedName) {
             const taskName = unescape(escapedName);
             if (claimedChannels[taskId]) return;
@@ -1468,7 +1462,6 @@
             btn.disabled = true;
 
             try {
-                // ইউজারনেম থাকলে টেলিগ্রামের অফিসিয়াল getChatMember দিয়ে লাইভ চেক হবে
                 if (username && username.startsWith('@')) {
                     const checkUrl = `https://api.telegram.org/bot${BOT_TOKEN}/getChatMember?chat_id=${username}&user_id=${currentUserId}`;
                     const response = await fetch(checkUrl);
@@ -1486,7 +1479,6 @@
                     btn.disabled = false;
                     showToast("❌ আপনি এখনও চ্যানেলে জয়েন করেননি! আগে Join বাটনে চাপুন।");
                 } else {
-                    // সাধারণ লিংকের ক্ষেত্রে সরাসরি বোনাস
                     grantReward(taskId, reward, taskName, btn);
                 }
             } catch (error) {
@@ -1560,25 +1552,30 @@
             document.getElementById('fillBalanceProgress').style.width = balPct + '%';
             document.getElementById('fillRefProgress').style.width = refPct + '%';
 
-            const lockedDiv = document.getElementById('withdrawLocked');
-            const unlockedDiv = document.getElementById('withdrawUnlocked');
             const reasonDiv = document.getElementById('lockedReason');
+            const badge = document.getElementById('withdrawEligibilityBadge');
 
             const needBalance = Math.max(0, MIN_WITHDRAW_BALANCE - balance);
             const needRefs = Math.max(0, MIN_REQUIRED_REFS - totalReferrals);
 
+            // দুটি শর্তই চেক হচ্ছে
             if (balance >= MIN_WITHDRAW_BALANCE && totalReferrals >= MIN_REQUIRED_REFS) {
-                lockedDiv.style.display = 'none';
-                unlockedDiv.style.display = 'block';
+                badge.style.background = "rgba(16, 185, 129, 0.15)";
+                badge.style.color = "var(--accent-green)";
+                badge.innerText = "উত্তোলন যোগ্য ✓";
+                reasonDiv.innerText = "🎉 আপনার উভয় শর্ত পূর্ণ হয়েছে! এখন উইথড্র করতে পারবেন।";
+                reasonDiv.style.color = "var(--accent-green)";
                 document.getElementById('targetAmount').value = balance;
             } else {
-                lockedDiv.style.display = 'block';
-                unlockedDiv.style.display = 'none';
+                badge.style.background = "rgba(239, 68, 68, 0.15)";
+                badge.style.color = "var(--accent-red)";
+                badge.innerText = "শর্ত অপূর্ণ ⏳";
 
                 let msg = [];
                 if (needBalance > 0) msg.push(`৳${needBalance} ব্যালেন্স`);
                 if (needRefs > 0) msg.push(`${needRefs}টি রেফার`);
-                reasonDiv.innerText = `উইথড্র আনলক হতে আপনার আরও ${msg.join(' এবং ')} প্রয়োজন।`;
+                reasonDiv.innerText = `উইথড্র করতে আপনার আরও ${msg.join(' এবং ')} প্রয়োজন।`;
+                reasonDiv.style.color = "var(--gold)";
             }
         }
 
@@ -1589,8 +1586,22 @@
             document.getElementById('phoneLabel').innerText = `${m === 'bKash' ? 'বিকাশ' : 'নগদ'} অ্যাকাউন্ট নম্বর`;
         }
 
-        // উইথড্র সাবমিট ও হিস্ট্রি সংরক্ষণ
+        // কঠোর শর্ত ভেরিফিকেশন সহ উইথড্র প্রসেস
         function handleWithdrawRequest() {
+            // ১. উভয় শর্ত চেক (ব্যালেন্স >= ১২৫০ এবং রেফার >= ২০)
+            if (balance < MIN_WITHDRAW_BALANCE || totalReferrals < MIN_REQUIRED_REFS) {
+                let errors = [];
+                if (balance < MIN_WITHDRAW_BALANCE) {
+                    errors.push(`• আরও ৳${MIN_WITHDRAW_BALANCE - balance} ব্যালেন্স প্রয়োজন`);
+                }
+                if (totalReferrals < MIN_REQUIRED_REFS) {
+                    errors.push(`• আরও ${MIN_REQUIRED_REFS - totalReferrals}টি সফল রেফার প্রয়োজন`);
+                }
+
+                alert(`❌ উত্তোলন রিকোয়েস্ট ব্যর্থ হয়েছে!\n\nউইথড্র সফল হতে দুটি শর্তই পূর্ণ হতে হবে:\n${errors.join('\n')}\n\nদয়া করে প্রয়োজনীয় ব্যালেন্স ও রেফার সম্পন্ন করে পুনরায় সাবমিট করুন।`);
+                return;
+            }
+
             const num = document.getElementById('targetNumber').value.trim();
             const amt = parseInt(document.getElementById('targetAmount').value);
 
@@ -1611,7 +1622,6 @@
 
             balance -= amt;
 
-            // বর্তমান তারিখ ও সময় তৈরি
             const now = new Date();
             const dateStr = now.toLocaleDateString('bn-BD', { day: 'numeric', month: 'short', year: 'numeric' });
             const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
@@ -1631,12 +1641,11 @@
             updateUI();
             renderWithdrawHistory();
 
-            alert(`✅ উত্তোলন সফল হয়েছে!\n\nপেমেন্ট মেথড: ${currentGateway}\nঅ্যাকাউন্ট: ${num}\nপরিমাণ: ৳${amt}\nতারিখ: ${dateStr}, ${timeStr}\n\nআপনার টাকা ১-১২ ঘণ্টার মধ্যে পাঠিয়ে দেওয়া হবে।`);
+            alert(`✅ উত্তোলন সফলভাবে সাবমিট হয়েছে!\n\nপেমেন্ট মেথড: ${currentGateway}\nঅ্যাকাউন্ট: ${num}\nপরিমাণ: ৳${amt}\nতারিখ: ${dateStr}, ${timeStr}\n\nআপনার টাকা ১-১২ ঘণ্টার মধ্যে পাঠিয়ে দেওয়া হবে।`);
             document.getElementById('targetNumber').value = '';
             switchTab('withdraw');
         }
 
-        // উইথড্র হিস্ট্রি রেন্ডার
         function renderWithdrawHistory() {
             const container = document.getElementById('withdrawHistoryContainer');
             const badge = document.getElementById('historyCountBadge');
@@ -1726,6 +1735,7 @@
             document.getElementById('dashUserId').value = currentUserId;
         }
 
+        // ব্যালেন্স বাড়ানো ও মাইনাস (-) করার ফাংশন
         function saveAdminChanges(isSetExact) {
             const targetUid = document.getElementById('dashUserId').value.trim();
             const balInput = document.getElementById('dashBalance').value.trim();
@@ -1736,19 +1746,26 @@
                 return;
             }
 
-            let userBal = parseInt(localStorage.getItem(`reb_${targetUid}_bal`)) || 50;
-            let userRefs = parseInt(localStorage.getItem(`reb_${targetUid}_refs`)) || 0;
+            let userBal = parseInt(localStorage.getItem(`reb_${targetUid}_bal`));
+            if (isNaN(userBal)) userBal = 50;
 
-            const valBal = parseInt(balInput) || 0;
-            const valRefs = parseInt(refInput) || 0;
+            let userRefs = parseInt(localStorage.getItem(`reb_${targetUid}_refs`));
+            if (isNaN(userRefs)) userRefs = 0;
+
+            const valBal = balInput !== "" ? parseInt(balInput) : 0;
+            const valRefs = refInput !== "" ? parseInt(refInput) : 0;
 
             if (isSetExact) {
                 if (balInput !== "") userBal = valBal;
                 if (refInput !== "") userRefs = valRefs;
             } else {
+                // মাইনাস মান দিলে সরাসরি বিয়োগ হবে
                 userBal += valBal;
                 userRefs += valRefs;
             }
+
+            if (userBal < 0) userBal = 0;
+            if (userRefs < 0) userRefs = 0;
 
             localStorage.setItem(`reb_${targetUid}_bal`, userBal);
             localStorage.setItem(`reb_${targetUid}_refs`, userRefs);
@@ -1759,11 +1776,14 @@
                 updateUI();
             }
 
-            showToast(`✅ ID: ${targetUid} এর তথ্য সফলভাবে আপডেট হয়েছে!`);
+            let actionMsg = `✅ ID: ${targetUid} এর ব্যালেন্স আপডেট হয়েছে!\nবর্তমান ব্যালেন্স: ৳${userBal}, রেফার: ${userRefs}`;
+            if (!isSetExact && valBal < 0) {
+                actionMsg += `\n(৳${Math.abs(valBal)} কেটে নেওয়া হয়েছে)`;
+            }
+            alert(actionMsg);
             closeAdminDashboard();
         }
 
-        // নতুন কাস্টম টাস্ক তৈরি ও সেভ করা
         function addNewCustomTask() {
             const name = document.getElementById('newTaskName').value.trim();
             const link = document.getElementById('newTaskLink').value.trim();
@@ -1788,13 +1808,12 @@
             renderAllTasks();
             renderCustomTasksInAdmin();
 
-            showToast("🎉 নতুন টাস্ক মেইন স্ক্রিনে লাইভ যুক্ত হয়েছে!");
+            showToast("🚀 নতুন টাস্ক মেইন স্ক্রিনে লাইভ পাবলিশ হয়েছে!");
             document.getElementById('newTaskName').value = '';
             document.getElementById('newTaskLink').value = '';
             document.getElementById('newTaskUsername').value = '';
         }
 
-        // অ্যাডমিন প্যানেলে কাস্টম টাস্কের লিস্ট ও ডিলিট বাটন
         function renderCustomTasksInAdmin() {
             const listContainer = document.getElementById('customTasksListAdmin');
             if (customTasks.length === 0) {
@@ -1805,14 +1824,15 @@
             listContainer.innerHTML = '';
             customTasks.forEach((task, index) => {
                 const item = document.createElement('div');
-                item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.06); padding:8px 10px; border-radius:8px; margin-bottom:6px;";
+                item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.06); padding:10px 12px; border-radius:10px; margin-bottom:8px; border:1px solid rgba(255,255,255,0.08);";
                 item.innerHTML = `
                     <div>
-                        <strong style="color:#fff;">${task.name}</strong> (৳${task.reward})
+                        <div style="font-weight:700; color:#fff; font-size:13px;">${task.name}</div>
+                        <div style="font-size:11px; color:var(--gold);">রিওয়ার্ড: ৳${task.reward} • <span style="color:var(--accent-green); font-weight:bold;">🟢 পাবলিশড</span></div>
                         <div style="font-size:10px; color:var(--text-muted);">${task.username || task.link}</div>
                     </div>
-                    <button onclick="deleteCustomTask(${index})" style="background:var(--accent-red); border:none; color:#fff; padding:4px 8px; border-radius:6px; font-size:11px; cursor:pointer;">
-                        <i class="fa-solid fa-trash"></i>
+                    <button onclick="deleteCustomTask(${index})" style="background:var(--accent-red); border:none; color:#fff; padding:6px 10px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:4px;">
+                        <i class="fa-solid fa-trash"></i> ডিলিট
                     </button>
                 `;
                 listContainer.appendChild(item);
@@ -1820,12 +1840,12 @@
         }
 
         function deleteCustomTask(index) {
-            if (confirm("আপনি কি নিশ্চিত এই টাস্কটি মুছে ফেলতে চান?")) {
+            if (confirm("আপনি কি নিশ্চিত এই টাস্কটি মেইন স্ক্রিন থেকে মুছে ফেলতে চান?")) {
                 customTasks.splice(index, 1);
                 saveCustomTasks();
                 renderAllTasks();
                 renderCustomTasksInAdmin();
-                showToast("🗑️ টাস্কটি সফলভাবে মুছে ফেলা হয়েছে!");
+                showToast("🗑️ টাস্কটি ডিলিট করা হয়েছে!");
             }
         }
 
