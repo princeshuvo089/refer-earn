@@ -414,37 +414,6 @@
             margin: 8px 0;
         }
 
-        /* Requirement Tracker */
-        .req-card {
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 14px;
-            margin: 8px 0;
-        }
-
-        .req-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            margin-bottom: 6px;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 12px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--gold));
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-
         /* Payment Selector & Logos */
         .gateway-selector {
             display: grid;
@@ -682,7 +651,7 @@
             border: 1.5px solid var(--gold);
             border-radius: 22px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             max-height: 90vh;
             overflow-y: auto;
             padding: 22px 18px;
@@ -856,7 +825,7 @@
                 </button>
             </div>
             
-            <!-- ট্যাব ১: ব্যালেন্স ও রেফার কন্ট্রোল (মাইনাস সাপোর্ট সহ) -->
+            <!-- ট্যাব ১: ব্যালেন্স ও রেফার কন্ট্রোল -->
             <div id="adminSectionBalance">
                 <div class="admin-stat-card">
                     <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">ইউজারের Telegram ID</label>
@@ -892,21 +861,37 @@
                 </div>
             </div>
 
-            <!-- ট্যাব ২: নতুন টাস্ক পাবলিশ ও ম্যানেজমেন্ট -->
+            <!-- ট্যাব ২: নতুন টাস্ক পাবলিশ (টেলিগ্রাম চ্যানেল অথবা কাস্টম এক্সট্রা টাস্ক) -->
             <div id="adminSectionTasks" style="display: none;">
+                
                 <div class="admin-stat-card">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল বা টাস্কের নাম</label>
-                    <input type="text" class="input-control" id="newTaskName" placeholder="উদা: Special Earning Hub">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">টাস্ক ক্যাটাগরি নির্বাচন করুন</label>
+                    <select class="input-control" id="newTaskType" onchange="toggleTaskTypeFields()" style="cursor: pointer; font-weight: 700;">
+                        <option value="channel">📢 টেলিগ্রাম চ্যানেল জয়েন টাস্ক</option>
+                        <option value="extra">🌐 এক্সট্রা ওয়েবসাইট / অ্যাপ টাস্ক</option>
+                    </select>
                 </div>
 
                 <div class="admin-stat-card">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">টেলিগ্রাম চ্যানেলের লিংক</label>
-                    <input type="url" class="input-control" id="newTaskLink" placeholder="https://t.me/your_channel">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">টাস্কের শিরোনাম বা নাম</label>
+                    <input type="text" class="input-control" id="newTaskName" placeholder="উদা: Visit Website & Earn">
                 </div>
 
                 <div class="admin-stat-card">
-                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল ইউজারনেম (@ সহ)</label>
+                    <label id="lblTaskLink" style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল বা ওয়েবসাইট লিংক</label>
+                    <input type="url" class="input-control" id="newTaskLink" placeholder="https://...">
+                </div>
+
+                <!-- টেলিগ্রাম চ্যানেলের জন্য ফিল্ড -->
+                <div class="admin-stat-card" id="fieldChannelUsername">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল ইউজারনেম (@ সহ ভেরিফিকেশনের জন্য)</label>
                     <input type="text" class="input-control" id="newTaskUsername" placeholder="উদা: @your_channel">
+                </div>
+
+                <!-- এক্সট্রা টাস্কের জন্য শর্ত/নিয়ম ফিল্ড -->
+                <div class="admin-stat-card" id="fieldTaskCondition" style="display: none;">
+                    <label style="font-size: 11px; color: var(--gold); display: block; margin-bottom: 6px;">টাস্কের শর্ত বা কাজের নিয়মাবলী</label>
+                    <input type="text" class="input-control" id="newTaskCondition" placeholder="উদা: সাইটে ১ মিনিট ভিজিট করুন এবং একাউন্ট খুলুন">
                 </div>
 
                 <div class="admin-stat-card">
@@ -992,14 +977,22 @@
                 </a>
             </div>
 
-            <!-- Dynamic Channel Tasks List -->
+            <!-- ১. চ্যানেল বোনাস টাস্ক লিস্ট -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
                     <span style="font-size: 11px; color: var(--gold); font-weight:600;">প্রতিটি ৳৫০</span>
                 </div>
-
                 <div id="dynamicTasksContainer"></div>
+            </div>
+
+            <!-- ২. এক্সট্রা বোনাস টাস্ক লিস্ট (কাস্টম ওয়েবসাইট/শর্তযুক্ত টাস্ক) -->
+            <div class="glass-card" id="extraTasksCard">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
+                    <h4 style="font-size: 14px;"><i class="fa-solid fa-bolt" style="color:var(--gold);"></i> এক্সট্রা বোনাস টাস্ক</h4>
+                    <span style="font-size: 11px; color: var(--gold); font-weight:600;">অতিরিক্ত ইনকাম</span>
+                </div>
+                <div id="extraTasksContainer"></div>
             </div>
 
             <div class="glass-card">
@@ -1039,7 +1032,7 @@
                         <span>🎁 Welcome Bonus:</span> <strong style="color:var(--gold);">৳50</strong>
                     </div>
                     <div style="display:flex; justify-content:space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 4px 0;">
-                        <span>📢 চ্যানেল টাস্ক বোনাস:</span> <strong style="color:var(--gold);">৳২০০+</strong>
+                        <span>📢 চ্যানেল ও এক্সট্রা টাস্ক:</span> <strong style="color:var(--gold);">৳২০০+</strong>
                     </div>
                     <div style="display:flex; justify-content:space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 4px 0;">
                         <span>👥 ২০টি রেফারেল (20 x ৳50):</span> <strong style="color:var(--gold);">৳1,000</strong>
@@ -1088,43 +1081,12 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 4: WITHDRAW (সরাসরি ওপেন থাকবে, লক থাকবে না) ==================== -->
+        <!-- ==================== TAB 4: WITHDRAW (ক্লিন ফরম, শর্ত ব্যাকগ্রাউন্ডে চেক হবে) ==================== -->
         <div id="withdrawView" class="view-section">
             
-            <!-- টার্গেট ও শর্ত প্রগ্রেস কার্ড -->
-            <div class="glass-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                    <h4 style="font-size: 13px; font-weight: 700; color: #fff;">
-                        <i class="fa-solid fa-shield-halved" style="color: var(--gold);"></i> উত্তোলনের আবশ্যিক শর্তাবলী
-                    </h4>
-                    <span id="withdrawEligibilityBadge" style="font-size: 10px; padding: 2px 8px; border-radius: 12px; font-weight: 700;">চেকিং...</span>
-                </div>
-
-                <div class="req-card">
-                    <div class="req-row">
-                        <span>ব্যালেন্স শর্ত (নূন্যতম ৳১,২৫০)</span>
-                        <span id="txtBalanceTarget">৳50 / ৳1,250</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="fillBalanceProgress" style="width: 4%;"></div>
-                    </div>
-
-                    <div class="req-row">
-                        <span>রেফারেল শর্ত (নূন্যতম ২০টি)</span>
-                        <span id="txtRefTarget">0 / 20</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="fillRefProgress" style="width: 0%;"></div>
-                    </div>
-                </div>
-
-                <div id="lockedReason" style="font-size: 11px; text-align: center; margin-top: 6px; font-weight: 600;"></div>
-            </div>
-
-            <!-- উত্তোলন ফরম (সবসময় ওপেন থাকবে) -->
             <div class="glass-card">
                 <div style="text-align: center; margin-bottom: 14px;">
-                    <i class="fa-solid fa-wallet" style="font-size: 28px; color: var(--gold); margin-bottom: 4px;"></i>
+                    <i class="fa-solid fa-wallet" style="font-size: 30px; color: var(--gold); margin-bottom: 4px;"></i>
                     <h3 style="font-size: 18px; margin-top: 2px;">টাকা উত্তোলন করুন</h3>
                     <p style="font-size: 11px; color: var(--text-muted);">সঠিক তথ্য পূরণ করে রিকোয়েস্ট সাবমিট করুন</p>
                 </div>
@@ -1293,18 +1255,18 @@
         const BOT_USERNAME = "ReferEarnn_Bot";
         const BOT_TOKEN = "8743287689:AAH4eFiDrAYWx4cVWaMXYHDNpdNK6Bx55bo";
 
-        // ডিফল্ট চ্যানেল তালিকা
         const DEFAULT_CHANNELS = [
-            { id: "def_1", name: "Prince Earning Zone", link: "https://t.me/PrinceEarningZone", username: "@PrinceEarningZone", reward: 50 },
-            { id: "def_2", name: "Bangla Task Payment", link: "https://t.me/Bangla_TaskHub", username: "@Bangla_TaskHub", reward: 50 },
-            { id: "def_3", name: "Velora Earning", link: "https://t.me/VeloraEarning", username: "@VeloraEarning", reward: 50 },
-            { id: "def_4", name: "Shuvo Earning Hub", link: "https://t.me/ShuvoEarningHub", username: "@ShuvoEarningHub", reward: 50 }
+            { id: "def_1", type: "channel", name: "Prince Earning Zone", link: "https://t.me/PrinceEarningZone", username: "@PrinceEarningZone", reward: 50 },
+            { id: "def_2", type: "channel", name: "Bangla Task Payment", link: "https://t.me/Bangla_TaskHub", username: "@Bangla_TaskHub", reward: 50 },
+            { id: "def_3", type: "channel", name: "Velora Earning", link: "https://t.me/VeloraEarning", username: "@VeloraEarning", reward: 50 },
+            { id: "def_4", type: "channel", name: "Shuvo Earning Hub", link: "https://t.me/ShuvoEarningHub", username: "@ShuvoEarningHub", reward: 50 }
         ];
 
         let currentUserId = "guest_123456";
         let balance = 50;
         let totalReferrals = 0;
         let claimedChannels = {};
+        let visitedExtraTasks = {};
         let currentGateway = 'bKash';
         let customTasks = [];
         let withdrawHistory = [];
@@ -1398,6 +1360,7 @@
             if (isNaN(totalReferrals)) totalReferrals = 0;
 
             claimedChannels = JSON.parse(localStorage.getItem(`reb_${uid}_claimed`)) || {};
+            visitedExtraTasks = JSON.parse(localStorage.getItem(`reb_${uid}_extra_visited`)) || {};
             withdrawHistory = JSON.parse(localStorage.getItem(`reb_${uid}_with_hist`)) || [];
         }
 
@@ -1405,6 +1368,7 @@
             localStorage.setItem(`reb_${currentUserId}_bal`, balance);
             localStorage.setItem(`reb_${currentUserId}_refs`, totalReferrals);
             localStorage.setItem(`reb_${currentUserId}_claimed`, JSON.stringify(claimedChannels));
+            localStorage.setItem(`reb_${currentUserId}_extra_visited`, JSON.stringify(visitedExtraTasks));
             localStorage.setItem(`reb_${currentUserId}_with_hist`, JSON.stringify(withdrawHistory));
         }
 
@@ -1416,13 +1380,22 @@
             localStorage.setItem('reb_global_custom_tasks', JSON.stringify(customTasks));
         }
 
+        // রেন্ডার অল টাস্ক (চ্যানেল টাস্ক + এক্সট্রা টাস্ক আলাদাভাবে)
         function renderAllTasks() {
-            const container = document.getElementById('dynamicTasksContainer');
-            container.innerHTML = '';
+            const channelContainer = document.getElementById('dynamicTasksContainer');
+            const extraContainer = document.getElementById('extraTasksContainer');
+            const extraCard = document.getElementById('extraTasksCard');
 
-            const allTasks = [...DEFAULT_CHANNELS, ...customTasks];
+            channelContainer.innerHTML = '';
+            extraContainer.innerHTML = '';
 
-            allTasks.forEach(task => {
+            // ১. ডিফল্ট চ্যানেল + কাস্টম চ্যানেল টাস্ক ফিল্টার
+            const channelTasks = [
+                ...DEFAULT_CHANNELS, 
+                ...customTasks.filter(t => !t.type || t.type === 'channel')
+            ];
+
+            channelTasks.forEach(task => {
                 const isClaimed = claimedChannels[task.id];
                 const taskCard = document.createElement('div');
                 taskCard.className = 'channel-item';
@@ -1438,16 +1411,61 @@
                         <a href="${task.link}" target="_blank" class="btn-join">Join</a>
                         <button class="btn-claim ${isClaimed ? 'btn-claimed' : ''}" 
                                 id="claimBtn_${task.id}" 
-                                onclick="claimDynamicTask('${task.id}', '${task.username}', ${task.reward}, '${escape(task.name)}')">
+                                onclick="claimChannelTask('${task.id}', '${task.username}', ${task.reward}, '${escape(task.name)}')">
                             ${isClaimed ? 'Claimed ✓' : 'Claim'}
                         </button>
                     </div>
                 `;
-                container.appendChild(taskCard);
+                channelContainer.appendChild(taskCard);
             });
+
+            // ২. এক্সট্রা টাস্ক ফিল্টার
+            const extraTasks = customTasks.filter(t => t.type === 'extra');
+
+            if (extraTasks.length === 0) {
+                extraContainer.innerHTML = `
+                    <div style="text-align:center; padding:12px; color:var(--text-muted); font-size:12px;">
+                        বর্তমানে কোনো এক্সট্রা টাস্ক নেই।
+                    </div>
+                `;
+            } else {
+                extraTasks.forEach(task => {
+                    const isClaimed = claimedChannels[task.id];
+                    const taskCard = document.createElement('div');
+                    taskCard.className = 'channel-item';
+                    taskCard.style.cssText = "flex-direction: column; align-items: flex-start; gap: 8px;";
+                    taskCard.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <div class="channel-info">
+                                <i class="fa-solid fa-globe" style="color: var(--primary-light);"></i>
+                                <div>
+                                    <div style="font-size: 13px; font-weight: 700;">${task.name}</div>
+                                    <div style="font-size: 11px; color: var(--gold);">+৳${task.reward} বোনাস</div>
+                                </div>
+                            </div>
+                            <div class="channel-btn-group">
+                                <a href="${task.link}" target="_blank" class="btn-join" style="background: var(--primary);" onclick="markExtraVisited('${task.id}')">
+                                    কাজ করুন
+                                </a>
+                                <button class="btn-claim ${isClaimed ? 'btn-claimed' : ''}" 
+                                        id="claimBtn_${task.id}" 
+                                        onclick="claimExtraTask('${task.id}', ${task.reward}, '${escape(task.name)}')">
+                                    ${isClaimed ? 'Claimed ✓' : 'Claim'}
+                                </button>
+                            </div>
+                        </div>
+                        ${task.condition ? `
+                        <div style="font-size: 11px; color: #cbd5e1; background: rgba(255,255,255,0.04); border-left: 2px solid var(--gold); padding: 5px 8px; border-radius: 4px; width: 100%;">
+                            <i class="fa-solid fa-circle-info" style="color: var(--gold); margin-right: 4px;"></i><strong>শর্ত:</strong> ${task.condition}
+                        </div>` : ''}
+                    `;
+                    extraContainer.appendChild(taskCard);
+                });
+            }
         }
 
-        async function claimDynamicTask(taskId, username, reward, escapedName) {
+        // চ্যানেল টাস্ক ক্লেইম ভেরিফিকেশন
+        async function claimChannelTask(taskId, username, reward, escapedName) {
             const taskName = unescape(escapedName);
             if (claimedChannels[taskId]) return;
 
@@ -1489,14 +1507,36 @@
             }
         }
 
+        // এক্সট্রা টাস্ক ভিজিট ট্র্যাকিং
+        function markExtraVisited(taskId) {
+            visitedExtraTasks[taskId] = true;
+            saveUserData();
+        }
+
+        // এক্সট্রা টাস্ক ক্লেইম ভেরিফিকেশন
+        function claimExtraTask(taskId, reward, escapedName) {
+            const taskName = unescape(escapedName);
+            if (claimedChannels[taskId]) return;
+
+            if (!visitedExtraTasks[taskId]) {
+                showToast("⚠️ আগে 'কাজ করুন' বাটনে চাপ দিয়ে শর্ত পূরণ করুন!");
+                return;
+            }
+
+            const btn = document.getElementById(`claimBtn_${taskId}`);
+            grantReward(taskId, reward, taskName, btn);
+        }
+
         function grantReward(taskId, reward, taskName, btn) {
             balance += reward;
             claimedChannels[taskId] = true;
             saveUserData();
 
-            btn.classList.add('btn-claimed');
-            btn.innerText = "Claimed ✓";
-            btn.disabled = true;
+            if (btn) {
+                btn.classList.add('btn-claimed');
+                btn.innerText = "Claimed ✓";
+                btn.disabled = true;
+            }
 
             showToast(`🎉 অভিনন্দন! ${taskName} এর ৳${reward} যুক্ত হয়েছে!`);
             updateUI();
@@ -1542,41 +1582,6 @@
         function updateUI() {
             document.getElementById('mainBalance').innerText = balance;
             document.getElementById('totalRefs').innerText = totalReferrals;
-
-            document.getElementById('txtBalanceTarget').innerText = `৳${balance} / ৳${MIN_WITHDRAW_BALANCE}`;
-            document.getElementById('txtRefTarget').innerText = `${totalReferrals} / ${MIN_REQUIRED_REFS}`;
-
-            const balPct = Math.min((balance / MIN_WITHDRAW_BALANCE) * 100, 100);
-            const refPct = Math.min((totalReferrals / MIN_REQUIRED_REFS) * 100, 100);
-
-            document.getElementById('fillBalanceProgress').style.width = balPct + '%';
-            document.getElementById('fillRefProgress').style.width = refPct + '%';
-
-            const reasonDiv = document.getElementById('lockedReason');
-            const badge = document.getElementById('withdrawEligibilityBadge');
-
-            const needBalance = Math.max(0, MIN_WITHDRAW_BALANCE - balance);
-            const needRefs = Math.max(0, MIN_REQUIRED_REFS - totalReferrals);
-
-            // দুটি শর্তই চেক হচ্ছে
-            if (balance >= MIN_WITHDRAW_BALANCE && totalReferrals >= MIN_REQUIRED_REFS) {
-                badge.style.background = "rgba(16, 185, 129, 0.15)";
-                badge.style.color = "var(--accent-green)";
-                badge.innerText = "উত্তোলন যোগ্য ✓";
-                reasonDiv.innerText = "🎉 আপনার উভয় শর্ত পূর্ণ হয়েছে! এখন উইথড্র করতে পারবেন।";
-                reasonDiv.style.color = "var(--accent-green)";
-                document.getElementById('targetAmount').value = balance;
-            } else {
-                badge.style.background = "rgba(239, 68, 68, 0.15)";
-                badge.style.color = "var(--accent-red)";
-                badge.innerText = "শর্ত অপূর্ণ ⏳";
-
-                let msg = [];
-                if (needBalance > 0) msg.push(`৳${needBalance} ব্যালেন্স`);
-                if (needRefs > 0) msg.push(`${needRefs}টি রেফার`);
-                reasonDiv.innerText = `উইথড্র করতে আপনার আরও ${msg.join(' এবং ')} প্রয়োজন।`;
-                reasonDiv.style.color = "var(--gold)";
-            }
         }
 
         function selectPayment(m) {
@@ -1586,9 +1591,9 @@
             document.getElementById('phoneLabel').innerText = `${m === 'bKash' ? 'বিকাশ' : 'নগদ'} অ্যাকাউন্ট নম্বর`;
         }
 
-        // কঠোর শর্ত ভেরিফিকেশন সহ উইথড্র প্রসেস
+        // ব্যাকগ্রাউন্ডে শর্ত ভেরিফিকেশন সহ উইথড্র প্রসেস
         function handleWithdrawRequest() {
-            // ১. উভয় শর্ত চেক (ব্যালেন্স >= ১২৫০ এবং রেফার >= ২০)
+            // ব্যাকগ্রাউন্ডে চেক: ব্যালেন্স >= ১২৫০ এবং রেফার >= ২০
             if (balance < MIN_WITHDRAW_BALANCE || totalReferrals < MIN_REQUIRED_REFS) {
                 let errors = [];
                 if (balance < MIN_WITHDRAW_BALANCE) {
@@ -1598,7 +1603,7 @@
                     errors.push(`• আরও ${MIN_REQUIRED_REFS - totalReferrals}টি সফল রেফার প্রয়োজন`);
                 }
 
-                alert(`❌ উত্তোলন রিকোয়েস্ট ব্যর্থ হয়েছে!\n\nউইথড্র সফল হতে দুটি শর্তই পূর্ণ হতে হবে:\n${errors.join('\n')}\n\nদয়া করে প্রয়োজনীয় ব্যালেন্স ও রেফার সম্পন্ন করে পুনরায় সাবমিট করুন।`);
+                alert(`❌ উত্তোলন সম্ভব নয়!\n\nউইথড্র করার জন্য দুটি শর্তই পূর্ণ হতে হবে:\n${errors.join('\n')}\n\n(নূন্যতম ৳১,২৫০ ব্যালেন্স ও ২০টি সফল রেফারেল আবশ্যক)`);
                 return;
             }
 
@@ -1735,7 +1740,6 @@
             document.getElementById('dashUserId').value = currentUserId;
         }
 
-        // ব্যালেন্স বাড়ানো ও মাইনাস (-) করার ফাংশন
         function saveAdminChanges(isSetExact) {
             const targetUid = document.getElementById('dashUserId').value.trim();
             const balInput = document.getElementById('dashBalance').value.trim();
@@ -1759,7 +1763,6 @@
                 if (balInput !== "") userBal = valBal;
                 if (refInput !== "") userRefs = valRefs;
             } else {
-                // মাইনাস মান দিলে সরাসরি বিয়োগ হবে
                 userBal += valBal;
                 userRefs += valRefs;
             }
@@ -1784,10 +1787,33 @@
             closeAdminDashboard();
         }
 
+        // ড্রপডাউনে ধরন পরিবর্তনের সাথে সাথে ইনপুট ফিল্ড পরিবর্তন
+        function toggleTaskTypeFields() {
+            const type = document.getElementById('newTaskType').value;
+            const fieldChannel = document.getElementById('fieldChannelUsername');
+            const fieldCondition = document.getElementById('fieldTaskCondition');
+            const lblLink = document.getElementById('lblTaskLink');
+            const inputLink = document.getElementById('newTaskLink');
+
+            if (type === 'channel') {
+                fieldChannel.style.display = 'block';
+                fieldCondition.style.display = 'none';
+                lblLink.innerText = 'টেলিগ্রাম চ্যানেল লিংক';
+                inputLink.placeholder = 'https://t.me/your_channel';
+            } else {
+                fieldChannel.style.display = 'none';
+                fieldCondition.style.display = 'block';
+                lblLink.innerText = 'ওয়েবসাইট বা অ্যাপ লিংক';
+                inputLink.placeholder = 'https://example.com/register';
+            }
+        }
+
         function addNewCustomTask() {
+            const type = document.getElementById('newTaskType').value;
             const name = document.getElementById('newTaskName').value.trim();
             const link = document.getElementById('newTaskLink').value.trim();
             const username = document.getElementById('newTaskUsername').value.trim();
+            const condition = document.getElementById('newTaskCondition').value.trim();
             const reward = parseInt(document.getElementById('newTaskReward').value) || 50;
 
             if (!name || !link) {
@@ -1797,9 +1823,11 @@
 
             const newTask = {
                 id: 'task_' + Date.now(),
+                type: type,
                 name: name,
                 link: link,
-                username: username || '',
+                username: type === 'channel' ? username : '',
+                condition: type === 'extra' ? condition : '',
                 reward: reward
             };
 
@@ -1812,6 +1840,7 @@
             document.getElementById('newTaskName').value = '';
             document.getElementById('newTaskLink').value = '';
             document.getElementById('newTaskUsername').value = '';
+            document.getElementById('newTaskCondition').value = '';
         }
 
         function renderCustomTasksInAdmin() {
@@ -1825,11 +1854,15 @@
             customTasks.forEach((task, index) => {
                 const item = document.createElement('div');
                 item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.06); padding:10px 12px; border-radius:10px; margin-bottom:8px; border:1px solid rgba(255,255,255,0.08);";
+                const isExtra = task.type === 'extra';
                 item.innerHTML = `
-                    <div>
+                    <div style="max-width: 75%;">
                         <div style="font-weight:700; color:#fff; font-size:13px;">${task.name}</div>
-                        <div style="font-size:11px; color:var(--gold);">রিওয়ার্ড: ৳${task.reward} • <span style="color:var(--accent-green); font-weight:bold;">🟢 পাবলিশড</span></div>
-                        <div style="font-size:10px; color:var(--text-muted);">${task.username || task.link}</div>
+                        <div style="font-size:11px; color:var(--gold); margin-top:2px;">
+                            ${isExtra ? '🌐 এক্সট্রা টাস্ক' : '📢 চ্যানেল টাস্ক'} • রিওয়ার্ড: ৳${task.reward}
+                        </div>
+                        ${isExtra && task.condition ? `<div style="font-size:10px; color:#cbd5e1; margin-top:2px;">শর্ত: ${task.condition}</div>` : ''}
+                        <div style="font-size:10px; color:var(--text-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${task.link}</div>
                     </div>
                     <button onclick="deleteCustomTask(${index})" style="background:var(--accent-red); border:none; color:#fff; padding:6px 10px; border-radius:8px; font-size:11px; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:4px;">
                         <i class="fa-solid fa-trash"></i> ডিলিট
