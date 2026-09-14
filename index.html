@@ -533,6 +533,98 @@
         .rank-2 { background: #c0c0c0; color: #000; }
         .rank-3 { background: #cd7f32; color: #fff; }
 
+        /* ==================== SUPPORT TAB SPECIAL STYLES ==================== */
+        .support-heading {
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 8px 0 14px 4px;
+        }
+
+        .support-banner-card {
+            border-radius: 24px;
+            padding: 26px 16px;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .support-video-theme {
+            background: linear-gradient(180deg, #ef4444 0%, #dc2626 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .support-help-theme {
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .support-center-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            font-size: 26px;
+            color: #fff;
+        }
+
+        .support-banner-title {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .support-banner-desc {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.92);
+            margin-bottom: 22px;
+            padding: 0 8px;
+        }
+
+        .btn-support-white {
+            background: #ffffff;
+            color: #0f172a;
+            font-weight: 800;
+            font-size: 14px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .btn-support-white:active {
+            transform: scale(0.96);
+        }
+
+        .btn-support-glass {
+            background: rgba(255, 255, 255, 0.22);
+            border: 1.5px solid rgba(255, 255, 255, 0.5);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 15px;
+            padding: 12px 34px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+        }
+
+        .btn-support-glass:active {
+            transform: scale(0.96);
+        }
+
         /* Bottom Nav */
         .bottom-nav {
             position: fixed;
@@ -558,6 +650,7 @@
             gap: 4px;
             border: none;
             background: none;
+            flex: 1;
         }
 
         .nav-item i { font-size: 18px; }
@@ -793,7 +886,46 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 3: WITHDRAW ==================== -->
+        <!-- ==================== TAB 3: SUPPORT (নতুন যুক্ত করা হয়েছে) ==================== -->
+        <div id="supportView" class="view-section">
+            <h3 class="support-heading">কাজের ভিডিও / টিউটোরিয়াল</h3>
+
+            <!-- Red Video Card -->
+            <div class="support-banner-card support-video-theme">
+                <div class="support-center-icon">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <h2 class="support-banner-title">কিভাবে কাজ করবেন?</h2>
+                <p class="support-banner-desc">
+                    কাজ শুরু করার আগে এই ভিডিওটি দেখে নিন। ভিডিওতে সম্পূর্ণভাবে দেখানো হয়েছে কিভাবে সঠিকভাবে কাজ করবেন।
+                </p>
+                <div>
+                    <a href="https://t.me/Refer_EarnPayment/448" target="_blank" class="btn-support-white">
+                        <i class="fa-solid fa-circle-play"></i> ভিডিওটি দেখুন
+                    </a>
+                </div>
+            </div>
+
+            <h3 class="support-heading" style="margin-top: 24px;">সাহায্য প্রয়োজন?</h3>
+
+            <!-- Green Help Card -->
+            <div class="support-banner-card support-help-theme">
+                <div class="support-center-icon">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h2 class="support-banner-title">কাস্টমার সাপোর্ট</h2>
+                <p class="support-banner-desc">
+                    যেকোনো সমস্যা সমাধানের জন্য আমাদের সাথে যোগাযোগ করুন।
+                </p>
+                <div>
+                    <a href="https://t.me/LiveSupportBD" target="_blank" class="btn-support-glass">
+                        @LiveSupportBD
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB 4: WITHDRAW ==================== -->
         <div id="withdrawView" class="view-section">
             <div id="withdrawLocked" class="glass-card" style="text-align: center; padding: 22px 14px;">
                 <div style="width: 56px; height: 56px; background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 12px; border: 1px solid rgba(239, 68, 68, 0.3);">
@@ -868,7 +1000,7 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 4: PROFILE & BOT INFO ==================== -->
+        <!-- ==================== TAB 5: PROFILE & BOT INFO ==================== -->
         <div id="profileView" class="view-section">
             <div class="glass-card" style="text-align: center;">
                 <div style="width: 70px; height: 70px; margin: 0 auto 10px; position: relative;">
@@ -932,21 +1064,25 @@
 
     </div>
 
-    <!-- Bottom Nav -->
+    <!-- Bottom Nav (3 নম্বরে Support অপশন সহ) -->
     <nav class="bottom-nav">
-        <button class="nav-item active" onclick="switchTab('home')">
+        <button class="nav-item active" id="navHome" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i>
             <span>Home</span>
         </button>
-        <button class="nav-item" onclick="switchTab('refer')">
+        <button class="nav-item" id="navRefer" onclick="switchTab('refer')">
             <i class="fa-solid fa-users"></i>
             <span>Refer</span>
         </button>
-        <button class="nav-item" onclick="switchTab('withdraw')">
+        <button class="nav-item" id="navSupport" onclick="switchTab('support')">
+            <i class="fa-solid fa-headset"></i>
+            <span>Support</span>
+        </button>
+        <button class="nav-item" id="navWithdraw" onclick="switchTab('withdraw')">
             <i class="fa-solid fa-wallet"></i>
             <span>Withdraw</span>
         </button>
-        <button class="nav-item" onclick="switchTab('profile')">
+        <button class="nav-item" id="navProfile" onclick="switchTab('profile')">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
         </button>
@@ -1072,22 +1208,26 @@
             localStorage.setItem(`reb_${currentUserId}_claimed`, JSON.stringify(claimedChannels));
         }
 
+        // 5টি ট্যাবের ন্যাভিগেশন কন্ট্রোল
         function switchTab(tab) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
 
             if (tab === 'home') {
                 document.getElementById('homeView').classList.add('active');
-                document.querySelectorAll('.nav-item')[0].classList.add('active');
+                document.getElementById('navHome').classList.add('active');
             } else if (tab === 'refer') {
                 document.getElementById('referView').classList.add('active');
-                document.querySelectorAll('.nav-item')[1].classList.add('active');
+                document.getElementById('navRefer').classList.add('active');
+            } else if (tab === 'support') {
+                document.getElementById('supportView').classList.add('active');
+                document.getElementById('navSupport').classList.add('active');
             } else if (tab === 'withdraw') {
                 document.getElementById('withdrawView').classList.add('active');
-                document.querySelectorAll('.nav-item')[2].classList.add('active');
+                document.getElementById('navWithdraw').classList.add('active');
             } else if (tab === 'profile') {
                 document.getElementById('profileView').classList.add('active');
-                document.querySelectorAll('.nav-item')[3].classList.add('active');
+                document.getElementById('navProfile').classList.add('active');
             }
         }
 
