@@ -129,7 +129,7 @@
             text-overflow: ellipsis;
         }
 
-        /* User Welcome Banner Card */
+        /* User Welcome Banner Card (Now in Profile Only) */
         .user-welcome-card {
             background: rgba(147, 51, 234, 0.12);
             border: 1px solid rgba(147, 51, 234, 0.3);
@@ -138,7 +138,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .user-welcome-left {
@@ -497,13 +497,13 @@
 
         .input-control {
             width: 100%;
-            padding: 12px;
+            padding: 11px;
             background: rgba(0, 0, 0, 0.45);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             color: #fff;
             outline: none;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         /* Leaderboard Items */
@@ -533,7 +533,7 @@
         .rank-2 { background: #c0c0c0; color: #000; }
         .rank-3 { background: #cd7f32; color: #fff; }
 
-        /* ==================== SUPPORT TAB SPECIAL STYLES ==================== */
+        /* Support Tab Styles */
         .support-heading {
             font-size: 16px;
             font-weight: 800;
@@ -600,11 +600,6 @@
             align-items: center;
             gap: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s;
-        }
-
-        .btn-support-white:active {
-            transform: scale(0.96);
         }
 
         .btn-support-glass {
@@ -618,11 +613,45 @@
             text-decoration: none;
             display: inline-block;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s;
         }
 
-        .btn-support-glass:active {
-            transform: scale(0.96);
+        /* Admin Modal Styles */
+        .admin-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .admin-modal-box {
+            background: #17112b;
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+            width: 100%;
+            max-width: 380px;
+            padding: 22px;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .admin-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
         }
 
         /* Bottom Nav */
@@ -676,7 +705,7 @@
             border-radius: 30px;
             font-size: 13px;
             display: none;
-            z-index: 10000;
+            z-index: 1000000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
             text-align: center;
             max-width: 90%;
@@ -687,11 +716,47 @@
 
     <div class="toast" id="toastMsg">মেসেজ</div>
 
+    <!-- সিক্রেট অ্যাডমিন প্যানেল মোডাল -->
+    <div id="adminModal" class="admin-modal-overlay" style="display: none;">
+        <div class="admin-modal-box">
+            <button class="admin-close-btn" onclick="closeAdminPanel()">&times;</button>
+            <h3 style="font-size: 16px; color: var(--gold); margin-bottom: 14px; text-align: center;">
+                <i class="fa-solid fa-user-shield"></i> সিক্রেট অ্যাডমিন প্যানেল
+            </h3>
+            
+            <div class="input-group">
+                <label>ইউজার টেলিগ্রাম আইডি</label>
+                <div style="display: flex; gap: 6px;">
+                    <input type="text" class="input-control" id="adminUserId" placeholder="User ID">
+                    <button type="button" onclick="setMyIdToAdmin()" style="background: var(--primary); border: none; color: #fff; padding: 0 10px; border-radius: 10px; font-size: 11px; white-space: nowrap; cursor: pointer;">আমার আইডি</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>ব্যালেন্স (৳)</label>
+                <input type="number" class="input-control" id="adminBalance" placeholder="উদা: 500 বা 1250">
+            </div>
+
+            <div class="input-group">
+                <label>রেফারেল সংখ্যা</label>
+                <input type="number" class="input-control" id="adminRefs" placeholder="উদা: 10 বা 20">
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 14px;">
+                <button class="btn btn-gold" style="font-size: 12px; padding: 10px;" onclick="saveAdminChanges(false)">
+                    <i class="fa-solid fa-plus"></i> যোগ করুন (+)
+                </button>
+                <button class="btn" style="background: var(--accent-green); color: #fff; font-size: 12px; padding: 10px;" onclick="saveAdminChanges(true)">
+                    <i class="fa-solid fa-check"></i> সেট করুন (=)
+                </button>
+            </div>
+        </div>
+    </div>
+
     <div class="app-container">
 
         <!-- Top Header: Official Bot Logo & Name + User Profile Chip -->
         <div class="top-header">
-            <!-- Bot Branding -->
             <div class="bot-brand">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" class="bot-logo">
                 <div class="bot-brand-info">
@@ -700,7 +765,6 @@
                 </div>
             </div>
             
-            <!-- User Telegram Chip -->
             <div class="user-chip" onclick="switchTab('profile')">
                 <img id="userHeaderPic" src="" alt="User" class="user-chip-avatar">
                 <div id="userHeaderInitial" class="user-chip-initial">U</div>
@@ -708,24 +772,8 @@
             </div>
         </div>
 
-        <!-- User Welcome Banner -->
-        <div class="user-welcome-card">
-            <div class="user-welcome-left">
-                <img id="userWelcomePic" src="" alt="User Photo" class="user-welcome-pic">
-                <div id="userWelcomeInitial" class="user-welcome-initial">U</div>
-                <div>
-                    <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">ইউজার</span> 👋</div>
-                    <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: 00000000</div>
-                </div>
-            </div>
-            <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green);">
-                সক্রিয় একাউন্ট
-            </div>
-        </div>
-
         <!-- ==================== TAB 1: HOME ==================== -->
         <div id="homeView" class="view-section active">
-            <!-- Balance Hero Card -->
             <div class="glass-card balance-card">
                 <div class="balance-label">মোট উপার্জিত ব্যালেন্স</div>
                 <div class="balance-amount">
@@ -736,7 +784,6 @@
                 </div>
             </div>
 
-            <!-- Stats Grid -->
             <div class="stats-grid">
                 <div class="stat-box">
                     <div class="stat-icon purple"><i class="fa-solid fa-users"></i></div>
@@ -754,7 +801,6 @@
                 </div>
             </div>
 
-            <!-- Payment Proof Channel Notice -->
             <div class="payment-notice">
                 <div style="display:flex; align-items:center; gap: 10px;">
                     <i class="fa-solid fa-shield-halved" style="color: var(--gold); font-size: 20px;"></i>
@@ -768,14 +814,13 @@
                 </a>
             </div>
 
-            <!-- Telegram Channel Tasks -->
+            <!-- Channel Tasks -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
                     <span style="font-size: 11px; color: var(--gold); font-weight:600;">প্রতিটি ৳৫০ (মোট ৳২০০)</span>
                 </div>
 
-                <!-- Channel 1 -->
                 <div class="channel-item">
                     <div class="channel-info">
                         <i class="fa-solid fa-bullhorn"></i>
@@ -790,7 +835,6 @@
                     </div>
                 </div>
 
-                <!-- Channel 2 (Bangla Task Payment) -->
                 <div class="channel-item">
                     <div class="channel-info">
                         <i class="fa-solid fa-bullhorn"></i>
@@ -805,7 +849,6 @@
                     </div>
                 </div>
 
-                <!-- Channel 3 -->
                 <div class="channel-item">
                     <div class="channel-info">
                         <i class="fa-solid fa-bullhorn"></i>
@@ -820,7 +863,6 @@
                     </div>
                 </div>
 
-                <!-- Channel 4 -->
                 <div class="channel-item">
                     <div class="channel-info">
                         <i class="fa-solid fa-bullhorn"></i>
@@ -836,7 +878,6 @@
                 </div>
             </div>
 
-            <!-- Quick Action Button -->
             <div class="glass-card">
                 <button class="btn btn-gold" onclick="switchTab('refer')">
                     <i class="fa-solid fa-share-nodes"></i> আপনার পারসোনাল রেফার লিংক নিন
@@ -886,11 +927,10 @@
             </div>
         </div>
 
-        <!-- ==================== TAB 3: SUPPORT (নতুন যুক্ত করা হয়েছে) ==================== -->
+        <!-- ==================== TAB 3: SUPPORT ==================== -->
         <div id="supportView" class="view-section">
             <h3 class="support-heading">কাজের ভিডিও / টিউটোরিয়াল</h3>
 
-            <!-- Red Video Card -->
             <div class="support-banner-card support-video-theme">
                 <div class="support-center-icon">
                     <i class="fa-brands fa-youtube"></i>
@@ -908,7 +948,6 @@
 
             <h3 class="support-heading" style="margin-top: 24px;">সাহায্য প্রয়োজন?</h3>
 
-            <!-- Green Help Card -->
             <div class="support-banner-card support-help-theme">
                 <div class="support-center-icon">
                     <i class="fa-solid fa-paper-plane"></i>
@@ -970,7 +1009,6 @@
 
                 <label style="font-size: 12px; color: var(--text-muted);">Payment Method নির্বাচন করুন</label>
                 
-                <!-- Payment Gateways with Images -->
                 <div class="gateway-selector">
                     <div class="gateway-card selected" id="gateBkash" onclick="selectPayment('bKash')">
                         <img src="https://cdn.imgchest.com/files/382d9ca11ca1.jpg" alt="bKash" class="gateway-logo">
@@ -1002,6 +1040,23 @@
 
         <!-- ==================== TAB 5: PROFILE & BOT INFO ==================== -->
         <div id="profileView" class="view-section">
+            
+            <!-- স্বাগতম ব্যানার কার্ড (শুধু এই প্রোফাইল ট্যাবে থাকবে) -->
+            <div class="user-welcome-card">
+                <div class="user-welcome-left">
+                    <img id="userWelcomePic" src="" alt="User Photo" class="user-welcome-pic">
+                    <div id="userWelcomeInitial" class="user-welcome-initial">U</div>
+                    <div>
+                        <div style="font-size: 13px; font-weight: 700;">স্বাগতম, <span id="welcomeUserName">ইউজার</span> 👋</div>
+                        <div style="font-size: 11px; color: var(--gold); font-weight: 600;" id="welcomeUserId">ID: 00000000</div>
+                    </div>
+                </div>
+                <div style="font-size: 11px; background: rgba(16,185,129,0.15); color: var(--accent-green); padding: 3px 8px; border-radius: 12px; border: 1px solid var(--accent-green);">
+                    সক্রিয় একাউন্ট
+                </div>
+            </div>
+
+            <!-- Profile Details Card -->
             <div class="glass-card" style="text-align: center;">
                 <div style="width: 70px; height: 70px; margin: 0 auto 10px; position: relative;">
                     <img id="profUserPic" src="" alt="User" style="width: 70px; height: 70px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; display: none;">
@@ -1012,6 +1067,7 @@
                 <p id="profTgId" style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Telegram ID: 593849302</p>
             </div>
 
+            <!-- Bot Official Identity Card -->
             <div class="glass-card" style="display: flex; align-items: center; gap: 12px; background: rgba(0,0,0,0.35);">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--primary-light); object-fit: cover;">
                 <div>
@@ -1020,6 +1076,7 @@
                 </div>
             </div>
 
+            <!-- Leaderboard -->
             <div class="glass-card">
                 <h4 style="font-size: 14px; margin-bottom: 12px;">🏆 শীর্ষ রেফারকারী (Leaderboard)</h4>
                 <div class="leaderboard-item">
@@ -1060,11 +1117,19 @@
                     ৪টি চ্যানেলে অবশ্যই জয়েন থাকতে হবে। ফেক রেফার করলে পেমেন্ট বাতিল হবে। পেমেন্ট প্রুফ দেখতে <a href="https://t.me/Refer_EarnPayment" target="_blank" style="color:var(--gold); text-decoration:none;">@Refer_EarnPayment</a> চ্যানেলে যুক্ত থাকুন।
                 </p>
             </div>
+
+            <!-- একদম নিচে ছোট করে গোপন অ্যাডমিন প্যানেল লিংক -->
+            <div style="text-align: center; margin-top: 25px; padding-bottom: 12px;">
+                <span onclick="openAdminPrompt()" style="font-size: 10px; color: rgba(255,255,255,0.18); cursor: pointer; letter-spacing: 0.5px; text-decoration: none;">
+                    admin panel
+                </span>
+            </div>
+
         </div>
 
     </div>
 
-    <!-- Bottom Nav (3 নম্বরে Support অপশন সহ) -->
+    <!-- Bottom Nav (3 নম্বরে Support) -->
     <nav class="bottom-nav">
         <button class="nav-item active" id="navHome" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i>
@@ -1208,7 +1273,6 @@
             localStorage.setItem(`reb_${currentUserId}_claimed`, JSON.stringify(claimedChannels));
         }
 
-        // 5টি ট্যাবের ন্যাভিগেশন কন্ট্রোল
         function switchTab(tab) {
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
@@ -1362,6 +1426,66 @@
             alert(`✅ উত্তোলন সফল হয়েছে!\n\nপেমেন্ট মেথড: ${currentGateway}\nঅ্যাকাউন্ট: ${num}\nপরিমাণ: ৳${amt}\nটেলিগ্রাম আইডি: ${currentUserId}\n\nআপনার টাকা ১-১২ ঘণ্টার মধ্যে পাঠিয়ে দেওয়া হবে।`);
             document.getElementById('targetNumber').value = '';
             switchTab('home');
+        }
+
+        /* ==================== সিক্রেট অ্যাডমিন প্যানেল ফাংশন ==================== */
+        function openAdminPrompt() {
+            const pass = prompt("সিক্রেট অ্যাডমিন পাসওয়ার্ড দিন:");
+            if (pass === null) return;
+            if (pass === "PRINCEHACK") {
+                document.getElementById('adminModal').style.display = 'flex';
+                document.getElementById('adminUserId').value = currentUserId;
+            } else {
+                alert("❌ ভুল পাসওয়ার্ড! অ্যাক্সেস বাতিল।");
+            }
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        function setMyIdToAdmin() {
+            document.getElementById('adminUserId').value = currentUserId;
+        }
+
+        function saveAdminChanges(isSetExact) {
+            const targetUid = document.getElementById('adminUserId').value.trim();
+            const balInput = document.getElementById('adminBalance').value.trim();
+            const refInput = document.getElementById('adminRefs').value.trim();
+
+            if (!targetUid) {
+                alert("দয়া করে একটি সঠিক ইউজার আইডি দিন!");
+                return;
+            }
+
+            let userBal = parseInt(localStorage.getItem(`reb_${targetUid}_bal`)) || 50;
+            let userRefs = parseInt(localStorage.getItem(`reb_${targetUid}_refs`)) || 0;
+
+            const addBal = parseInt(balInput) || 0;
+            const addRefs = parseInt(refInput) || 0;
+
+            if (isSetExact) {
+                if (balInput !== "") userBal = addBal;
+                if (refInput !== "") userRefs = addRefs;
+            } else {
+                userBal += addBal;
+                userRefs += addRefs;
+            }
+
+            localStorage.setItem(`reb_${targetUid}_bal`, userBal);
+            localStorage.setItem(`reb_${targetUid}_refs`, userRefs);
+
+            // পরিবর্তন যদি নিজের আইডিতে হয়
+            if (targetUid === currentUserId) {
+                balance = userBal;
+                totalReferrals = userRefs;
+                updateUI();
+            }
+
+            showToast(`✅ ID: ${targetUid} এর তথ্য সফলভাবে আপডেট হয়েছে!`);
+            closeAdminPanel();
+            document.getElementById('adminBalance').value = '';
+            document.getElementById('adminRefs').value = '';
         }
 
         function showToast(msg) {
