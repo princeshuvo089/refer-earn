@@ -129,7 +129,7 @@
             text-overflow: ellipsis;
         }
 
-        /* User Welcome Banner Card (Now in Profile Only) */
+        /* User Welcome Banner Card (Only in Profile) */
         .user-welcome-card {
             background: rgba(147, 51, 234, 0.12);
             border: 1px solid rgba(147, 51, 234, 0.3);
@@ -484,7 +484,7 @@
         }
 
         .input-group {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             text-align: left;
         }
 
@@ -492,18 +492,25 @@
             display: block;
             font-size: 12px;
             color: var(--text-muted);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-weight: 600;
         }
 
         .input-control {
             width: 100%;
-            padding: 11px;
+            padding: 12px 14px;
             background: rgba(0, 0, 0, 0.45);
             border: 1px solid var(--card-border);
             border-radius: 12px;
             color: #fff;
             outline: none;
             font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .input-control:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
         }
 
         /* Leaderboard Items */
@@ -615,15 +622,54 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
         }
 
-        /* Admin Modal Styles */
-        .admin-modal-overlay {
+        /* ==================== WITHDRAW HISTORY STYLES ==================== */
+        .history-card {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 14px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-badge-pending {
+            background: rgba(245, 158, 11, 0.18);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* ==================== MODERN ADMIN UI STYLES ==================== */
+        .admin-trigger-btn {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            font-weight: 800;
+            font-size: 13px;
+            padding: 9px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 18px rgba(245, 158, 11, 0.15);
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+        }
+
+        .custom-modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(9, 6, 20, 0.88);
+            backdrop-filter: blur(14px);
             z-index: 100000;
             display: flex;
             align-items: center;
@@ -631,27 +677,75 @@
             padding: 16px;
         }
 
-        .admin-modal-box {
-            background: #17112b;
-            border: 1px solid var(--gold);
-            border-radius: 20px;
+        .custom-modal-box {
+            background: linear-gradient(145deg, #1b1335 0%, #100a22 100%);
+            border: 1.5px solid var(--gold);
+            border-radius: 22px;
             width: 100%;
-            max-width: 380px;
-            padding: 22px;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 22px 18px;
             position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-            animation: fadeIn 0.2s ease-out;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 158, 11, 0.15);
+            animation: modalScale 0.25s ease-out;
         }
 
-        .admin-close-btn {
+        @keyframes modalScale {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .custom-modal-close {
             position: absolute;
             top: 14px;
             right: 16px;
-            background: none;
+            background: rgba(255, 255, 255, 0.08);
             border: none;
             color: var(--text-muted);
-            font-size: 24px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 18px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .admin-nav-tabs {
+            display: flex;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 16px;
+            gap: 6px;
+        }
+
+        .admin-tab-btn {
+            flex: 1;
+            padding: 8px 4px;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .admin-tab-btn.active {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .admin-stat-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 12px;
         }
 
         /* Bottom Nav */
@@ -716,46 +810,129 @@
 
     <div class="toast" id="toastMsg">মেসেজ</div>
 
-    <!-- সিক্রেট অ্যাডমিন প্যানেল মোডাল -->
-    <div id="adminModal" class="admin-modal-overlay" style="display: none;">
-        <div class="admin-modal-box">
-            <button class="admin-close-btn" onclick="closeAdminPanel()">&times;</button>
-            <h3 style="font-size: 16px; color: var(--gold); margin-bottom: 14px; text-align: center;">
-                <i class="fa-solid fa-user-shield"></i> সিক্রেট অ্যাডমিন প্যানেল
-            </h3>
+    <!-- ==================== ১. পাসওয়ার্ড ইনপুট মোডাল ==================== -->
+    <div id="adminPassModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal-box" style="text-align: center;">
+            <button class="custom-modal-close" onclick="closeAdminPassModal()">&times;</button>
             
+            <div style="width: 60px; height: 60px; background: rgba(245, 158, 11, 0.15); border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; font-size: 26px; color: var(--gold); box-shadow: 0 0 20px var(--gold-glow);">
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            
+            <h3 style="font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px;">অ্যাডমিন অথেন্টিকেশন</h3>
+            <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 18px;">প্যানেল আনলক করতে সিক্রেট কোড দিন</p>
+
             <div class="input-group">
-                <label>ইউজার টেলিগ্রাম আইডি</label>
-                <div style="display: flex; gap: 6px;">
-                    <input type="text" class="input-control" id="adminUserId" placeholder="User ID">
-                    <button type="button" onclick="setMyIdToAdmin()" style="background: var(--primary); border: none; color: #fff; padding: 0 10px; border-radius: 10px; font-size: 11px; white-space: nowrap; cursor: pointer;">আমার আইডি</button>
+                <input type="password" class="input-control" id="adminSecretInput" placeholder="Enter Password..." style="text-align: center; font-size: 16px; letter-spacing: 2px;">
+            </div>
+
+            <button class="btn btn-gold" onclick="submitAdminPassword()">
+                <i class="fa-solid fa-key"></i> আনলক করুন
+            </button>
+        </div>
+    </div>
+
+    <!-- ==================== ২. অ্যাডমিন কন্ট্রোল ড্যাশবোর্ড ==================== -->
+    <div id="adminDashboardModal" class="custom-modal-overlay" style="display: none;">
+        <div class="custom-modal-box">
+            <button class="custom-modal-close" onclick="closeAdminDashboard()">&times;</button>
+            
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px;">
+                <div style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--gold), #d97706); display: flex; align-items: center; justify-content: center; color: #000; font-size: 17px;">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 16px; font-weight: 800; color: #fff;">Super Admin Panel</h3>
+                    <span style="font-size: 11px; color: var(--gold); font-weight: 600;">ম্যানেজমেন্ট সেন্টার</span>
                 </div>
             </div>
 
-            <div class="input-group">
-                <label>ব্যালেন্স (৳)</label>
-                <input type="number" class="input-control" id="adminBalance" placeholder="উদা: 500 বা 1250">
+            <!-- অ্যাডমিন ট্যাব সুইচার -->
+            <div class="admin-nav-tabs">
+                <button class="admin-tab-btn active" id="btnAdminTabBalance" onclick="switchAdminTab('balance')">
+                    <i class="fa-solid fa-wallet"></i> ব্যালেন্স ও রেফার
+                </button>
+                <button class="admin-tab-btn" id="btnAdminTabTasks" onclick="switchAdminTab('tasks')">
+                    <i class="fa-solid fa-plus-circle"></i> টাস্ক যোগ করুন
+                </button>
+            </div>
+            
+            <!-- ট্যাব ১: ব্যালেন্স ও রেফার কন্ট্রোল -->
+            <div id="adminSectionBalance">
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">ইউজারের Telegram ID</label>
+                    <div style="display: flex; gap: 8px;">
+                        <input type="text" class="input-control" id="dashUserId" placeholder="User ID">
+                        <button type="button" onclick="setMyIdToAdmin()" style="background: var(--primary); border: none; color: #fff; padding: 0 12px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; cursor: pointer;">
+                            আমার ID
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">
+                        <i class="fa-solid fa-wallet" style="color: var(--gold);"></i> ব্যালেন্স পরিমাণ (৳)
+                    </label>
+                    <input type="number" class="input-control" id="dashBalance" placeholder="উদা: 500 বা 1250">
+                </div>
+
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">
+                        <i class="fa-solid fa-users" style="color: var(--primary-light);"></i> রেফারেল সংখ্যা
+                    </label>
+                    <input type="number" class="input-control" id="dashRefs" placeholder="উদা: 10 বা 20">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;">
+                    <button class="btn btn-gold" style="font-size: 12px; padding: 11px;" onclick="saveAdminChanges(false)">
+                        <i class="fa-solid fa-plus"></i> যোগ করুন (+)
+                    </button>
+                    <button class="btn" style="background: var(--accent-green); color: #fff; font-size: 12px; padding: 11px;" onclick="saveAdminChanges(true)">
+                        <i class="fa-solid fa-check"></i> সেট করুন (=)
+                    </button>
+                </div>
             </div>
 
-            <div class="input-group">
-                <label>রেফারেল সংখ্যা</label>
-                <input type="number" class="input-control" id="adminRefs" placeholder="উদা: 10 বা 20">
-            </div>
+            <!-- ট্যাব ২: নতুন টাস্ক যোগ করার ফর্ম -->
+            <div id="adminSectionTasks" style="display: none;">
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল বা টাস্কের নাম</label>
+                    <input type="text" class="input-control" id="newTaskName" placeholder="উদা: Special Earning Hub">
+                </div>
 
-            <div style="display: flex; gap: 10px; margin-top: 14px;">
-                <button class="btn btn-gold" style="font-size: 12px; padding: 10px;" onclick="saveAdminChanges(false)">
-                    <i class="fa-solid fa-plus"></i> যোগ করুন (+)
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">টেলিগ্রাম চ্যানেলের লিংক</label>
+                    <input type="url" class="input-control" id="newTaskLink" placeholder="https://t.me/your_channel">
+                </div>
+
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">চ্যানেল ইউজারনেম (ভেরিফিকেশনের জন্য)</label>
+                    <input type="text" class="input-control" id="newTaskUsername" placeholder="উদা: @your_channel">
+                </div>
+
+                <div class="admin-stat-card">
+                    <label style="font-size: 11px; color: var(--text-muted); display: block; margin-bottom: 6px;">টাস্ক রিওয়ার্ড বোনাস (৳)</label>
+                    <input type="number" class="input-control" id="newTaskReward" placeholder="50" value="50">
+                </div>
+
+                <button class="btn btn-gold" onclick="addNewCustomTask()" style="margin-top: 6px;">
+                    <i class="fa-solid fa-bullhorn"></i> মেইন স্ক্রিনে টাস্ক যুক্ত করুন
                 </button>
-                <button class="btn" style="background: var(--accent-green); color: #fff; font-size: 12px; padding: 10px;" onclick="saveAdminChanges(true)">
-                    <i class="fa-solid fa-check"></i> সেট করুন (=)
-                </button>
+
+                <!-- ডিলিট অপশন সহ কাস্টম টাস্কের তালিকা -->
+                <div style="margin-top: 16px;">
+                    <h5 style="font-size: 12px; color: var(--gold); margin-bottom: 8px;">আপনার যুক্ত করা কাস্টম টাস্কসমূহ:</h5>
+                    <div id="customTasksListAdmin" style="font-size: 11px; color: var(--text-muted);">
+                        কোনো কাস্টম টাস্ক যুক্ত নেই।
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="app-container">
 
-        <!-- Top Header: Official Bot Logo & Name + User Profile Chip -->
+        <!-- Top Header -->
         <div class="top-header">
             <div class="bot-brand">
                 <img src="https://cdn.imgchest.com/files/fd1f97a32d53.jpg" alt="Bot Logo" class="bot-logo">
@@ -814,68 +991,15 @@
                 </a>
             </div>
 
-            <!-- Channel Tasks -->
+            <!-- Dynamic Channel Tasks List -->
             <div class="glass-card">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px;">
                     <h4 style="font-size: 14px;"><i class="fa-brands fa-telegram" style="color:#229ed9;"></i> চ্যানেল বোনাস টাস্ক</h4>
-                    <span style="font-size: 11px; color: var(--gold); font-weight:600;">প্রতিটি ৳৫০ (মোট ৳২০০)</span>
+                    <span style="font-size: 11px; color: var(--gold); font-weight:600;" id="channelTaskCountBadge">প্রতিটি ৳৫০</span>
                 </div>
 
-                <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Prince Earning Zone</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/PrinceEarningZone" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn1" onclick="claimTask(1)">Claim</button>
-                    </div>
-                </div>
-
-                <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Bangla Task Payment</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/Bangla_TaskHub" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn2" onclick="claimTask(2)">Claim</button>
-                    </div>
-                </div>
-
-                <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Velora Earning</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/VeloraEarning" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn3" onclick="claimTask(3)">Claim</button>
-                    </div>
-                </div>
-
-                <div class="channel-item">
-                    <div class="channel-info">
-                        <i class="fa-solid fa-bullhorn"></i>
-                        <div>
-                            <div style="font-size: 13px; font-weight:600;">Shuvo Earning Hub</div>
-                            <div style="font-size: 11px; color: var(--gold);">+৳৫০ বোনাস</div>
-                        </div>
-                    </div>
-                    <div class="channel-btn-group">
-                        <a href="https://t.me/ShuvoEarningHub" target="_blank" class="btn-join">Join</a>
-                        <button class="btn-claim" id="claimBtn4" onclick="claimTask(4)">Claim</button>
-                    </div>
-                </div>
+                <!-- টাস্কগুলো এই কনটেইনারে জাভাস্ক্রিপ্ট দিয়ে ডাইনামিকালি রেন্ডার হবে -->
+                <div id="dynamicTasksContainer"></div>
             </div>
 
             <div class="glass-card">
@@ -915,7 +1039,7 @@
                         <span>🎁 Welcome Bonus:</span> <strong style="color:var(--gold);">৳50</strong>
                     </div>
                     <div style="display:flex; justify-content:space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 4px 0;">
-                        <span>📢 ৪টি চ্যানেল টাস্ক (4 x ৳50):</span> <strong style="color:var(--gold);">৳200</strong>
+                        <span>📢 চ্যানেল টাস্ক বোনাস:</span> <strong style="color:var(--gold);">৳২০০+</strong>
                     </div>
                     <div style="display:flex; justify-content:space-between; border-bottom: 1px solid rgba(255,255,255,0.06); padding: 4px 0;">
                         <span>👥 ২০টি রেফারেল (20 x ৳50):</span> <strong style="color:var(--gold);">৳1,000</strong>
@@ -1036,12 +1160,30 @@
                     <i class="fa-solid fa-paper-plane"></i> Submit Withdrawal
                 </button>
             </div>
+
+            <!-- ==================== উইথড্র হিস্ট্রি কার্ড ==================== -->
+            <div class="glass-card" style="margin-top: 14px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <h4 style="font-size: 14px; font-weight: 700; color: #fff;">
+                        <i class="fa-solid fa-clock-rotate-left" style="color: var(--gold);"></i> উত্তোলন ইতিহাস (Withdraw History)
+                    </h4>
+                    <span style="font-size: 10px; color: var(--text-muted);" id="historyCountBadge">0 Transactions</span>
+                </div>
+
+                <div id="withdrawHistoryContainer">
+                    <!-- কোনো হিস্ট্রি না থাকলে এটি দেখাবে -->
+                    <div id="noHistoryNotice" style="text-align: center; padding: 18px 10px; color: var(--text-muted); font-size: 12px;">
+                        <i class="fa-solid fa-receipt" style="font-size: 26px; opacity: 0.3; margin-bottom: 6px; display: block;"></i>
+                        এখনও কোনো উত্তোলনের রেকর্ড নেই
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- ==================== TAB 5: PROFILE & BOT INFO ==================== -->
         <div id="profileView" class="view-section">
             
-            <!-- স্বাগতম ব্যানার কার্ড (শুধু এই প্রোফাইল ট্যাবে থাকবে) -->
+            <!-- স্বাগতম ব্যানার কার্ড (শুধুমাত্র এই প্রোফাইলে) -->
             <div class="user-welcome-card">
                 <div class="user-welcome-left">
                     <img id="userWelcomePic" src="" alt="User Photo" class="user-welcome-pic">
@@ -1114,22 +1256,22 @@
             <div class="glass-card">
                 <h4 style="font-size: 13px; margin-bottom: 8px;">📌 গুরুত্বপূর্ণ নিয়মাবলী</h4>
                 <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
-                    ৪টি চ্যানেলে অবশ্যই জয়েন থাকতে হবে। ফেক রেফার করলে পেমেন্ট বাতিল হবে। পেমেন্ট প্রুফ দেখতে <a href="https://t.me/Refer_EarnPayment" target="_blank" style="color:var(--gold); text-decoration:none;">@Refer_EarnPayment</a> চ্যানেলে যুক্ত থাকুন।
+                    সকল চ্যানেলে অবশ্যই জয়েন থাকতে হবে। ফেক রেফার করলে পেমেন্ট বাতিল হবে। পেমেন্ট প্রুফ দেখতে <a href="https://t.me/Refer_EarnPayment" target="_blank" style="color:var(--gold); text-decoration:none;">@Refer_EarnPayment</a> চ্যানেলে যুক্ত থাকুন।
                 </p>
             </div>
 
-            <!-- একদম নিচে ছোট করে গোপন অ্যাডমিন প্যানেল লিংক -->
-            <div style="text-align: center; margin-top: 25px; padding-bottom: 12px;">
-                <span onclick="openAdminPrompt()" style="font-size: 10px; color: rgba(255,255,255,0.18); cursor: pointer; letter-spacing: 0.5px; text-decoration: none;">
-                    admin panel
-                </span>
+            <!-- বোল্ড ও আকর্ষণীয় Admin Panel বাটন -->
+            <div style="text-align: center; margin-top: 26px; padding-bottom: 14px;">
+                <button type="button" onclick="openAdminPassModal()" class="admin-trigger-btn">
+                    <i class="fa-solid fa-shield-halved"></i> Admin Panel
+                </button>
             </div>
 
         </div>
 
     </div>
 
-    <!-- Bottom Nav (3 নম্বরে Support) -->
+    <!-- Bottom Nav -->
     <nav class="bottom-nav">
         <button class="nav-item active" id="navHome" onclick="switchTab('home')">
             <i class="fa-solid fa-house"></i>
@@ -1159,18 +1301,21 @@
         const BOT_USERNAME = "ReferEarnn_Bot";
         const BOT_TOKEN = "8743287689:AAH4eFiDrAYWx4cVWaMXYHDNpdNK6Bx55bo";
 
-        const CHANNELS = {
-            1: { name: "Prince Earning Zone", username: "@PrinceEarningZone" },
-            2: { name: "Bangla Task Payment", username: "@Bangla_TaskHub" },
-            3: { name: "Velora Earning", username: "@VeloraEarning" },
-            4: { name: "Shuvo Earning Hub", username: "@ShuvoEarningHub" }
-        };
+        // ডিফল্ট ৪টি চ্যানেল
+        const DEFAULT_CHANNELS = [
+            { id: "def_1", name: "Prince Earning Zone", link: "https://t.me/PrinceEarningZone", username: "@PrinceEarningZone", reward: 50 },
+            { id: "def_2", name: "Bangla Task Payment", link: "https://t.me/Bangla_TaskHub", username: "@Bangla_TaskHub", reward: 50 },
+            { id: "def_3", name: "Velora Earning", link: "https://t.me/VeloraEarning", username: "@VeloraEarning", reward: 50 },
+            { id: "def_4", name: "Shuvo Earning Hub", link: "https://t.me/ShuvoEarningHub", username: "@ShuvoEarningHub", reward: 50 }
+        ];
 
         let currentUserId = "guest_123456";
         let balance = 50;
         let totalReferrals = 0;
         let claimedChannels = {};
         let currentGateway = 'bKash';
+        let customTasks = [];
+        let withdrawHistory = [];
 
         window.addEventListener('DOMContentLoaded', () => {
             const tg = window.Telegram?.WebApp;
@@ -1232,6 +1377,9 @@
             document.getElementById('myReferralCodeBadge').innerText = currentUserId;
 
             loadUserData(currentUserId);
+            loadCustomTasks();
+            renderAllTasks();
+            renderWithdrawHistory();
             updateUI();
         });
 
@@ -1254,23 +1402,112 @@
             balance = parseInt(localStorage.getItem(`reb_${uid}_bal`)) || 50;
             totalReferrals = parseInt(localStorage.getItem(`reb_${uid}_refs`)) || 0;
             claimedChannels = JSON.parse(localStorage.getItem(`reb_${uid}_claimed`)) || {};
-
-            for (let i = 1; i <= 4; i++) {
-                if (claimedChannels[i]) {
-                    const btn = document.getElementById(`claimBtn${i}`);
-                    if (btn) {
-                        btn.classList.add('btn-claimed');
-                        btn.innerText = "Claimed ✓";
-                        btn.disabled = true;
-                    }
-                }
-            }
+            withdrawHistory = JSON.parse(localStorage.getItem(`reb_${uid}_with_hist`)) || [];
         }
 
         function saveUserData() {
             localStorage.setItem(`reb_${currentUserId}_bal`, balance);
             localStorage.setItem(`reb_${currentUserId}_refs`, totalReferrals);
             localStorage.setItem(`reb_${currentUserId}_claimed`, JSON.stringify(claimedChannels));
+            localStorage.setItem(`reb_${currentUserId}_with_hist`, JSON.stringify(withdrawHistory));
+        }
+
+        function loadCustomTasks() {
+            customTasks = JSON.parse(localStorage.getItem('reb_global_custom_tasks')) || [];
+        }
+
+        function saveCustomTasks() {
+            localStorage.setItem('reb_global_custom_tasks', JSON.stringify(customTasks));
+        }
+
+        // টাস্ক রেন্ডারিং (ডিফল্ট + কাস্টম টাস্ক)
+        function renderAllTasks() {
+            const container = document.getElementById('dynamicTasksContainer');
+            container.innerHTML = '';
+
+            const allTasks = [...DEFAULT_CHANNELS, ...customTasks];
+
+            allTasks.forEach(task => {
+                const isClaimed = claimedChannels[task.id];
+                const taskCard = document.createElement('div');
+                taskCard.className = 'channel-item';
+                taskCard.innerHTML = `
+                    <div class="channel-info">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <div>
+                            <div style="font-size: 13px; font-weight:600;">${task.name}</div>
+                            <div style="font-size: 11px; color: var(--gold);">+৳${task.reward} বোনাস</div>
+                        </div>
+                    </div>
+                    <div class="channel-btn-group">
+                        <a href="${task.link}" target="_blank" class="btn-join">Join</a>
+                        <button class="btn-claim ${isClaimed ? 'btn-claimed' : ''}" 
+                                id="claimBtn_${task.id}" 
+                                onclick="claimDynamicTask('${task.id}', '${task.username}', ${task.reward}, '${escape(task.name)}')">
+                            ${isClaimed ? 'Claimed ✓' : 'Claim'}
+                        </button>
+                    </div>
+                `;
+                container.appendChild(taskCard);
+            });
+        }
+
+        // ডাইনামিক টাস্ক ক্লেইম ভেরিফিকেশন
+        async function claimDynamicTask(taskId, username, reward, escapedName) {
+            const taskName = unescape(escapedName);
+            if (claimedChannels[taskId]) return;
+
+            if (!currentUserId || currentUserId.startsWith('USR_') || currentUserId.startsWith('guest_')) {
+                showToast("⚠️ লাইভ ভেরিফিকেশনের জন্য সরাসরি Telegram Bot থেকে মিনি অ্যাপটি ওপেন করুন!");
+                return;
+            }
+
+            const btn = document.getElementById(`claimBtn_${taskId}`);
+            const originalText = btn.innerText;
+            btn.innerText = "যাচাই হচ্ছে...";
+            btn.disabled = true;
+
+            try {
+                // ইউজারনেম থাকলে টেলিগ্রামের অফিসিয়াল getChatMember দিয়ে লাইভ চেক হবে
+                if (username && username.startsWith('@')) {
+                    const checkUrl = `https://api.telegram.org/bot${BOT_TOKEN}/getChatMember?chat_id=${username}&user_id=${currentUserId}`;
+                    const response = await fetch(checkUrl);
+                    const data = await response.json();
+
+                    if (data.ok && data.result) {
+                        const status = data.result.status;
+                        if (['member', 'administrator', 'creator', 'restricted'].includes(status)) {
+                            grantReward(taskId, reward, taskName, btn);
+                            return;
+                        }
+                    }
+
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    showToast("❌ আপনি এখনও চ্যানেলে জয়েন করেননি! আগে Join বাটনে চাপুন।");
+                } else {
+                    // সাধারণ লিংকের ক্ষেত্রে সরাসরি বোনাস
+                    grantReward(taskId, reward, taskName, btn);
+                }
+            } catch (error) {
+                console.error("Verification error:", error);
+                btn.innerText = originalText;
+                btn.disabled = false;
+                showToast("⚠️ যাচাই করতে সমস্যা হয়েছে! নিশ্চিত করুন বট চ্যানেলে অ্যাডমিন আছে।");
+            }
+        }
+
+        function grantReward(taskId, reward, taskName, btn) {
+            balance += reward;
+            claimedChannels[taskId] = true;
+            saveUserData();
+
+            btn.classList.add('btn-claimed');
+            btn.innerText = "Claimed ✓";
+            btn.disabled = true;
+
+            showToast(`🎉 অভিনন্দন! ${taskName} এর ৳${reward} যুক্ত হয়েছে!`);
+            updateUI();
         }
 
         function switchTab(tab) {
@@ -1289,58 +1526,10 @@
             } else if (tab === 'withdraw') {
                 document.getElementById('withdrawView').classList.add('active');
                 document.getElementById('navWithdraw').classList.add('active');
+                renderWithdrawHistory();
             } else if (tab === 'profile') {
                 document.getElementById('profileView').classList.add('active');
                 document.getElementById('navProfile').classList.add('active');
-            }
-        }
-
-        async function claimTask(id) {
-            if (claimedChannels[id]) return;
-
-            if (!currentUserId || currentUserId.startsWith('USR_') || currentUserId.startsWith('guest_')) {
-                showToast("⚠️ লাইভ ভেরিফিকেশনের জন্য সরাসরি Telegram Bot থেকে মিনি অ্যাপটি ওপেন করুন!");
-                return;
-            }
-
-            const btn = document.getElementById(`claimBtn${id}`);
-            const originalText = btn.innerText;
-            btn.innerText = "যাচাই হচ্ছে...";
-            btn.disabled = true;
-
-            const targetChannel = CHANNELS[id];
-
-            try {
-                const checkUrl = `https://api.telegram.org/bot${BOT_TOKEN}/getChatMember?chat_id=${targetChannel.username}&user_id=${currentUserId}`;
-                const response = await fetch(checkUrl);
-                const data = await response.json();
-
-                if (data.ok && data.result) {
-                    const status = data.result.status;
-                    if (['member', 'administrator', 'creator', 'restricted'].includes(status)) {
-                        balance += 50;
-                        claimedChannels[id] = true;
-                        saveUserData();
-
-                        btn.classList.add('btn-claimed');
-                        btn.innerText = "Claimed ✓";
-                        btn.disabled = true;
-
-                        showToast(`🎉 অভিনন্দন! ${targetChannel.name} এর ৳৫০ যুক্ত হয়েছে!`);
-                        updateUI();
-                        return;
-                    }
-                }
-
-                btn.innerText = originalText;
-                btn.disabled = false;
-                showToast("❌ আপনি এখনও চ্যানেলে জয়েন করেননি! আগে Join বাটনে চাপুন।");
-
-            } catch (error) {
-                console.error("Verification error:", error);
-                btn.innerText = originalText;
-                btn.disabled = false;
-                showToast("⚠️ যাচাই করতে ব্যর্থ হয়েছে! নিশ্চিত করুন বটটি ওই চ্যানেলে অ্যাডমিন আছে।");
             }
         }
 
@@ -1354,7 +1543,7 @@
 
         function shareTelegram() {
             const link = document.getElementById('refLinkInput').value;
-            const text = encodeURIComponent(`🔥 জয়েন করলেই ৳৫০ ওয়েলকাম বোনাস! ৪টি চ্যানেল জয়েন করলেই ৳২০০ এবং প্রতি রেফারে ৳৫০ নগদ! এখনই যোগ দিন:\n${link}`);
+            const text = encodeURIComponent(`🔥 জয়েন করলেই ৳৫০ ওয়েলকাম বোনাস! চ্যানেল জয়েন করলেই বোনাস এবং প্রতি রেফারে ৳৫০ নগদ! এখনই যোগ দিন:\n${link}`);
             window.open(`https://t.me/share/url?url=${link}&text=${text}`, '_blank');
         }
 
@@ -1400,6 +1589,7 @@
             document.getElementById('phoneLabel').innerText = `${m === 'bKash' ? 'বিকাশ' : 'নগদ'} অ্যাকাউন্ট নম্বর`;
         }
 
+        // উইথড্র সাবমিট ও হিস্ট্রি সংরক্ষণ
         function handleWithdrawRequest() {
             const num = document.getElementById('targetNumber').value.trim();
             const amt = parseInt(document.getElementById('targetAmount').value);
@@ -1420,62 +1610,149 @@
             }
 
             balance -= amt;
+
+            // বর্তমান তারিখ ও সময় তৈরি
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('bn-BD', { day: 'numeric', month: 'short', year: 'numeric' });
+            const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+            const newWithdrawRecord = {
+                id: 'WID_' + Date.now(),
+                method: currentGateway,
+                number: num,
+                amount: amt,
+                date: dateStr,
+                time: timeStr,
+                status: 'পেন্ডিং ⏳'
+            };
+
+            withdrawHistory.unshift(newWithdrawRecord);
             saveUserData();
             updateUI();
+            renderWithdrawHistory();
 
-            alert(`✅ উত্তোলন সফল হয়েছে!\n\nপেমেন্ট মেথড: ${currentGateway}\nঅ্যাকাউন্ট: ${num}\nপরিমাণ: ৳${amt}\nটেলিগ্রাম আইডি: ${currentUserId}\n\nআপনার টাকা ১-১২ ঘণ্টার মধ্যে পাঠিয়ে দেওয়া হবে।`);
+            alert(`✅ উত্তোলন সফল হয়েছে!\n\nপেমেন্ট মেথড: ${currentGateway}\nঅ্যাকাউন্ট: ${num}\nপরিমাণ: ৳${amt}\nতারিখ: ${dateStr}, ${timeStr}\n\nআপনার টাকা ১-১২ ঘণ্টার মধ্যে পাঠিয়ে দেওয়া হবে।`);
             document.getElementById('targetNumber').value = '';
-            switchTab('home');
+            switchTab('withdraw');
         }
 
-        /* ==================== সিক্রেট অ্যাডমিন প্যানেল ফাংশন ==================== */
-        function openAdminPrompt() {
-            const pass = prompt("সিক্রেট অ্যাডমিন পাসওয়ার্ড দিন:");
-            if (pass === null) return;
-            if (pass === "PRINCEHACK") {
-                document.getElementById('adminModal').style.display = 'flex';
-                document.getElementById('adminUserId').value = currentUserId;
+        // উইথড্র হিস্ট্রি রেন্ডার
+        function renderWithdrawHistory() {
+            const container = document.getElementById('withdrawHistoryContainer');
+            const badge = document.getElementById('historyCountBadge');
+            
+            badge.innerText = `${withdrawHistory.length} Transactions`;
+
+            if (withdrawHistory.length === 0) {
+                container.innerHTML = `
+                    <div id="noHistoryNotice" style="text-align: center; padding: 18px 10px; color: var(--text-muted); font-size: 12px;">
+                        <i class="fa-solid fa-receipt" style="font-size: 26px; opacity: 0.3; margin-bottom: 6px; display: block;"></i>
+                        এখনও কোনো উত্তোলনের রেকর্ড নেই
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = '';
+            withdrawHistory.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'history-card';
+                row.innerHTML = `
+                    <div>
+                        <div style="font-weight: 700; font-size: 13px; color: #fff; display: flex; align-items: center; gap: 6px;">
+                            <span>${item.method === 'bKash' ? '🟢 bKash' : '🔴 Nagad'}</span>
+                            <span style="font-size: 11px; color: var(--text-muted); font-weight: normal;">(${item.number})</span>
+                        </div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-top: 3px;">
+                            <i class="fa-regular fa-calendar"></i> ${item.date} • ${item.time}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-size: 14px; font-weight: 800; color: var(--gold);">৳${item.amount}</div>
+                        <span class="history-badge-pending">${item.status}</span>
+                    </div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        /* ==================== অ্যাডমিন প্যানেল লজিক ==================== */
+        function openAdminPassModal() {
+            document.getElementById('adminSecretInput').value = '';
+            document.getElementById('adminPassModal').style.display = 'flex';
+        }
+
+        function closeAdminPassModal() {
+            document.getElementById('adminPassModal').style.display = 'none';
+        }
+
+        function submitAdminPassword() {
+            const entered = document.getElementById('adminSecretInput').value.trim();
+            if (entered === "PRINCEHACK") {
+                closeAdminPassModal();
+                openAdminDashboard();
             } else {
-                alert("❌ ভুল পাসওয়ার্ড! অ্যাক্সেস বাতিল।");
+                showToast("❌ ভুল পাসওয়ার্ড! প্রবেশাধিকার নেই।");
             }
         }
 
-        function closeAdminPanel() {
-            document.getElementById('adminModal').style.display = 'none';
+        function openAdminDashboard() {
+            document.getElementById('dashUserId').value = currentUserId;
+            document.getElementById('dashBalance').value = '';
+            document.getElementById('dashRefs').value = '';
+            renderCustomTasksInAdmin();
+            document.getElementById('adminDashboardModal').style.display = 'flex';
+        }
+
+        function closeAdminDashboard() {
+            document.getElementById('adminDashboardModal').style.display = 'none';
+        }
+
+        function switchAdminTab(tab) {
+            if (tab === 'balance') {
+                document.getElementById('adminSectionBalance').style.display = 'block';
+                document.getElementById('adminSectionTasks').style.display = 'none';
+                document.getElementById('btnAdminTabBalance').classList.add('active');
+                document.getElementById('btnAdminTabTasks').classList.remove('active');
+            } else {
+                document.getElementById('adminSectionBalance').style.display = 'none';
+                document.getElementById('adminSectionTasks').style.display = 'block';
+                document.getElementById('btnAdminTabBalance').classList.remove('active');
+                document.getElementById('btnAdminTabTasks').classList.add('active');
+            }
         }
 
         function setMyIdToAdmin() {
-            document.getElementById('adminUserId').value = currentUserId;
+            document.getElementById('dashUserId').value = currentUserId;
         }
 
         function saveAdminChanges(isSetExact) {
-            const targetUid = document.getElementById('adminUserId').value.trim();
-            const balInput = document.getElementById('adminBalance').value.trim();
-            const refInput = document.getElementById('adminRefs').value.trim();
+            const targetUid = document.getElementById('dashUserId').value.trim();
+            const balInput = document.getElementById('dashBalance').value.trim();
+            const refInput = document.getElementById('dashRefs').value.trim();
 
             if (!targetUid) {
-                alert("দয়া করে একটি সঠিক ইউজার আইডি দিন!");
+                alert("দয়া করে একটি সঠিক Telegram ID লিখুন!");
                 return;
             }
 
             let userBal = parseInt(localStorage.getItem(`reb_${targetUid}_bal`)) || 50;
             let userRefs = parseInt(localStorage.getItem(`reb_${targetUid}_refs`)) || 0;
 
-            const addBal = parseInt(balInput) || 0;
-            const addRefs = parseInt(refInput) || 0;
+            const valBal = parseInt(balInput) || 0;
+            const valRefs = parseInt(refInput) || 0;
 
             if (isSetExact) {
-                if (balInput !== "") userBal = addBal;
-                if (refInput !== "") userRefs = addRefs;
+                if (balInput !== "") userBal = valBal;
+                if (refInput !== "") userRefs = valRefs;
             } else {
-                userBal += addBal;
-                userRefs += addRefs;
+                userBal += valBal;
+                userRefs += valRefs;
             }
 
             localStorage.setItem(`reb_${targetUid}_bal`, userBal);
             localStorage.setItem(`reb_${targetUid}_refs`, userRefs);
 
-            // পরিবর্তন যদি নিজের আইডিতে হয়
             if (targetUid === currentUserId) {
                 balance = userBal;
                 totalReferrals = userRefs;
@@ -1483,9 +1760,73 @@
             }
 
             showToast(`✅ ID: ${targetUid} এর তথ্য সফলভাবে আপডেট হয়েছে!`);
-            closeAdminPanel();
-            document.getElementById('adminBalance').value = '';
-            document.getElementById('adminRefs').value = '';
+            closeAdminDashboard();
+        }
+
+        // নতুন কাস্টম টাস্ক তৈরি ও সেভ করা
+        function addNewCustomTask() {
+            const name = document.getElementById('newTaskName').value.trim();
+            const link = document.getElementById('newTaskLink').value.trim();
+            const username = document.getElementById('newTaskUsername').value.trim();
+            const reward = parseInt(document.getElementById('newTaskReward').value) || 50;
+
+            if (!name || !link) {
+                alert("দয়া করে টাস্কের নাম এবং লিংক প্রদান করুন!");
+                return;
+            }
+
+            const newTask = {
+                id: 'task_' + Date.now(),
+                name: name,
+                link: link,
+                username: username || '',
+                reward: reward
+            };
+
+            customTasks.push(newTask);
+            saveCustomTasks();
+            renderAllTasks();
+            renderCustomTasksInAdmin();
+
+            showToast("🎉 নতুন টাস্ক মেইন স্ক্রিনে লাইভ যুক্ত হয়েছে!");
+            document.getElementById('newTaskName').value = '';
+            document.getElementById('newTaskLink').value = '';
+            document.getElementById('newTaskUsername').value = '';
+        }
+
+        // অ্যাডমিন প্যানেলে কাস্টম টাস্কের লিস্ট ও ডিলিট বাটন
+        function renderCustomTasksInAdmin() {
+            const listContainer = document.getElementById('customTasksListAdmin');
+            if (customTasks.length === 0) {
+                listContainer.innerHTML = 'কোনো কাস্টম টাস্ক যুক্ত নেই।';
+                return;
+            }
+
+            listContainer.innerHTML = '';
+            customTasks.forEach((task, index) => {
+                const item = document.createElement('div');
+                item.style.cssText = "display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.06); padding:8px 10px; border-radius:8px; margin-bottom:6px;";
+                item.innerHTML = `
+                    <div>
+                        <strong style="color:#fff;">${task.name}</strong> (৳${task.reward})
+                        <div style="font-size:10px; color:var(--text-muted);">${task.username || task.link}</div>
+                    </div>
+                    <button onclick="deleteCustomTask(${index})" style="background:var(--accent-red); border:none; color:#fff; padding:4px 8px; border-radius:6px; font-size:11px; cursor:pointer;">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function deleteCustomTask(index) {
+            if (confirm("আপনি কি নিশ্চিত এই টাস্কটি মুছে ফেলতে চান?")) {
+                customTasks.splice(index, 1);
+                saveCustomTasks();
+                renderAllTasks();
+                renderCustomTasksInAdmin();
+                showToast("🗑️ টাস্কটি সফলভাবে মুছে ফেলা হয়েছে!");
+            }
         }
 
         function showToast(msg) {
