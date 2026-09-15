@@ -345,6 +345,7 @@
             color: var(--accent-green) !important;
             border: 1px solid var(--accent-green) !important;
             cursor: default;
+            pointer-events: none;
         }
 
         /* General Buttons */
@@ -1217,6 +1218,7 @@
         const BOT_USERNAME = "ReferEarnn_Bot";
         const BOT_TOKEN = "8743287689:AAH4eFiDrAYWx4cVWaMXYHDNpdNK6Bx55bo";
 
+        // ডিফল্ট ৪টি চ্যানেল
         const DEFAULT_CHANNELS = [
             { id: "def_1", type: "channel", name: "Prince Earning Zone", link: "https://t.me/PrinceEarningZone", username: "@PrinceEarningZone", reward: 50 },
             { id: "def_2", type: "channel", name: "Bangla Task Payment", link: "https://t.me/Bangla_TaskHub", username: "@Bangla_TaskHub", reward: 50 },
@@ -1298,7 +1300,7 @@
             document.getElementById('refLinkInput').value = myPersonalRefLink;
             document.getElementById('myReferralCodeBadge').innerText = currentUserId;
 
-            // 🚀 সরাসরি fetch দিয়ে Firebase থেকে আগের আসল ডাটা লোড
+            // ডাটাবেস থেকে ডাটা সিঙ্ক
             await syncUserWithFirebase(currentUserId, startParam);
             await fetchCustomTasksFromFirebase();
 
@@ -1324,7 +1326,6 @@
 
         // ==================== সরাসরি FETCH দিয়ে FIREBASE ডাটা সিঙ্ক ====================
         async function syncUserWithFirebase(uid, startParam) {
-            // লোকাল ব্যাকআপ থেকে প্রাথমিক লোড
             balance = parseInt(localStorage.getItem(`reb_${uid}_bal`)) || 50;
             totalReferrals = parseInt(localStorage.getItem(`reb_${uid}_refs`)) || 0;
             claimedChannels = JSON.parse(localStorage.getItem(`reb_${uid}_claimed`)) || {};
@@ -1332,21 +1333,27 @@
             withdrawHistory = JSON.parse(localStorage.getItem(`reb_${uid}_with_hist`)) || [];
 
             try {
-                // আপনার আগের ডাটাবেস থেকে ইউজারের ডাটা ফেচ
                 const res = await fetch(`${FIREBASE_DB_URL}users/${uid}.json`);
                 const userData = await res.json();
 
                 if (userData) {
-                    // আগের ডাটাবেসে যা আছে সরাসরি সেটাই লোড হবে
+                    // 🔒 পুরোনো ইউজার: তাদের আসল ব্যালেন্স ও রেফার আসবে
                     balance = userData.balance !== undefined ? userData.balance : 50;
                     totalReferrals = userData.referrals !== undefined ? userData.referrals : (userData.totalRefs || 0);
                     claimedChannels = userData.claimedTasks || {};
                     visitedExtraTasks = userData.visitedExtraTasks || {};
                     withdrawHistory = userData.withdrawHistory || [];
 
+                    // ⚠️ পুরোনো ইউজারদের জন্য ডিফল্ট ৪টি চ্যানেল টাস্ক অটোমেটিক Claimed থাকবে (দ্বিতীয়বার বোনাস পাবে না)
+                    DEFAULT_CHANNELS.forEach(ch => {
+                        claimedChannels[ch.id] = true;
+                    });
+
                     saveLocalData();
+                    // ডাটাবেসেও আপডেট করে লক রাখা হবে
+                    await saveUserData();
                 } else {
-                    // একদম নতুন ইউজার হলে ডাটাবেসে সেভ হবে
+                    // 🟢 নতুন ইউজার: তারা চ্যানেল জয়েন করে বোনাস ক্লেইম করতে পারবে
                     let newUserData = {
                         id: uid,
                         name: currentUserName,
@@ -1388,10 +1395,11 @@
 
                     balance = 50;
                     totalReferrals = 0;
+                    claimedChannels = {};
                     saveLocalData();
                 }
             } catch (err) {
-                console.log("Firebase direct fetch error:", err);
+                console.log("Firebase sync error:", err);
             }
         }
 
@@ -1422,7 +1430,6 @@
             localStorage.setItem(`reb_${currentUserId}_with_hist`, JSON.stringify(withdrawHistory));
         }
 
-        // Firebase থেকে কাস্টম টাস্ক ফেচ
         async function fetchCustomTasksFromFirebase() {
             try {
                 const res = await fetch(`${FIREBASE_DB_URL}custom_tasks.json`);
@@ -1468,6 +1475,7 @@
                         <a href="${task.link}" target="_blank" class="btn-join">Join</a>
                         <button class="btn-claim ${isClaimed ? 'btn-claimed' : ''}" 
                                 id="claimBtn_${task.id}" 
+                                ${isClaimed ? 'disabled' : ''}
                                 onclick="claimChannelTask('${task.id}', '${task.username}', ${task.reward}, '${escape(task.name)}')">
                             ${isClaimed ? 'Claimed ✓' : 'Claim'}
                         </button>
@@ -1505,6 +1513,7 @@
                                 </a>
                                 <button class="btn-claim ${isClaimed ? 'btn-claimed' : ''}" 
                                         id="claimBtn_${task.id}" 
+                                        ${isClaimed ? 'disabled' : ''}
                                         onclick="claimExtraTask('${task.id}', ${task.reward}, '${escape(task.name)}')">
                                     ${isClaimed ? 'Claimed ✓' : 'Claim'}
                                 </button>
@@ -1522,7 +1531,10 @@
 
         async function claimChannelTask(taskId, username, reward, escapedName) {
             const taskName = unescape(escapedName);
-            if (claimedChannels[taskId]) return;
+            if (claimedChannels[taskId]) {
+                showToast("⚠️ আপনি ইতিপূর্বে এই বোনাসটি গ্রহণ করেছেন!");
+                return;
+            }
 
             if (!currentUserId || currentUserId.startsWith('USR_') || currentUserId.startsWith('guest_')) {
                 showToast("⚠️ লাইভ ভেরিফিকেশনের জন্য সরাসরি Telegram Bot থেকে মিনি অ্যাপটি ওপেন করুন!");
@@ -1568,7 +1580,10 @@
 
         function claimExtraTask(taskId, reward, escapedName) {
             const taskName = unescape(escapedName);
-            if (claimedChannels[taskId]) return;
+            if (claimedChannels[taskId]) {
+                showToast("⚠️ আপনি ইতিমধ্যে এই বোনাসটি গ্রহণ করেছেন!");
+                return;
+            }
 
             if (!visitedExtraTasks[taskId]) {
                 showToast("⚠️ আগে 'কাজ করুন' বাটনে চাপ দিয়ে শর্ত পূরণ করুন!");
@@ -1696,7 +1711,6 @@
             updateUI();
             renderWithdrawHistory();
 
-            // গ্লোবাল উইথড্র লগ Firebase-এ সংরক্ষণ
             try {
                 await fetch(`${FIREBASE_DB_URL}global_withdrawals.json`, {
                     method: 'POST',
@@ -1815,7 +1829,6 @@
             }
 
             try {
-                // Firebase থেকে টার্গেট ইউজারের ডাটা ফেচ
                 const res = await fetch(`${FIREBASE_DB_URL}users/${targetUid}.json`);
                 let targetData = await res.json() || {};
 
@@ -1836,7 +1849,6 @@
                 if (userBal < 0) userBal = 0;
                 if (userRefs < 0) userRefs = 0;
 
-                // Firebase-এ PATCH রিকোয়েস্ট পাঠিয়ে ডাটাবেস আপডেট
                 await fetch(`${FIREBASE_DB_URL}users/${targetUid}.json`, {
                     method: 'PATCH',
                     headers: { 'Content-Type': 'application/json' },
